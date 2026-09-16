@@ -1,17 +1,17 @@
 ---
-import BaseLayout from "..//layouts/BaseLayout.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import CTA from "../components/CTA.astro";
 import Landing from "../components/Landing.astro";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
 import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/cabinets2.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
+import landingImage from "../assets/images/hedges.jpg"
 const optimizedImage = await getOptimizedImage(landingImage)
 ---
 
 <BaseLayout
-  title="About"
-  description="Meta description for the page"
+  title="Reviews"
+  description="What homeowners across Cheshire say about Weekend Tree Surgeon."
   preloadedImage = {optimizedImage}
 >
   <!-- ============================================ -->
@@ -19,7 +19,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
   <!-- ============================================ -->
 
   <Landing 
-    title="Projects"
+    title="Reviews"
     image={optimizedImage}
   />
 
@@ -30,198 +30,19 @@ const optimizedImage = await getOptimizedImage(landingImage)
   <section id="reviews">
     <div class="container">
       <div class="review">
-        <picture>
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            src="/assets/svgs/profile.svg"
-            alt=""
-            width="99"
-            height="99"
-          />
-        </picture>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-          recusandae rerum unde similique ratione sapiente necessitatibus natus
-          mollitia nam iusto.
+          Adam is one of the good ones. He is a great guy, and he did a great job for us. He was friendly, helpful and very professional. I would recommend him to anyone looking for a tree surgeon.
         </p>
         <div class="star-group">
-          <span class="name">B Miller<span class="desc">Homeowner</span></span>
-          <picture>
-            <img
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              src="/assets/svgs/stars.svg"
-              alt="stars"
-              width="91"
-              height="15"
-            />
-          </picture>
+          <span class="name">Rebecca Thompson<span class="desc">Teacher</span></span>
         </div>
       </div>
       <div class="review">
-        <picture>
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            src="/assets/svgs/profile.svg"
-            alt=""
-            width="99"
-            height="99"
-          />
-        </picture>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-          recusandae rerum unde similique ratione sapiente necessitatibus natus
-          mollitia nam iusto.
+          Adam was great. He came out to see us on a Saturday morning, and he was very friendly and helpful. We asked Adam to cut our hedge and remove a few small trees in the garden, and we would recommend him to anyone looking for a tree surgeon.
         </p>
         <div class="star-group">
-          <span class="name">Vincent M.<span class="desc">Homeowner</span></span
-          >
-          <picture>
-            <img
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              src="/assets/svgs/stars.svg"
-              alt="stars"
-              width="91"
-              height="15"
-            />
-          </picture>
-        </div>
-      </div>
-      <div class="review">
-        <picture>
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            src="/assets/svgs/profile.svg"
-            alt=""
-            width="99"
-            height="99"
-          />
-        </picture>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-          recusandae rerum unde similique ratione sapiente necessitatibus natus
-          mollitia nam iusto.
-        </p>
-        <div class="star-group">
-          <span class="name">Alex L.<span class="desc">Homeowner</span></span>
-          <picture>
-            <img
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              src="/assets/svgs/stars.svg"
-              alt="stars"
-              width="91"
-              height="15"
-            />
-          </picture>
-        </div>
-      </div>
-      <div class="review">
-        <picture>
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            src="/assets/svgs/profile-woman.svg"
-            alt=""
-            width="99"
-            height="99"
-          />
-        </picture>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-          recusandae rerum unde similique ratione sapiente necessitatibus natus
-          mollitia nam iusto.
-        </p>
-        <div class="star-group">
-          <span class="name"
-            >Arrieana M.<span class="desc">Homeowner</span></span
-          >
-          <picture>
-            <img
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              src="/assets/svgs/stars.svg"
-              alt="stars"
-              width="91"
-              height="15"
-            />
-          </picture>
-        </div>
-      </div>
-      <div class="review">
-        <picture>
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            src="/assets/svgs/profile.svg"
-            alt=""
-            width="99"
-            height="99"
-          />
-        </picture>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-          recusandae rerum unde similique ratione sapiente necessitatibus natus
-          mollitia nam iusto.
-        </p>
-        <div class="star-group">
-          <span class="name">Leo N.<span class="desc">Homeowner</span></span>
-          <picture>
-            <img
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              src="/assets/svgs/stars.svg"
-              alt="stars"
-              width="91"
-              height="15"
-            />
-          </picture>
-        </div>
-      </div>
-      <div class="review">
-        <picture>
-          <img
-            class="profile"
-            loading="lazy"
-            decoding="async"
-            src="/assets/svgs/profile.svg"
-            alt=""
-            width="99"
-            height="99"
-          />
-        </picture>
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed
-          recusandae rerum unde similique ratione sapiente necessitatibus natus
-          mollitia nam iusto.
-        </p>
-        <div class="star-group">
-          <span class="name">Brian A.<span class="desc">Homeowner</span></span>
-          <picture>
-            <img
-              aria-hidden="true"
-              loading="lazy"
-              decoding="async"
-              src="/assets/svgs/stars.svg"
-              alt="stars"
-              width="91"
-              height="15"
-            />
-          </picture>
+          <span class="name">Alwena Bentley<span class="desc">Homeowner</span></span>
         </div>
       </div>
     </div>
@@ -254,26 +75,13 @@ const optimizedImage = await getOptimizedImage(landingImage)
         margin: auto;
         margin-bottom: (100/16rem);
         padding: (64/16rem) (30/16rem) (18/16rem) (30/16rem);
-        background: #fff;
-        box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.05);
+        background: var(--color-warm-linen);
         border-radius: (5/16rem);
         display: flex;
         flex-direction: column;
         position: relative;
         &:last-of-type {
           margin-bottom: 0;
-        }
-
-        .profile {
-          width: (99/16rem);
-          height: (99/16rem);
-          margin-bottom: (16/16rem);
-          margin-left: 0;
-          border-radius: 50%;
-          display: block;
-          position: absolute;
-          top: (-51/16rem);
-          left: (30/16rem);
         }
 
         p {
@@ -285,7 +93,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
         .star-group {
           margin-top: auto;
           padding-top: (16/16rem);
-          border-top: 1px solid #e7e7e7;
+          border-top: 1px solid var(--color-hedgerow);
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -295,20 +103,13 @@ const optimizedImage = await getOptimizedImage(landingImage)
             font-weight: bold;
             line-height: (24/16rem);
             text-align: left;
-            color: #1a1a1a;
+            color: var(--headerColor);
             display: block;
           }
 
           .desc {
             font-weight: 400;
-            color: #575757;
-            display: block;
-          }
-
-          img {
-            width: (91/16rem);
-            height: (15/16rem);
-            margin: 0;
+            color: var(--color-stone);
             display: block;
           }
         }
@@ -351,11 +152,11 @@ const optimizedImage = await getOptimizedImage(landingImage)
 
           .star-group {
             .name {
-              color: #fff;
+              color: var(--color-warm-linen);
             }
 
             .desc {
-              color: #fff;
+              color: var(--color-warm-linen);
               opacity: 0.7;
             }
           }

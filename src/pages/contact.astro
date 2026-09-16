@@ -1,18 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import client from "../data/client.json";
-import Landing from "../components/Landing.astro";
-
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/cabinets2.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-const optimizedImage = await getOptimizedImage(landingImage)
 ---
 
 <BaseLayout
-  title="About"
-  description="Meta description for the page"
-  preloadedImage = {optimizedImage}
+  title="Contact"
+  description="Get in touch with Adam at Weekend Tree Surgeon for tree surgery, hedge cutting and garden clearance in Nantwich and Crewe."
 >
   <!-- ============================================ -->
   <!--                    LANDING                   -->
@@ -30,6 +23,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
   <section id="cs-contact">
     <div class="cs-container">
       <form id="cs-form" name="Contact Form" method="post" netlify>
+        <input type="hidden" name="form-name" value="Contact Form" />
         <div class="cs-content">
           <span class="cs-topper">Contact</span>
           <h2 class="cs-title">Get in Touch</h2>
@@ -51,7 +45,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
           Email
           <input
             required
-            type="text"
+            type="email"
             id="email"
             name="email"
             placeholder="Email"
@@ -61,7 +55,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
           Phone
           <input
             required
-            type="text"
+            type="tel"
             id="phone"
             name="phone"
             placeholder="Phone"
@@ -84,54 +78,27 @@ const optimizedImage = await getOptimizedImage(landingImage)
             id="message"
             placeholder="Write message..."></textarea>
         </label>
-        <button class="cs-button-solid" type="submit">Submit Message</button>
+        <button class="btn" type="submit">Submit Message</button>
       </form>
-      <div class="cs-right-section">
-        <!--Email-->
-        <span class="cs-header">Email</span>
-        <a class="cs-link" href={`mailto:${client.email}`}>{client.email}</a>
-        <!--Phone-->
-        <span class="cs-header">Phone</span>
-        <a class="cs-link" href={`tel:${client.phoneForTel}`}
-          >{client.phoneFormatted}</a
-        >
-        <!--Address-->
-        <span class="cs-header">Address</span>
-        <a class="cs-link">
-          {client.address.lineOne && `${client.address.lineOne}, <br />`}
-       
-          {client.address.lineTwo},
-          <br />
-          <span class="cs-block">
-            {client.address.city},
-            {client.address.state}
-            
-          </span>
-        </a>
-        
-
-        <!-- Background Image-->
-        <picture class="cs-bg-picture">
-          <source
-            media="(min-width: 601px)"
-            srcset="/assets/images/dismantle.jpg"
-          />
-          <img
-            aria-hidden="true"
-            decoding="async"
-            src="/assets/images/dismantle.jpg"
-            alt="building"
-            loading="lazy"
-            width="2500"
-            height="1667"
-          />
-        </picture>
-      </div>
     </div>
   </section>
+  <footer>
+    <p>Working for love and money.</p>
+    <p>© 2026 Weekend Tree Surgeon</p>
+  </footer>
 </BaseLayout>
 
 <style lang="less">
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    background: var(--forest);
+    color: var(--sage);
+    justify-content: center;
+    align-items: center;
+    padding: var(--section-padding);
+  }
   /* PAGE-SPECIFIC STYLES FOR THE CONTACT PAGE */
 
   /*-- -------------------------- -->
@@ -216,7 +183,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
           /* prevents border & padding from affecting height */
           box-sizing: border-box;
           padding-left: (20/16rem);
-          border: 1px solid #b4b2c7;
+          border: 1px solid var(--color-hedgerow);
           border-radius: (8/16rem);
           transition: border 0.3s;
 
@@ -448,7 +415,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
         }
 
         .cs-bg-picture {
-          background-color: #000;
+          background-color: var(--color-soil-dark);
 
           img {
             /* lets parent background-color bleed through and darken it */

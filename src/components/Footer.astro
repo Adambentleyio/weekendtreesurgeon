@@ -50,7 +50,7 @@ import '@fontsource/press-start-2p';
             <h2>Services</h2>
           </li>
           <li>Felling</li>
-          <li>Garden Clearence</li>
+          <li>Garden Clearance</li>
           <li>Pruning & Reductions</li>
           <li>Hedge Cutting</li>
         </ul>
@@ -60,11 +60,8 @@ import '@fontsource/press-start-2p';
           </li>
           <li>
             <a href="/contact">
-              {client.address.lineOne}<br />
               {client.address.lineTwo}<br />
-              {client.address.city}
-              {client.address.state}
-              {client.address.zip}
+              {client.address.city} {client.address.state} {client.address.zip}
             </a>
           </li>
           <li>
@@ -81,10 +78,8 @@ import '@fontsource/press-start-2p';
     </div>
   </div>
 
-  <div class="credit">
-    <span>Designed and Hand Coded by</span>
-    <a href="/" target="_blank" rel="noopener">Greyscale88</a>
-    <span class="copyright"> Copyright 2023 - Present</span>
+    <div class="credit">
+    <span class="copyright"> &copy; 2026 Weekend Tree Surgeon. Cheshire.</span>
   </div>
 </footer>
 
@@ -111,7 +106,7 @@ a:has(.text-logo) {
   #footer {
     font-size: ~"min(4vw, 1.2em)";
     padding: (84/16rem) 0 (20/16rem);
-    background: #1c1c1c;
+    background: var(--color-footer-bg);
 
     .left-section {
       text-align: center;
@@ -139,7 +134,7 @@ a:has(.text-logo) {
         width: 100%;
         width: 307/14rem;
         margin: auto;
-        color: #fff;
+        color: var(--color-warm-linen);
         opacity: 0.9;
       }
     }
@@ -197,7 +192,7 @@ a:has(.text-logo) {
             line-height: 21/18em;
             text-transform: uppercase;
             margin-bottom: (37/16rem);
-            color: #fff;
+            color: var(--color-warm-linen);
             position: relative;
 
             &:before {
@@ -235,21 +230,12 @@ a:has(.text-logo) {
       width: 96%;
       margin: auto;
       margin-top: (100/16rem);
-      color: #fff;
-
-      a {
-        font-size: (16/16rem);
-        text-decoration: none;
-        color: var(--primary);
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
+      color: var(--color-warm-linen);
 
       .copyright {
         font-size: (16/16rem);
         display: block;
+        opacity: 0.8;
       }
     }
   }
