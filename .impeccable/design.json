@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-16T00:00:00.000Z",
+  "title": "Design System: Weekend Tree Surgeon",
+  "extensions": {
+    "colorMeta": {
+      "gorse-gold": {
+        "role": "primary",
+        "displayName": "Gorse Gold",
+        "canonical": "oklch(84% 0.17 85)",
+        "tonalRamp": [
+          "#3d2600",
+          "#5c3a00",
+          "#7d4f00",
+          "#a06500",
+          "#c47c00",
+          "#e69400",
+          "#ffba19",
+          "#ffd675"
+        ]
+      },
+      "pale-straw": {
+        "role": "primary-light",
+        "displayName": "Pale Straw",
+        "canonical": "oklch(90% 0.13 88)",
+        "tonalRamp": [
+          "#4d3a00",
+          "#665000",
+          "#806600",
+          "#997d00",
+          "#b39500",
+          "#ccad00",
+          "#e6c633",
+          "#ffd675"
+        ]
+      },
+      "plough-soil": {
+        "role": "secondary",
+        "displayName": "Plough Soil",
+        "canonical": "oklch(20% 0.05 255)",
+        "tonalRamp": [
+          "#000a14",
+          "#001429",
+          "#001f3f",
+          "#002b54",
+          "#00376a",
+          "#00447f",
+          "#005296",
+          "#0060ad"
+        ]
+      },
+      "moss-bed": {
+        "role": "tertiary",
+        "displayName": "Moss Bed",
+        "canonical": "oklch(33% 0.07 165)",
+        "tonalRamp": [
+          "#0a1a14",
+          "#14291f",
+          "#1e382a",
+          "#2a4f3f",
+          "#35654e",
+          "#417c5f",
+          "#4d9370",
+          "#5aaa82"
+        ]
+      },
+      "soil-dark": {
+        "role": "neutral-bg-dark",
+        "displayName": "Soil Dark",
+        "canonical": "oklch(13% 0.005 85)",
+        "tonalRamp": [
+          "#0a0a0a",
+          "#0f0f0f",
+          "#141414",
+          "#1a1a1a",
+          "#242424",
+          "#303030",
+          "#3d3d3d",
+          "#4a4a4a"
+        ]
+      },
+      "soil-medium": {
+        "role": "neutral-surface-dark",
+        "displayName": "Soil Medium",
+        "canonical": "oklch(14% 0.005 265)",
+        "tonalRamp": [
+          "#0a0a0e",
+          "#0f0f14",
+          "#141419",
+          "#1a1a1f",
+          "#242429",
+          "#303035",
+          "#3d3d42",
+          "#4a4a4f"
+        ]
+      },
+      "stone": {
+        "role": "neutral-text",
+        "displayName": "Stone",
+        "canonical": "oklch(30% 0.003 85)",
+        "tonalRamp": [
+          "#1a1a1a",
+          "#242424",
+          "#2e2e2e",
+          "#353535",
+          "#474747",
+          "#5a5a5a",
+          "#6e6e6e",
+          "#828282"
+        ]
+      },
+      "warm-linen": {
+        "role": "neutral-text-inverse",
+        "displayName": "Warm Linen",
+        "canonical": "oklch(98% 0.005 255)",
+        "tonalRamp": [
+          "#c4c6ca",
+          "#d0d2d6",
+          "#dcdee2",
+          "#e8eaee",
+          "#fafbfc",
+          "#fcfcfd",
+          "#fdfdfe",
+          "#ffffff"
+        ]
+      },
+      "whitewashed-clay": {
+        "role": "neutral-surface",
+        "displayName": "Whitewashed Clay",
+        "canonical": "oklch(97% 0.003 90)",
+        "tonalRamp": [
+          "#cfcfcf",
+          "#dbdbdb",
+          "#e7e7e7",
+          "#f0f0f0",
+          "#f7f7f7",
+          "#f9f9f9",
+          "#fbfbfb",
+          "#fdfdfd"
+        ]
+      },
+      "hedgerow": {
+        "role": "neutral-border",
+        "displayName": "Hedgerow",
+        "canonical": "oklch(92% 0.005 180)",
+        "tonalRamp": [
+          "#c8cacc",
+          "#d2d4d6",
+          "#dcdee0",
+          "#e8e9ec",
+          "#eeeff1",
+          "#f4f5f6",
+          "#fafafb",
+          "#ffffff"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline on home page only. Shrikhand at maximum scale. Used exactly once per page."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles via .cs-title. Roboto 900 at 31-49px. One per section."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Hero subtitle and service card headings. Roboto 700."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All running text. Roboto 400 at 1.2rem with 1.5 line-height. Max 65-75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section toppers (.cs-topper). Roboto 700, uppercase, 0.1em tracking. Always Gorse Gold."
+      },
+      "logo": {
+        "displayName": "Logo",
+        "purpose": "The WTS wordmark in header and full name in footer. Press Start 2P pixel font."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "0.3s",
+        "purpose": "Default duration for color, background, and opacity transitions."
+      },
+      {
+        "name": "ease-fill-expand",
+        "value": "width 0.3s",
+        "purpose": "Button hover fill that expands from the left edge (pseudo-element scaleX or width)."
+      },
+      {
+        "name": "ease-nav-underline",
+        "value": "width 0.3s",
+        "purpose": "Navigation link underline that expands from left on hover."
+      },
+      {
+        "name": "ease-menu-toggle",
+        "value": "0.4s-0.5s",
+        "purpose": "Mobile nav menu transitions (transform, opacity)."
+      },
+      {
+        "name": "ease-hero-lines",
+        "value": "cubic-bezier(0.8, 0.5, 0.5, 2)",
+        "purpose": "Hero animated vertical line drop. 7s duration, infinite. The overshoot curve creates a bounce-like effect."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "0px" },
+      { "name": "tablet", "value": "768px" },
+      { "name": "desktop", "value": "1024px" },
+      { "name": "large", "value": "1300px" },
+      { "name": "wide", "value": "2000px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main call-to-action button. Gorse Gold fill, square corners, fills black on hover via a left-to-right sweep.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Get in Touch</a>",
+      "css": ".ds-btn-primary { font-family: 'Roboto', Arial, sans-serif; font-size: 1rem; font-weight: 700; line-height: 50px; text-align: center; text-decoration: none; color: #1a1a1a; background-color: #ffba19; display: inline-block; padding: 0 30px; height: 50px; position: relative; z-index: 1; transition: color 0.3s; transition-delay: 0.1s; } .ds-btn-primary:hover { color: #fff; } .ds-btn-primary::before { content: ''; width: 0; height: 100%; background-color: #1a1a1a; display: block; position: absolute; top: 0; left: 0; z-index: -1; transition: width 0.3s; } .ds-btn-primary:hover::before { width: 100%; } .ds-btn-primary:focus-visible { outline: 2px solid #ffba19; outline-offset: 2px; }"
+    },
+    {
+      "name": "Transparent Button",
+      "kind": "button",
+      "refersTo": "button-transparent",
+      "description": "Secondary outline button. Transparent background with a 1px Plough Soil border, fills black on hover.",
+      "html": "<a href=\"#\" class=\"ds-btn-transparent\">Learn More</a>",
+      "css": ".ds-btn-transparent { font-family: 'Roboto', Arial, sans-serif; font-size: 1rem; font-weight: 700; line-height: clamp(2.875em, 5.5vw, 3.5em); text-decoration: none; width: 180px; height: clamp(2.875em, 5.5vw, 3.5em); display: inline-flex; justify-content: center; align-items: center; color: #001f3f; background-color: transparent; border: 1px solid #001f3f; padding: 0; position: relative; z-index: 1; transition: color 0.3s; } .ds-btn-transparent::before { content: ''; background: #1a1a1a; display: block; position: absolute; top: -1px; right: -1px; bottom: -1px; left: -1px; z-index: -1; transform: scaleX(0); transition: transform 0.3s; transform-origin: left; } .ds-btn-transparent:hover { color: #fff; } .ds-btn-transparent:hover::before { transform: scaleX(1); } .ds-btn-transparent:focus-visible { outline: 2px solid #ffba19; outline-offset: 2px; }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "card-service",
+      "description": "Service offering card with a 6px Gorse Gold top border. Flat surface, no shadow.",
+      "html": "<div class=\"ds-card-service\"><div class=\"ds-card-icon\"><svg width=\"48\" height=\"48\" viewBox=\"0 0 48 48\" fill=\"none\"><circle cx=\"24\" cy=\"24\" r=\"24\" fill=\"#ffba19\"/></svg></div><h2>Tree Removal</h2><p>Remove, reduce or dismantle small trees and shrubs. Tight spaces are no problem.</p></div>",
+      "css": ".ds-card-service { width: 100%; max-width: 357px; margin: 0 auto 50px; padding: 50px 20px; background: #fff; border-top: 6px solid #ffba19; border-radius: 5px; display: block; } .ds-card-service:last-of-type { margin-bottom: 0; } .ds-card-icon { width: 88px; height: 88px; margin: 0 auto 23px; background: #1a1a1f; border-radius: 50%; display: flex; justify-content: center; align-items: center; } .ds-card-icon svg { width: 48px; height: 48px; } .ds-card-service h2 { font-family: 'Roboto', Arial, sans-serif; font-size: 2rem; font-weight: 700; line-height: 1.35; text-align: center; margin: 0 0 0.5rem; color: #1a1a1a; } .ds-card-service p { font-family: 'Roboto', Arial, sans-serif; font-size: 1rem; line-height: 1.33; text-align: center; width: 100%; color: #353535; opacity: 0.7; }"
+    },
+    {
+      "name": "Review Card",
+      "kind": "card",
+      "refersTo": "card-review",
+      "description": "Customer testimonial card. Clean layout with a thin divider line between the quote and attribution.",
+      "html": "<div class=\"ds-card-review\"><p class=\"ds-review-text\">Adam is one of the good ones. He did a great job for us.</p><span class=\"ds-reviewer\">Rebecca Thompson<span class=\"ds-reviewer-role\">Teacher</span></span><div class=\"ds-review-stars\">★★★★★</div></div>",
+      "css": ".ds-card-review { width: 100%; max-width: 542px; margin: 0 auto 64px; padding: 60px clamp(1rem, 3.2vw, 2rem) clamp(2rem, 5.4vw, 2.5rem); background: #fff; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; position: relative; box-sizing: border-box; } .ds-card-review:last-of-type { margin-bottom: 0; } .ds-review-text { font-family: 'Roboto', Arial, sans-serif; font-size: 1rem; line-height: 1.5; width: 100%; margin: 0 0 20px; padding-bottom: 20px; color: #181818; border-bottom: 1px solid #e8e9ec; } .ds-reviewer { font-family: 'Roboto', Arial, sans-serif; font-size: 1rem; font-weight: 700; line-height: 1.5; width: 40%; color: #1a1a1a; } .ds-reviewer-role { font-size: 0.875rem; font-weight: 400; color: #353535; display: block; } .ds-review-stars { width: 96px; height: 16px; color: #ffba19; font-size: 1rem; line-height: 1; }"
+    },
+    {
+      "name": "Desktop Nav Link",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Desktop navigation link with a 2px Gorse Gold underline that expands from the left on hover.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">About Us</a><a href=\"#\" class=\"ds-nav-link ds-nav-link-active\">Home</a></nav>",
+      "css": ".ds-nav { display: flex; gap: clamp(1.25rem, 2.6vw, 2.25rem); } .ds-nav-link { font-family: 'Roboto', Arial, sans-serif; font-size: clamp(0.875rem, 1vw, 1rem); line-height: 1.5; text-decoration: none; color: #181818; padding: 32px 0; position: relative; } .ds-nav-link::before { content: ''; width: 0; height: 2px; background: #ffba19; display: block; position: absolute; bottom: 0; left: 0; transition: width 0.3s; } .ds-nav-link:hover::before, .ds-nav-link-active::before { width: 100%; } .ds-nav-link:focus-visible { outline: 2px solid #ffba19; outline-offset: 4px; }"
+    },
+    {
+      "name": "Section Topper Label",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The uppercase label that introduces each section: small, tracked-out, always Gorse Gold. Sets context before the headline.",
+      "html": "<span class=\"ds-topper\">Cheshire's</span>",
+      "css": ".ds-topper { font-family: 'Roboto', Arial, sans-serif; font-size: clamp(0.8125rem, 1.8vw, 1rem); font-weight: 700; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.1em; color: #ffba19; display: block; }"
+    },
+    {
+      "name": "Section Title",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The main section heading. Roboto 900 at large scale. Clear hierarchy step from the topper above it.",
+      "html": "<h2 class=\"ds-title\">Words From Our Customers</h2>",
+      "css": ".ds-title { font-family: 'Roboto', Arial, sans-serif; font-size: clamp(1.9375rem, 4.1vw, 3.0625rem); font-weight: 900; line-height: 1.2; margin: 0 auto 1rem; color: #1a1a1a; position: relative; }"
+    },
+    {
+      "name": "Footer Section Heading",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Footer column headings. White, uppercase, with a 97px Gorse Gold underline.",
+      "html": "<div class=\"ds-footer-col\"><h2 class=\"ds-footer-heading\">Services</h2><ul><li>Felling</li><li>Garden Clearance</li><li>Hedge Cutting</li></ul></div>",
+      "css": ".ds-footer-col ul { margin: 0; padding: 0; list-style: none; } .ds-footer-heading { font-family: 'Roboto', Arial, sans-serif; font-size: 1.125rem; font-weight: 700; line-height: 1.17; text-transform: uppercase; margin-bottom: 2.3rem; color: #fff; position: relative; } .ds-footer-heading::before { content: ''; width: 97px; height: 2px; background: #ffba19; display: block; position: absolute; bottom: -1rem; left: 0; } .ds-footer-col li { font-family: 'Roboto', Arial, sans-serif; font-size: 1.125rem; color: #fff; opacity: 0.9; margin-bottom: 0.75rem; }"
+    },
+    {
+      "name": "Hero Display Headline",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The home page hero headline in Shrikhand. The maximum typographic moment on the site.",
+      "html": "<h1 class=\"ds-display\"><span>Weekend</span> <span>Tree Surgeon</span></h1>",
+      "css": ".ds-display { font-family: 'Shrikhand', 'Arial', sans-serif; font-size: clamp(3rem, 4.5vw, 6rem); font-weight: 400; line-height: clamp(3.5rem, 4vw, 4rem); color: #fff; text-align: center; display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap; width: 100%; } .ds-display span { margin-bottom: 1rem; }"
+    },
+    {
+      "name": "Logo Wordmark",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "The 'WTS' pixel-font wordmark in the header. Press Start 2P, Gorse Gold, distinctive and restrained.",
+      "html": "<span class=\"ds-wordmark\">WTS</span>",
+      "css": ".ds-wordmark { font-family: 'Press Start 2P', monospace; font-size: 1.25rem; font-weight: 700; color: #ffba19; text-transform: uppercase; letter-spacing: -0.05em; text-align: center; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Handshake from Next Door",
+    "overview": "Weekend Tree Surgeon is a marketing site for a solo tree surgeon in Cheshire. Every pixel should feel like a recommendation from a neighbor, not a corporate pitch. The system uses warm, grounded colors pulled directly from the local landscape — golden gorse, dark plough soil, moss green — to root the brand in place. Typography pairs a friendly, high-contrast sans-serif workhorse (Roboto) with a warm, slightly retro display face (Shrikhand) that signals personality without pretension. The system is flat and print-like. Surfaces don't float; they sit. Depth is conveyed through color contrast and firm borders, not through ambient shadows. This is not a SaaS dashboard. It is not a luxury portfolio. It is a trustworthy hand extended across a garden gate.",
+    "keyCharacteristics": [
+      "Warm, earthy palette drawn from Cheshire farmland",
+      "Flat surfaces with depth conveyed through color contrast, not shadows",
+      "High-contrast typography with a display face that has warmth and character",
+      "Tactile, confident buttons that reward interaction with bold state changes",
+      "Generous, varied spacing that breathes",
+      "Light mode as the default experience"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Gorse Gold is the only accent color on the page. It carries the brand identity on ≤15% of the visible surface. Its rarity is the point — when you see it, you know something matters.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Glass Rule",
+        "body": "Backgrounds are opaque. No backdrop-filter, no blur(), no translucent overlays in brand sections. The mobile nav overlay is the sole exception and uses it only as a scrim.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Display Rule",
+        "body": "Shrikhand appears in exactly one place per page: the main headline. Nowhere else. Its impact depends on scarcity.",
+        "section": "typography"
+      },
+      {
+        "name": "The Pixel Restraint Rule",
+        "body": "Press Start 2P is used for the wordmark only — the three letters 'WTS' and the full business name in the footer. It is never used for headlines, body copy, labels, or navigation. Pixel fonts elsewhere read as retro-tech gimmickry.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces are flat at rest. If an element needs to feel lifted, use color contrast or a 1px border. Shadows are prohibited.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Use Gorse Gold as the sole accent — on buttons, toppers, underlines, and the services top border. Let it breathe.",
+      "Use flat surfaces with color contrast for separation. A darker background behind a lighter card is depth enough.",
+      "Use real project photos — Adam in a tree, hedges being cut, gardens being cleared. Real work, real person.",
+      "Use generous body text (1.2rem, line-height 1.5) with line lengths capped at 65-75 characters.",
+      "Use Roboto weights 400, 700, and 900 to build clear hierarchy through weight contrast alone when possible.",
+      "Respect the Single Display Rule: Shrikhand once per page.",
+      "Respect the Pixel Restraint Rule: Press Start 2P for the 'WTS' wordmark and full business name only.",
+      "Use dark mode behind a user-controlled toggle. It is never the default experience."
+    ],
+    "donts": [
+      "Use box-shadow on cards, buttons, or surfaces. The Flat-By-Default Rule prohibits it.",
+      "Use the Industrial Logger aesthetic: no buzzsaws, no black/orange warning colors, no heavy machinery graphics.",
+      "Use the Cowboy Lopper look: no photos of workers without PPE, no messy job sites, no loose truck loads.",
+      "Use the Silicon Valley Tech look: no neon gradients, no glassmorphism, no dark mode as default, no sharp abstract shapes, no robotic corporate language.",
+      "Use the Elite Architect look: no ultra-minimalist white space, no high-end luxury garden layouts, no aspirational pricing cues.",
+      "Use the generic tradesman template: no stock photos of guys in hard hats, no corporate trust badges, no blue-and-white sanitized layouts.",
+      "Use border-left or border-right greater than 1px as a colored accent stripe on cards, list items, or review blocks.",
+      "Use gradient text (background-clip: text combined with any gradient background).",
+      "Use nested cards inside cards.",
+      "Round button corners. Buttons are square.",
+      "Use em dashes in copy.",
+      "Use identical card grids with icon + heading + text repeated three times.",
+      "Treat light mode as secondary. The brand lives in light mode; dark mode is an accessibility accommodation."
+    ]
+  }
+}

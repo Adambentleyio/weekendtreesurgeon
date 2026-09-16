@@ -1,35 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import client from "../data/client.json";
-import Landing from "../components/Landing.astro";
-
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/cabinets2.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-const optimizedImage = await getOptimizedImage(landingImage)
 ---
 
 <BaseLayout
-  title="About"
-  description="Meta description for the page"
-  preloadedImage = {optimizedImage}
+  title="Contact"
+  description="Get in touch with Adam at Weekend Tree Surgeon for tree surgery, hedge cutting and garden clearance in Nantwich and Crewe."
 >
-  <!-- ============================================ -->
-  <!--                    LANDING                   -->
-  <!-- ============================================ -->
-
-  <!-- <Landing 
-    title="Projects"
-    image={optimizedImage}
-  /> -->
-
-  <!-- ============================================ -->
-  <!--                Contact Form                  -->
-  <!-- ============================================ -->
-
   <section id="cs-contact">
     <div class="cs-container">
       <form id="cs-form" name="Contact Form" method="post" netlify>
+        <input type="hidden" name="form-name" value="Contact Form" />
         <div class="cs-content">
           <span class="cs-topper">Contact</span>
           <h2 class="cs-title">Get in Touch</h2>
@@ -51,7 +32,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
           Email
           <input
             required
-            type="text"
+            type="email"
             id="email"
             name="email"
             placeholder="Email"
@@ -61,7 +42,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
           Phone
           <input
             required
-            type="text"
+            type="tel"
             id="phone"
             name="phone"
             placeholder="Phone"
@@ -84,81 +65,56 @@ const optimizedImage = await getOptimizedImage(landingImage)
             id="message"
             placeholder="Write message..."></textarea>
         </label>
-        <button class="cs-button-solid" type="submit">Submit Message</button>
+        <button class="btn" type="submit">Submit Message</button>
       </form>
-      <div class="cs-right-section">
-        <!--Email-->
-        <span class="cs-header">Email</span>
-        <a class="cs-link" href={`mailto:${client.email}`}>{client.email}</a>
-        <!--Phone-->
-        <span class="cs-header">Phone</span>
-        <a class="cs-link" href={`tel:${client.phoneForTel}`}
-          >{client.phoneFormatted}</a
-        >
-        <!--Address-->
-        <span class="cs-header">Address</span>
-        <a class="cs-link">
-          {client.address.lineOne && `${client.address.lineOne}, <br />`}
-       
-          {client.address.lineTwo},
-          <br />
-          <span class="cs-block">
-            {client.address.city},
-            {client.address.state}
-            
-          </span>
-        </a>
-        
 
-        <!-- Background Image-->
-        <picture class="cs-bg-picture">
-          <source
-            media="(min-width: 601px)"
-            srcset="/assets/images/dismantle.jpg"
-          />
-          <img
-            aria-hidden="true"
-            decoding="async"
-            src="/assets/images/dismantle.jpg"
-            alt="building"
-            loading="lazy"
-            width="2500"
-            height="1667"
-          />
-        </picture>
+      <div class="cs-right-section">
+        <div class="cs-bg-picture">
+          <!-- Replace with the real photo: <img src="/images/adam-climbing.jpg" alt="Adam mid-climb, working on a tree"> -->
+          <img src="assets/images/dismantle.jpg" alt="Adam mid-climb, working on a tree">
+        </div>
+        <span class="cs-header">Real work, done properly</span>
+        <a href="/#gallery" class="cs-link">See more finished jobs →</a>
       </div>
     </div>
   </section>
+
+  <footer>
+    <p>Working for love and money.</p>
+    <p>© 2026 Weekend Tree Surgeon</p>
+  </footer>
 </BaseLayout>
 
 <style lang="less">
-  /* PAGE-SPECIFIC STYLES FOR THE CONTACT PAGE */
 
-  /*-- -------------------------- -->
-<---          Contact           -->
-<--- -------------------------- -*/
+  footer {
+    display: flex;
+    flex-direction: column;
+    background: var(--forest);
+    color: var(--sage);
+    justify-content: center;
+    align-items: center;
+    padding: var(--section-padding);
+  }
+
+  /* PAGE-SPECIFIC STYLES FOR THE CONTACT PAGE */
 
   /* Mobile - 360px */
   @media only screen and (min-width: 0em) {
     :root {
-      /* 13px - 16px */
       --topperFontSize: clamp(0.8125rem, 1.6vw, 1rem);
-      /* 31px - 49px */
       --headerFontSize: clamp(1.9375rem, 4.5vw, 3.0625rem);
       --bodyFontSize: 1rem;
-
-      /* 60px - 100px top and bottom */
       --sectionPadding: clamp(3.75em, 7.82vw, 6.25em) 1rem;
     }
 
     #cs-contact {
-      font-family: "Roboto", "Arial", sans-serif;
+      font-family: var(--font-body);
       padding: var(--sectionPadding);
       margin-block: (40/16rem);
 
       .cs-container {
         width: 100%;
-        /* changes to 1280px at desktop */
         max-width: (800/16rem);
         margin: auto;
       }
@@ -168,34 +124,39 @@ const optimizedImage = await getOptimizedImage(landingImage)
       }
 
       .cs-topper {
+        display: block;
+        color: #8C5A22;
+        font-weight: 700;
+      
+        font-size: 0.78rem;
+        text-transform: none;
         text-align: left;
-        /* 8px - 12px */
         margin-bottom: clamp(0.5rem, 1.4vw, 0.75rem);
       }
 
       .cs-title {
+        font-family: var(--font-heading);
+        color: var(--forest);
         text-align: left;
         max-width: (800/16rem);
       }
 
       .cs-text {
+        color: var(--charcoal-soft);
         text-align: left;
-        /* 404px - 522px */
         max-width: clamp(25.25rem, 30vw, 32.625rem);
         margin: 0 auto 0 0;
-        /* 40px - 48px */
         margin-bottom: clamp(2.5rem, 6.3vw, 3rem);
       }
 
       #cs-form {
         margin-bottom: (40/16rem);
+
         label {
           font-size: (16/16rem);
-          font-weight: 700;
           line-height: 1.5em;
-          /* 12px - 20px */
           margin-bottom: clamp(0.75rem, 1.3em, 1.25rem);
-          color: var(--headerColor);
+          color: var(--forest);
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -203,25 +164,28 @@ const optimizedImage = await getOptimizedImage(landingImage)
         }
 
         .cs-label-message {
-          /* 32px - 48px */
           margin-bottom: clamp(2rem, 6.3vw, 3rem);
         }
 
         input,
         textarea {
+          font-family: var(--font-body);
           font-size: (16/16rem);
           width: 100%;
           height: (64/16rem);
           margin-top: (4/16rem);
-          /* prevents border & padding from affecting height */
           box-sizing: border-box;
           padding-left: (20/16rem);
-          border: 1px solid #b4b2c7;
+          background: var(--sage-lighter);
+          color: var(--charcoal);
+          border: 1px solid var(--line);
           border-radius: (8/16rem);
-          transition: border 0.3s;
+          transition: border-color 0.3s;
 
-          &:hover {
-            border: 1px solid var(--primary);
+          &:hover,
+          &:focus {
+            border-color: var(--sage);
+            outline: none;
           }
         }
 
@@ -231,53 +195,58 @@ const optimizedImage = await getOptimizedImage(landingImage)
           padding-top: (20/16rem);
         }
 
-        .cs-button-solid {
+        .btn {
           width: 100%;
+          background: var(--gold);
+          color: var(--white);
           border: none;
+          border-radius: (12/16rem);
+          padding: (16/16rem) (18/16rem);
+          // font-weight: 700;
+          font-size: (16/16rem);
+          cursor: pointer;
+          transition: background 0.15s ease;
+
+          &:hover {
+            background: #B67A31;
+          }
         }
       }
 
       .cs-right-section {
+        display: none; // hidden on mobile, switched on at desktop below
         height: (320/16rem);
-        /* 24px - 40px top & bottom */
-        /* 20px - 40px left & right */
         padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2.5rem);
         border-radius: (8/16rem);
-        display: flex;
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-start;
         position: relative;
-        /* cuts off corners on img tag */
         overflow: hidden;
       }
 
       .cs-header {
-        /* 16px - 20px */
+        font-family: var(--font-heading);
         font-size: clamp(1rem, 3vw, 1.25rem);
-        font-weight: 700;
         line-height: 1.2em;
         margin-bottom: (8/16rem);
-        color: var(--bodyTextColorWhite);
+        color: var(--white);
         display: block;
       }
 
       .cs-link {
-        /* 16px - 20px */
         font-size: clamp(1rem, 3vw, 1.25rem);
         line-height: 1.2em;
         text-decoration: none;
         margin-bottom: (20/16rem);
-        color: var(--bodyTextColorWhite);
+        color: var(--white);
         display: block;
         position: relative;
 
         &:before {
-          /* Animated underline */
           content: "";
           width: 0%;
           height: 2px;
-          /* current color of the parent */
           background: currentColor;
           opacity: 1;
           display: block;
@@ -287,20 +256,13 @@ const optimizedImage = await getOptimizedImage(landingImage)
           transition: width 0.3s;
         }
 
-        &:hover {
-          &:before {
-            width: 100%;
-          }
+        &:hover:before {
+          width: 100%;
         }
 
         &:last-of-type {
           margin-bottom: 0;
         }
-      }
-
-      .cs-block {
-        /* sends second address line to the bottom on its own line */
-        display: block;
       }
 
       .cs-bg-picture {
@@ -314,14 +276,13 @@ const optimizedImage = await getOptimizedImage(landingImage)
         transition: transform 0.6s;
 
         &:before {
-          /* background color overlay */
           content: "";
           width: 100%;
           height: 100%;
           background: linear-gradient(
             180deg,
-            rgba(0, 0, 0, 0) 0%,
-            rgba(0, 0, 0, 0.8) 100%
+            rgba(21, 42, 32, 0) 0%,
+            rgba(21, 42, 32, 0.85) 100%
           );
           display: block;
           position: absolute;
@@ -333,11 +294,25 @@ const optimizedImage = await getOptimizedImage(landingImage)
         img {
           width: 100%;
           height: 100%;
-          /* Makes img tag act as a background image */
           object-fit: cover;
           position: absolute;
           top: 0;
           left: 0;
+        }
+      }
+
+      .cs-photo-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--sage-light);
+
+        svg {
+          width: 64px;
+          height: 64px;
+          color: var(--sage);
         }
       }
     }
@@ -369,7 +344,7 @@ const optimizedImage = await getOptimizedImage(landingImage)
       .cs-container {
         max-width: (1280/16rem);
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
         align-items: flex-start;
         gap: (80/16rem);
       }
@@ -382,11 +357,10 @@ const optimizedImage = await getOptimizedImage(landingImage)
       }
 
       .cs-right-section {
+        display: flex; // photo turns on here
         width: 40%;
         max-width: (542/16rem);
-        /* changes to 578px at 1300px wide */
         height: (686/16rem);
-        /* prevents flexbox from squishing it */
         flex: none;
 
         &:hover {
@@ -394,11 +368,6 @@ const optimizedImage = await getOptimizedImage(landingImage)
             transform: scale(1.1);
           }
         }
-      }
-
-      .cs-block {
-        /* goes back to inline so it stays "in line" with the rest of the text */
-        display: inline-block;
       }
     }
   }
@@ -420,41 +389,6 @@ const optimizedImage = await getOptimizedImage(landingImage)
 
       .cs-right-section {
         height: (578/16rem);
-      }
-    }
-  }
-
-  /* Dark Mode */
-  @media only screen and (min-width: 0em) {
-    body.dark-mode {
-      #cs-contact {
-        .cs-text,
-        .cs-title {
-          color: var(--bodyTextColorWhite);
-        }
-
-        #cs-form {
-          label,
-          input,
-          textarea {
-            color: var(--bodyTextColorWhite);
-            background-color: transparent;
-
-            &::placeholder {
-              /* lighten up the color of the text by 40%*/
-              filter: brightness(1.4);
-            }
-          }
-        }
-
-        .cs-bg-picture {
-          background-color: #000;
-
-          img {
-            /* lets parent background-color bleed through and darken it */
-            opacity: 0.5;
-          }
-        }
       }
     }
   }
