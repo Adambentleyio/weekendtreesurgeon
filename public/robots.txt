@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.weekendtreesurgeon.netlify.app/sitemap-index.xml
+Sitemap: https://www.weekendtreesurgeon.com/sitemap-index.xml

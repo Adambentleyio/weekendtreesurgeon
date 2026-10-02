@@ -1,0 +1,14 @@
+---
+import { Image, type ImageMetadata } from "astro:assets";
+interface Props { images: { src: ImageMetadata; alt: string }[]; }
+const { images } = Astro.props;
+---
+<div class="project-gallery">
+  {images.map((image,index) => <figure class:list={["project-gallery__item",{"project-gallery__item--wide":index===0}]}><Image src={image.src} alt={image.alt} widths={[480,720,960]} sizes={index===0?"(min-width:900px) 66vw, 100vw":"(min-width:900px) 33vw, 50vw"} format="webp" quality={76} loading="lazy" /></figure>)}
+</div>
+<style lang="less">
+  .project-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.75rem,2vw,1.25rem)}
+  .project-gallery__item{overflow:hidden;aspect-ratio:1;margin:0;border-radius:var(--radius);background:var(--sage-light)}.project-gallery__item--wide{grid-column:1/-1;aspect-ratio:16/9}
+  .project-gallery__item :global(picture),.project-gallery__item :global(img){width:100%;height:100%}.project-gallery__item :global(img){object-fit:cover}
+  @media(min-width:760px){.project-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}.project-gallery__item--wide{grid-column:span 2;aspect-ratio:2.04}}
+</style>

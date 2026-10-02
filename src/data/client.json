@@ -1,16 +1,36 @@
+
 {
-	"name": "Weekend Tree Surgeon",
-	"email": "bentleyadamj@gmail.com",
-	"phoneForTel": "+447484775932",
-	"phoneFormatted": "(+44) 748 477 5932",
-	"address": {
-		
-		"lineTwo": "Stapeley",
-		"city": "Nantwich",
-		"state": "Cheshire",
-		"zip": "CW57SP",
-		"mapLink": "https://goo.gl/maps/UAQn4vuGDiwv7DV39"
-	},
-	"domain": "weekendtreesurgeon.netlify.app",
-	"googleReviewsUrl": "https://www.google.com/maps/search/?api=1&query=Weekend+Tree+Surgeon+Nantwich+Cheshire"
+  "name": "Weekend Tree Surgeon",
+  "description": "Local tree surgery, hedge cutting, tree reduction and garden clearance in Nantwich and surrounding areas of Cheshire.",
+  "email": "bentleyadamj@gmail.com",
+  "phoneForTel": "+447484775932",
+  "phoneFormatted": "07484 775932",
+  "businessType": "Tree service",
+  "businessModel": "service-area",
+  "address": {
+    "lineTwo": "Laidon Avenue",
+    "city": "Wistaston",
+    "state": "Cheshire"
+  },
+  "showStreetAddress": false,
+  "serviceAreas": [
+    "Nantwich",
+    "Stapeley",
+    "Crewe",
+    "Wistaston",
+	"Shavington",
+	"Hough",
+    "Hankelow",
+    "Audlem",
+	"Cheshire"
+  ],
+  "services": [
+    "Hedge cutting",
+    "Tree removal",
+    "Tree reduction",
+    "Garden clearance"
+  ],
+  "domain": "weekendtreesurgeon.com",
+  "googleReviewsUrl": "https://g.page/r/Cb4blcFzjNEDEBM/review",
+  "googleBusinessUrl": "https://www.google.com/maps/place/Weekend+Tree+Surgeon/@53.1426064,-2.7552663,10z/data=!3m1!4b1!4m6!3m5!1s0x487af519c0d7a3a7:0x3d18c73c1951bbe!8m2!3d53.1426064!4d-2.7552662!16s%2Fg%2F11zddgds1k?entry=ttu&g_ep=EgoyMDI2MDkyNy4xIKXMDSoASAFQAw%3D%3D"
 }
