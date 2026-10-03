@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
 import ProjectGallery from "../components/ProjectGallery.astro";
 import client from "../data/client.json";
 import heroImage from "../assets/images/hedge-willaston/hedge-willaston-after-3.jpg";
@@ -36,8 +35,7 @@ const gallery = [
   { src: afterThree, alt: "The finished boundary hedge with a neat, even side and top" },
 ];
 ---
-<BaseLayout title="Hedge Cutting in Nantwich and Cheshire" description="Local hedge cutting in Nantwich, Crewe and nearby Cheshire villages. See a genuine Willaston project and ask Weekend Tree Surgeon for a free quote.">
-  <Header />
+<BaseLayout title="Hedge Cutting in Nantwich and Cheshire" description="Local hedge cutting in Nantwich, Crewe and nearby Cheshire villages. See a genuine Willaston project and ask Weekend Tree Surgeon for a free quote." showNav={true} navCtaHref="#get-in-touch">
   <article class="service-page">
     <section class="service-hero" aria-labelledby="service-title">
       <Image class="service-hero__image" src={heroImage} alt="A freshly cut boundary hedge in a Willaston garden" widths={[768,1280,1920]} sizes="100vw" format="avif" quality={80} loading="eager" />
@@ -65,7 +63,7 @@ const gallery = [
 
     <section class="gallery-section page-wrap" aria-labelledby="gallery-title"><div class="section-heading"><p class="section-label">The work up close</p><h2 id="gallery-title">From first cut to final clear-up</h2><p>Genuine photographs from the same Willaston hedge-cutting project.</p></div><ProjectGallery images={gallery} /></section>
 
-    <section class="quote-band" aria-labelledby="quote-title"><div class="page-wrap quote-band__inner"><div><p class="section-label">Your hedge next</p><h2 id="quote-title">Tell Adam what needs tidying up</h2><p>Send a few details and photos for a straightforward, no-obligation quote.</p></div><div class="quote-band__actions"><a class="service-button service-button--light" href="/contact">Get a free quote</a><a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a></div></div></section>
+    <section class="quote-band" id="get-in-touch" aria-labelledby="quote-title"><div class="page-wrap quote-band__inner"><div><p class="section-label">Your hedge next</p><h2 id="quote-title">Tell Adam what needs tidying up</h2><p>Send a few details and photos for a straightforward, no-obligation quote.</p></div><div class="quote-band__actions"><a class="service-button service-button--light" href="/contact">Get a free quote</a><a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a></div></div></section>
   </article>
   <Footer />
 </BaseLayout>

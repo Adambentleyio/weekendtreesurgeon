@@ -1,0 +1,169 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
+import Footer from "../components/Footer.astro";
+import ProjectGallery from "../components/ProjectGallery.astro";
+import client from "../data/client.json";
+import heroImage from "../assets/images/hedge-removal/hedge-removal-before-2.jpg";
+import beforeImage from "../assets/images/hedge-removal/hedge-removal-before-1.jpg";
+import afterImage from "../assets/images/hedge-removal/hedge-removal-trunks-1.jpg";
+import beforeTwo from "../assets/images/hedge-removal/hedge-removal-before-2.jpg";
+import duringOne from "../assets/images/hedge-removal/hedge-removal-during-1.jpg";
+import duringTwo from "../assets/images/hedge-removal/hedge-removal-during-2.jpg";
+import trunksTwo from "../assets/images/hedge-removal/hedge-removal-trunks-2.jpg";
+
+const project = {
+  label: "Current project",
+  title: "Opening up a garden by removing a mature boundary hedge",
+  problem: "A tall, dense conifer hedge occupied a substantial stretch of the garden boundary and limited the usable space around it.",
+  work: "The hedge was taken down in controlled sections, leaving the main stems accessible for the next stage of the removal.",
+  outcome: "The work has opened up the boundary and revealed the fence behind it. A final after photograph will be added when the job is complete.",
+  details: [
+    ["Location", "To be confirmed", "pin"],
+    ["Work carried out", "Hedge dismantled in sections", "shears"],
+    ["Project status", "Final after photo pending", "clock"],
+    ["Current result", "Boundary opened up", "leaf"],
+  ],
+};
+
+const gallery = [
+  { src: beforeTwo, alt: "Tall conifer hedge running beside a garden shed before removal" },
+  { src: duringOne, alt: "Cut conifer branches gathered on the paved area during hedge removal" },
+  { src: duringTwo, alt: "Conifer sections stacked ready for clearing as the hedge is dismantled" },
+  { src: trunksTwo, alt: "Wide garden view showing the opened boundary and remaining conifer stems" },
+];
+---
+
+<BaseLayout title="Hedge Removal in Nantwich and Cheshire" description="Hedge removal for homeowners in Nantwich, Crewe and nearby Cheshire villages. See genuine project photographs and ask Weekend Tree Surgeon for a quote." showNav={true} navCtaHref="#get-in-touch">
+  <article class="service-page">
+    <section class="service-hero" aria-labelledby="service-title">
+      <Image class="service-hero__image" src={heroImage} alt="Tall conifer hedge along a residential garden boundary" widths={[768, 1280, 1920]} sizes="100vw" format="avif" quality={80} loading="eager" />
+      <div class="service-hero__shade" aria-hidden="true"></div>
+      <div class="page-wrap service-hero__inner">
+        <div class="service-hero__copy">
+          <p class="section-label">Local hedge removal</p>
+          <h1 id="service-title">Hedge removal in Nantwich and across Cheshire</h1>
+          <p class="service-hero__subtitle">Careful removal of unwanted hedges to reclaim space and open up your garden.</p>
+          <ul class="service-hero__benefits">
+            <li>More usable garden space</li>
+            <li>Clearer access to boundaries</li>
+            <li>Work planned around nearby fences, sheds and planting</li>
+          </ul>
+          <div class="service-hero__actions">
+            <a class="service-button service-button--primary" href="/contact">Get a hedge removal quote</a>
+            <a class="service-button service-button--secondary" href="#recent-project">See a removal in progress</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project page-wrap" id="recent-project" aria-labelledby="project-title">
+      <div class="project__story">
+        <p class="section-label">{project.label}</p>
+        <h2 id="project-title">{project.title}</h2>
+        <div class="project__narrative">
+          <div><h3>The problem</h3><p>{project.problem}</p></div>
+          <div><h3>What we did</h3><p>{project.work}</p></div>
+          <div><h3>The outcome so far</h3><p>{project.outcome}</p></div>
+        </div>
+      </div>
+      <aside class="project-details" aria-label="Project details">
+        <p class="project-details__heading">At a glance</p>
+        <dl>{project.details.map(([label, value, icon]) => <div><dt><span class={`project-details__icon project-details__icon--${icon}`} aria-hidden="true"></span>{label}</dt><dd>{value}</dd></div>)}</dl>
+      </aside>
+    </section>
+
+    <section class="comparison-section">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <p class="section-label">Before and current progress</p>
+          <h2>Drag to see the space opening up</h2>
+          <p>The current view shows the hedge reduced to its main stems. The finished after photograph will replace it when available.</p>
+        </div>
+        <BeforeAfterSlider before={beforeImage} after={afterImage} beforeAlt="Tall conifer hedge filling the garden boundary before removal" afterAlt="The same garden boundary with the conifer hedge reduced to its main stems" ariaLabel="Move the divider to compare the hedge before removal with the current progress view" />
+      </div>
+    </section>
+
+    <section class="gallery-section page-wrap" aria-labelledby="gallery-title">
+      <div class="section-heading">
+        <p class="section-label">The work up close</p>
+        <h2 id="gallery-title">A careful, section-by-section removal</h2>
+        <p>Genuine photographs from the same hedge-removal project, from the standing hedge through to the current stage.</p>
+      </div>
+      <ProjectGallery images={gallery} />
+    </section>
+
+    <section class="quote-band" id="get-in-touch" aria-labelledby="quote-title">
+      <div class="page-wrap quote-band__inner">
+        <div>
+          <p class="section-label">Ready for a clearer garden?</p>
+          <h2 id="quote-title">Tell Adam about the hedge you want removed</h2>
+          <p>Send a few details and photographs for a straightforward, no-obligation quote.</p>
+        </div>
+        <div class="quote-band__actions">
+          <a class="service-button service-button--light" href="/contact">Get a hedge removal quote</a>
+          <a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
+        </div>
+      </div>
+    </section>
+  </article>
+  <Footer />
+</BaseLayout>
+
+<style lang="less">
+  .service-page { background: var(--cream); }
+  .service-hero { position: relative; display: grid; min-height: clamp(39rem, 78vh, 49rem); align-items: end; padding-block: 0; isolation: isolate; }
+  .service-hero__image, .service-hero__shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .service-hero__image { z-index: -2; object-fit: cover; object-position: 48% center; }
+  .service-hero__shade { z-index: -1; background: linear-gradient(90deg, rgba(10, 27, 19, .94) 0%, rgba(10, 27, 19, .76) 48%, rgba(10, 27, 19, .14) 80%); }
+  .service-hero__inner { width: 100%; padding-block: clamp(4rem, 10vw, 7rem); }
+  .service-hero__copy { max-width: 46rem; color: var(--white); }
+  .service-hero .section-label { color: #c8dfc8; }
+  .service-hero h1 { max-width: 14ch; color: var(--white); font-size: clamp(2.5rem, 6vw, 4.8rem); line-height: 1.02; }
+  .service-hero__subtitle { max-width: 39rem; margin-top: 1.25rem; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.5; }
+  .service-hero__benefits { display: grid; gap: .6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .service-hero__benefits li { position: relative; padding-left: 1.65rem; }
+  .service-hero__benefits li::before { content: ""; position: absolute; top: .55em; left: 0; width: .7rem; height: .4rem; border-bottom: 2px solid #c8dfc8; border-left: 2px solid #c8dfc8; transform: rotate(-45deg); }
+  .service-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .service-button { display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; padding: .75rem 1.35rem; border: 2px solid transparent; border-radius: .75rem; font-weight: 700; line-height: 1.2; text-align: center; text-decoration: none; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease; }
+  .service-button:hover { transform: translateY(-2px); }
+  .service-button--primary { background: var(--gold); color: var(--forest-deep); }
+  .service-button--primary:hover { background: #dda35b; }
+  .service-button--secondary { border-color: rgba(255, 255, 255, .75); color: var(--white); }
+  .service-button--secondary:hover { background: var(--white); color: var(--forest-deep); }
+  .project { display: grid; gap: clamp(2.5rem, 7vw, 6rem); padding-block: var(--section-space); }
+  .project__story { max-width: 44rem; }
+  .project__story h2 { max-width: 20ch; margin-bottom: 2rem; font-size: clamp(1.9rem, 4vw, 3rem); }
+  .project__narrative { display: grid; gap: 1.5rem; }
+  .project__narrative h3 { margin-bottom: .35rem; font-size: 1rem; }
+  .project__narrative p { max-width: 64ch; color: var(--charcoal-soft); }
+  .project-details { align-self: start; padding: clamp(1.5rem, 4vw, 2.25rem); border-radius: var(--radius); background: var(--forest); color: var(--white); }
+  .project-details__heading { margin-bottom: .75rem; font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; }
+  .project-details dl { margin: 0; }
+  .project-details dl > div { padding-block: 1rem; border-top: 1px solid rgba(255, 255, 255, .18); }
+  .project-details dt { display: flex; align-items: center; gap: .6rem; color: #d9e7da; font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+  .project-details dd { margin: .25rem 0 0 1.6rem; font-weight: 600; }
+  .project-details__icon { position: relative; display: inline-block; width: 1rem; height: 1rem; border: 1.5px solid currentColor; border-radius: 50%; }
+  .project-details__icon--clock::after { content: ""; position: absolute; top: .18rem; left: .45rem; width: .22rem; height: .35rem; border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; }
+  .project-details__icon--leaf { border-radius: 100% 0 100% 0; transform: rotate(-15deg); }
+  .project-details__icon--shears::before, .project-details__icon--shears::after { content: ""; position: absolute; width: .6rem; height: 1px; top: .42rem; left: .18rem; background: currentColor; transform: rotate(42deg); }
+  .project-details__icon--shears::after { transform: rotate(-42deg); }
+  .comparison-section { padding-block: var(--section-space); background: var(--sage-lighter); }
+  .section-heading { max-width: 42rem; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+  .section-heading h2 { margin-bottom: .65rem; font-size: clamp(1.9rem, 4vw, 3rem); }
+  .section-heading > p:last-child { color: var(--charcoal-soft); }
+  .gallery-section { padding-block: var(--section-space); }
+  .quote-band { padding-block: clamp(3.5rem, 7vw, 5.5rem); background: var(--forest-deep); color: var(--white); }
+  .quote-band__inner { display: grid; gap: 2rem; align-items: center; }
+  .quote-band .section-label { color: #b9d3bd; }
+  .quote-band h2 { max-width: 18ch; margin-bottom: .75rem; color: var(--white); font-size: clamp(1.8rem, 4vw, 2.8rem); }
+  .quote-band p:last-child { max-width: 56ch; color: #dce7df; }
+  .quote-band__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .service-button--light { background: var(--white); color: var(--forest-deep); }
+  .service-button--light:hover { background: var(--sage-light); }
+  .quote-band__phone { color: var(--white); font-weight: 700; text-underline-offset: .25rem; }
+  @media (min-width: 800px) { .project { grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .75fr); align-items: start; } .quote-band__inner { grid-template-columns: minmax(0, 1fr) auto; } .quote-band__actions { align-items: flex-end; } }
+  @media (max-width: 620px) { .service-hero { min-height: 46rem; } .service-hero__image { object-position: 56% center; } .service-hero__shade { background: linear-gradient(0deg, rgba(10, 27, 19, .97) 0%, rgba(10, 27, 19, .82) 60%, rgba(10, 27, 19, .18) 100%); } .service-hero__inner { padding-block: 3.5rem; } .service-hero h1 { font-size: clamp(2.35rem, 11vw, 3.4rem); } .service-hero__actions { align-items: stretch; flex-direction: column; } .service-button { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .service-button { transition: none; } .service-button:hover { transform: none; } }
+</style>
