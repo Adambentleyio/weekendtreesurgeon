@@ -5,14 +5,14 @@ import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import Footer from "../components/Footer.astro";
 import ProjectGallery from "../components/ProjectGallery.astro";
 import client from "../data/client.json";
-import heroImage from "../assets/images/hedge-willaston/hedge-willaston-after-3.jpg";
-import beforeImage from "../assets/images/hedge-willaston/hedge-willaston-before-1.jpg";
-import afterImage from "../assets/images/hedge-willaston/hedge-willaston-after-1.jpg";
-import beforeCorner from "../assets/images/hedge-willaston/hedge-willaston-before-close-corner.jpg";
-import duringOne from "../assets/images/hedge-willaston/hedge-willaston-during-1.jpg";
-import duringTwo from "../assets/images/hedge-willaston/hedge-willaston-during-2.jpg";
-import afterTwo from "../assets/images/hedge-willaston/hedge-willaston-after-2.jpg";
-import afterThree from "../assets/images/hedge-willaston/hedge-willaston-after-3.jpg";
+import heroImage from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-3.jpg";
+import beforeImage from "../assets/images/hedge-cutting-willaston/hedge-willaston-before-1.jpg";
+import afterImage from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-1.jpg";
+import beforeCorner from "../assets/images/hedge-cutting-willaston/hedge-willaston-before-close-corner.jpg";
+import duringOne from "../assets/images/hedge-cutting-willaston/hedge-willaston-during-1.jpg";
+import duringTwo from "../assets/images/hedge-cutting-willaston/hedge-willaston-during-2.jpg";
+import afterTwo from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-2.jpg";
+import afterThree from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-3.jpg";
 
 const project = {
   label: "Recent project",
@@ -35,7 +35,7 @@ const gallery = [
   { src: afterThree, alt: "The finished boundary hedge with a neat, even side and top" },
 ];
 ---
-<BaseLayout title="Hedge Cutting in Nantwich and Cheshire" description="Local hedge cutting in Nantwich, Crewe and nearby Cheshire villages. See a genuine Willaston project and ask Weekend Tree Surgeon for a free quote." showNav={true} navCtaHref="#get-in-touch">
+<BaseLayout title="Hedge Cutting in Nantwich and Cheshire" description="Local hedge cutting in Nantwich, Crewe and nearby Cheshire villages. See a genuine Willaston project and ask Weekend Tree Surgeon for a free quote." showNav={true} navCtaHref="/contact">
   <article class="service-page">
     <section class="service-hero" aria-labelledby="service-title">
       <Image class="service-hero__image" src={heroImage} alt="A freshly cut boundary hedge in a Willaston garden" widths={[768,1280,1920]} sizes="100vw" format="avif" quality={80} loading="eager" />

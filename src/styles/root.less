@@ -306,154 +306,234 @@ section h2 {
 // ================= HERO =================
 .hero {
   background: var(--cream);
-  padding: 26px 0 34px;
+  padding: clamp(24px, 5vh, 46px) 0 clamp(32px, 6vh, 56px);
 
   &__inner {
-    max-width: 560px;
+    width: 100%;
+    max-width: 48rem;
     margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  &__badges {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding-block: 0 2rem;
+    padding: 0 var(--page-padding);
   }
 
   &__intro {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin: 14px 0 16px;
+    gap: 12px;
+    margin-bottom: 18px;
   }
 
   &__photo {
-    position: relative;
     flex-shrink: 0;
-    width: 52px;
-    height: 52px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    overflow: hidden;
-    background: var(--sage-light);
-    border: 3px solid var(--white);
-    box-shadow: 0 10px 24px -12px rgba(21, 42, 32, 0.35);
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    border: 2px solid var(--sage);
+    object-fit: cover;
   }
 
   &__greeting {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 700;
+    line-height: 1.35;
     color: var(--forest);
 
     span {
       display: block;
-      font-size: 0.76rem;
-      font-weight: 500;
+      font-size: 0.78rem;
+      font-weight: 400;
       color: var(--charcoal-soft);
     }
   }
 
   &__title {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
-    line-height: 1.16;
-    font-weight: 700;
+    font-size: clamp(2.2rem, 10vw, 3.65rem);
+    line-height: 0.98;
+    font-weight: 800;
+    letter-spacing: -0.045em;
     color: var(--forest);
     margin: 0 0 12px;
-  }
-
-  &__subtitle {
-    font-family: var(--font-body);
-    font-size: 0.92rem;
-    line-height: 1.55;
-    color: var(--charcoal-soft);
-    margin: 0 0 20px;
+    max-width: 12ch;
   }
 
   &__quote {
-    // mobile: strip the card chrome, let it sit in the natural text flow
     &.quote-card {
-      background: none;
       padding: 0;
+      border: 0;
+      background: transparent;
       box-shadow: none;
       border-radius: 0;
     }
   }
 
-  @media (min-width: 768px) {
-    padding: 56px 0;
+  &__quote .quote-card__row {
+    flex-direction: column;
+  }
+
+  &__quote .quote-card__btn {
+    min-height: 50px;
+  }
+
+  &__contact-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 7px;
+    margin-top: 12px;
+    color: var(--charcoal-soft);
+    font-size: .85rem;
     text-align: center;
+  }
+
+  &__contact-options a {
+    color: var(--forest);
+    font-weight: 700;
+    text-underline-offset: 3px;
+  }
+
+  @media (min-width: 768px) {
+    display: grid;
+    min-height: calc(100svh - 4.75rem);
+    align-items: center;
+    padding: clamp(3rem, 7vh, 5rem) 0;
 
     &__inner {
-      max-width: 720px;
+      max-width: 64rem;
     }
 
-    &__badges {
-      justify-content: center;
+    &__content {
+      width: 100%;
     }
 
+    &__intro {
+      margin-bottom: 24px;
+    }
 
     &__photo {
-      width: 104px;
-      height: 104px;
-      margin: 0 auto;
-    }
-
-    
-    &__intro {
-      flex-direction: column;
-      gap: 14px; // was inheriting the mobile 10px gap — too tight once the photo is 104px
-      margin: 28px auto 24px;
+      width: 56px;
+      height: 56px;
     }
 
     &__greeting {
-      font-size: 1.15rem; // was 0.95rem
-      font-weight: 700;
-      line-height: 1.3;
-      margin-top: 2px;
+      font-size: .96rem;
 
       span {
-        font-size: 0.98rem; // was 0.82rem
-        font-weight: 500;
-        line-height: 1.4;
-        margin-top: 6px; // was 2px — this was the main source of the cramped look
+        margin-top: 2px;
+        font-size: .84rem;
       }
     }
 
     &__title {
-      font-size: 2.5rem;
-      max-width: 24ch;
-      margin: 0 auto 16px;
-    }
-
-    &__subtitle {
-      font-size: 1rem;
-      max-width: 44ch;
-      margin: 0 auto 26px;
+      max-width: 15ch;
+      margin-bottom: 20px;
+      font-size: clamp(3.75rem, 6.25vw, 5.25rem);
+      line-height: .96;
     }
 
     &__quote {
-      max-width: 440px;
-      margin: 0 auto;
+      max-width: 42rem;
+    }
+
+    &__quote .quote-card__row {
+      flex-direction: row;
+    }
+
+    &__contact-options {
+      justify-content: flex-start;
+      margin-top: 14px;
       text-align: left;
-      // desktop: restore full card styling
-      &.quote-card {
-        background: var(--white);
-        padding: 22px 22px 20px;
-        box-shadow: 0 18px 40px -18px rgba(21, 42, 32, 0.35);
-        border-radius: 22px;
-        max-width: 440px;
-        margin: 0 auto;
-        text-align: left;
-      }
-    } // keep form contents left-aligned even though hero is centered
+    }
+  }
+}
+
+.hero-reviews {
+  max-width: 46rem;
+  margin: 0 0 18px;
+  overflow: hidden;
+  border-radius: 16px;
+  // background: var(--sage-lighter);
+}
+
+.hero-reviews__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(32, 61, 46, .12);
+  font-size: .74rem;
+  font-weight: 700;
+}
+
+.hero-reviews__heading a {
+  color: var(--forest);
+  text-underline-offset: 3px;
+}
+
+.hero-reviews__stars {
+  color: var(--gold);
+  letter-spacing: .08em;
+}
+
+.hero-reviews blockquote {
+  margin: 0;
+}
+
+.hero-reviews blockquote p {
+  margin: 0;
+}
+
+.hero-reviews__lead {
+  padding: 15px 14px 14px;
+  color: var(--forest);
+  font-family: var(--font-heading);
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.hero-reviews__more {
+  display: grid;
+}
+
+.hero-reviews__more blockquote {
+  padding: 11px 14px;
+  color: var(--charcoal-soft);
+  font-size: .78rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+@media (min-width: 768px) {
+  .hero-reviews {
+    margin-bottom: 24px;
+  }
+
+  .hero-reviews__heading {
+    padding-inline: 18px;
+  }
+
+  .hero-reviews__quotes {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  }
+
+  .hero-reviews__lead {
+    display: flex;
+    align-items: center;
+    padding: 18px;
+    font-size: 1.18rem;
+  }
+
+  .hero-reviews__more {
+    align-content: center;
+  }
+
+  .hero-reviews__more blockquote {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    font-size: .8rem;
   }
 }
 
@@ -498,11 +578,155 @@ section h2 {
   }
 
 /* --------------------------
+   Recent work
+   -------------------------- */
+
+.recent-work {
+  background: var(--cream);
+}
+
+.recent-work h2 {
+  max-width: 22ch;
+}
+
+.recent-work__grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.project-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.project-card__image {
+  display: block;
+  overflow: hidden;
+  background: var(--sage-light);
+}
+
+.project-card__image img {
+  width: 100%;
+  height: 15rem;
+  object-fit: cover;
+  transition: transform 300ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.project-card__image:hover img {
+  transform: scale(1.025);
+}
+
+.project-card__body {
+  padding: 1.25rem;
+}
+
+.project-card__meta {
+  margin-bottom: .55rem;
+  color: var(--sage);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+}
+
+.project-card h3 {
+  margin-bottom: .55rem;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+}
+
+.project-card__body > p:not(.project-card__meta) {
+  color: var(--charcoal-soft);
+  font-size: .92rem;
+}
+
+.project-card__link {
+  display: inline-flex;
+  gap: .35rem;
+  margin-top: 1rem;
+  color: var(--forest);
+  font-size: .86rem;
+  font-weight: 700;
+  text-underline-offset: .2rem;
+}
+
+.recent-work__actions {
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  gap: .75rem;
+  margin-top: 1.5rem;
+}
+
+.recent-work__primary,
+.recent-work__secondary {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  padding: .75rem 1.25rem;
+  border-radius: .75rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.recent-work__primary {
+  background: var(--gold);
+  color: var(--forest-deep);
+}
+
+.recent-work__secondary {
+  border: 1px solid var(--forest);
+  color: var(--forest);
+}
+
+/* --------------------------
   Services
   -------------------------- */
 
   .services {
     background: var(--sage-light);
+  }
+
+  .service-list {
+    display: grid;
+    border-top: 1px solid rgba(32, 61, 46, .18);
+  }
+
+  .service-list a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: .2rem 1rem;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(32, 61, 46, .18);
+    color: var(--forest);
+    text-decoration: none;
+  }
+
+  .service-list span {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  .service-list small {
+    grid-column: 1;
+    color: var(--charcoal-soft);
+    font-size: .83rem;
+  }
+
+  .service-list b {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    color: var(--gold);
+    font-size: 1.2rem;
+    transition: transform 180ms cubic-bezier(.22, 1, .36, 1);
+  }
+
+  .service-list a:hover b {
+    transform: translateX(.25rem);
   }
 
   .service-grid {
@@ -845,6 +1069,38 @@ overflow: hidden;    // required: clips circles so they can't cause horizontal s
 
   .testimonial-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recent-work__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-card--featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(16rem, .85fr);
+  }
+
+  .project-card--featured .project-card__image img {
+    height: 100%;
+    min-height: 20rem;
+  }
+
+  .project-card--featured .project-card__body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+  }
+
+  .recent-work__actions {
+    align-items: center;
+    flex-direction: row;
+  }
+
+  .service-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 2.5rem;
   }
 
   .service-grid {

@@ -2,57 +2,66 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import founderPhoto from "../assets/images/founder-headshot.webp";
+import adamProfile from "../assets/images/adam-profile.jpg";
+import leightonAfter from "../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-after.jpg";
+import willastonAfter from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-1.jpg";
+import stapeleyAfter from "../assets/images/box-hedge-blight-nantwich/IMG_9325.JPG";
+import client from "../data/client.json";
+
+const recentProjects = [
+  { title: "Dead eucalyptus removed", service: "Tree removal", location: "Leighton, Crewe", outcome: "The dead tree and stump were removed, leaving a safer, more open garden.", href: "/dead-tree-removal", linkLabel: "See the Leighton tree removal", image: leightonAfter, alt: "Leighton garden after a dead eucalyptus tree and its stump were removed" },
+  { title: "Overgrown hedge cut back", service: "Hedge cutting", location: "Willaston", outcome: "A neater boundary, more light and a hedge brought back under control.", href: "/hedge-cutting", linkLabel: "See the Willaston hedge cutting", image: willastonAfter, alt: "Tall boundary hedge in Willaston after being cut back and shaped" },
+  { title: "Diseased box hedge replaced", service: "Box hedge removal", location: "Stapeley", outcome: "The failed box was removed and the border replanted for a fresh start.", href: "/box-hedge-removal", linkLabel: "See the Stapeley hedge replacement", image: stapeleyAfter, alt: "Stapeley border replanted after a diseased box hedge was removed" },
+];
 ---
 
 <BaseLayout
   title="Tree Surgery in Nantwich & Crewe"
   description="Professional tree surgery and hedge cutting for homeowners in Nantwich, Crewe and surrounding Cheshire areas."
->
+  showNav="true"
+  >
 <section class="hero" id="hero">
   <div class="hero__inner">
-
-    
-    <div class="hero__intro">
-      <div class="hero__photo">
-        <!-- Replace with the real headshot -->
-        <img src="assets/images/headshot.jpg" alt="Adam, founder of Weekend Tree Surgeon">
+    <div class="hero__content">
+      <div class="hero__intro">
+        <Image class="hero__photo" src={adamProfile} alt="Adam Bentley, the Weekend Tree Surgeon" width={96} height={96} format="webp" quality={82} loading="eager" />
+        <p class="hero__greeting">
+          Hi, I’m Adam
+          <span>Wistaston and Nantwich-based Tree Surgeon</span>
+        </p>
       </div>
-      <p class="hero__greeting">
-        Adam - The Weekend Tree Surgeon
-        <span>I'll be the one at your door</span>
-      </p>
-    </div>
-    
-    <div class="hero__badges">
-      <span class="badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3Z"/></svg>
-        Cheshire
-      </span>
-      <span class="badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 3l9 6v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9Z"/></svg>
-        Hedges
-      </span>
-      <span class="badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 12 3l9 6v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V9Z"/></svg>
-        Trees
-      </span>
-    </div>
 
-    <h1 class="hero__title">The tree service that actually shows up on time.</h1>
-    <!-- <p class="hero__subtitle">Professional tree and hedge trimming and removal for homeowners tired of typical tradesman headaches. No ghosting, no surprise pricing, zero property damage.</p> -->
+      <h1 class="hero__title">Your garden, cared for properly.</h1>
 
-    <form name="hero-quote" method="POST" data-netlify="true" name="phone number" class="quote-card hero__quote">
-      <p class="quote-card__label">Where should I text your quick estimate?</p>
-      <div class="quote-card__row">
-        <input type="tel" inputmode="tel" placeholder="Enter your mobile number" autocomplete="tel" aria-label="Mobile number">
-        <button type="button" class="quote-card__btn">Text Me A Quote</button>
+      <div class="hero-reviews" aria-label="Recent customer reviews on Google">
+        <div class="hero-reviews__heading">
+          <span class="hero-reviews__stars" aria-label="5 out of 5 stars">★★★★★</span>
+          <a href={client.googleBusinessUrl}>Real words from customers on Google <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-reviews__quotes">
+          <blockquote class="hero-reviews__lead">
+            <p>“Thanks Adam. 5 stars is not enough, you deserve a gold star.”</p>
+          </blockquote>
+          <div class="hero-reviews__more">
+            <blockquote><p>“Absolutely fantastic service from start to finish.”</p></blockquote>
+            <blockquote><p>“Adam certainly made short work of an overgrown Leylandii in my front garden.”</p></blockquote>
+          </div>
+        </div>
       </div>
-      <p class="quote-card__micro">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6Z"/></svg>
-        Usually responds in 15 minutes
-      </p>
-    </div>
 
+      <form name="hero-quote" method="POST" data-netlify="true" class="quote-card hero__quote">
+        <input type="hidden" name="form-name" value="hero-quote" />
+        <div class="quote-card__row">
+          <input id="hero-phone" type="tel" name="phone" inputmode="tel" placeholder="Your mobile number" autocomplete="tel" aria-label="Your mobile number" required>
+          <button type="submit" class="quote-card__btn">Request a quote</button>
+        </div>
+        <p class="hero__contact-options">
+          Rather talk? <a href={`tel:${client.phoneForTel}`}>Call {client.phoneFormatted}</a>
+          <span aria-hidden="true">·</span>
+          <a href="/contact">Tell me about the job</a>
+        </p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -85,51 +94,44 @@ import founderPhoto from "../assets/images/founder-headshot.webp";
     </div>
   </section>
 
+  <section class="recent-work" id="recent-work" aria-labelledby="recent-work-title">
+    <div class="page-wrap">
+      <span class="section-label">Recent work around Cheshire</span>
+      <h2 id="recent-work-title">See the problem, the work and how the garden was left.</h2>
+      <div class="recent-work__grid">
+        {recentProjects.map((project, index) => (
+          <article class:list={["project-card", { "project-card--featured": index === 0 }]}>
+            <a class="project-card__image" href={project.href} aria-label={project.linkLabel}>
+              <Image src={project.image} alt={project.alt} widths={[480, 768, 1120]} sizes={index === 0 ? "(min-width: 768px) 55vw, 100vw" : "(min-width: 768px) 35vw, 100vw"} format="avif" quality={78} loading="lazy" />
+            </a>
+            <div class="project-card__body">
+              <p class="project-card__meta">{project.service} <span aria-hidden="true">·</span> {project.location}</p>
+              <h3>{project.title}</h3>
+              <p>{project.outcome}</p>
+              <a class="project-card__link" href={project.href}>{project.linkLabel} <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="recent-work__actions">
+        <a class="recent-work__primary" href="/contact">Get a quote for your garden</a>
+        <a class="recent-work__secondary" href="#services">See all services</a>
+      </div>
+    </div>
+  </section>
+
   <!-- Services -->
-  <section class="services" id="our-work">
+  <section class="services" id="services">
     <div class="page-wrap">
       <span class="section-label">How I can help</span>
       <h2>Tree work without the usual hassle.</h2>
 
-      <div class="service-grid">
-
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">01</div>
-          <h3>The “Get Your Sunlight Back”</h3>
-          <p>
-            Reduce overgrown trees, branches and boughs, so your garden feels lighter,
-            tidier and more enjoyable again.
-          </p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">02</div>
-          <h3>The “Tidy Up My Hedges”</h3>
-          <p>
-            Expertly trim to a fine finish, or heavily cut back your boundary hedges. Including those hard to reach tops. 
-          </p>
-        </article>
-
-        <article class="service-card">
-          <div class="service-icon" aria-hidden="true">03</div>
-          <h3>The “It's time to say goodbye”</h3>
-          <p>
-           A tree that needs felling or dismantling? I'll do it quickly and leave your garden
-            safe and properly cleared afterwards.
-          </p>
-        </article>
-      </div>
-      <!-- inside .services, directly after the 3-card grid, before the wrap closes -->
-      <div class="services__all"> 
-        <p class="services__all-label">I also cover <i>(...so you find me on Google 😎)</i>:</p>
-        <div class="services__all-list">
-          <span class="trait">Pollarding</span>
-          <span class="trait">Deadwooding</span>
-          <span class="trait">Stump removal</span>
-          <span class="trait">Hedge cutting</span>
-          <span class="trait">Garden clearance</span>
-      </div>
-</div>
+      <nav class="service-list" aria-label="Tree and garden services">
+        <a href="/hedge-cutting"><span>Hedge cutting</span><small>Trim, shape or reduce overgrown hedges</small><b aria-hidden="true">→</b></a>
+        <a href="/dead-tree-removal"><span>Tree removal</span><small>Careful dismantling and stump removal</small><b aria-hidden="true">→</b></a>
+        <a href="/hedge-removal"><span>Hedge removal</span><small>Remove unwanted hedges and reclaim space</small><b aria-hidden="true">→</b></a>
+        <a href="/garden-maintenance"><span>Garden maintenance</span><small>Tidy established gardens back into shape</small><b aria-hidden="true">→</b></a>
+      </nav>
     </div>
   </section>
 
@@ -348,7 +350,8 @@ import founderPhoto from "../assets/images/founder-headshot.webp";
       <span class="section-label">Ready when you are</span>
       <h2>Tell me where to reach you.</h2>
 
-      <form name="guarantee-quote" method="POST" data-netlify="true" name="phone number">
+      <form name="guarantee-quote" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="guarantee-quote" />
         <p class="quote-card__label">
           <label for="footer-phone">Mobile number</label>
         </p>
@@ -366,7 +369,7 @@ import founderPhoto from "../assets/images/founder-headshot.webp";
         </div>
         <p class="quote-card__micro">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 11-14h-7l1-6Z"/></svg>
-          Usually responds in 15 minutes.
+          Adam will reply personally.
         </p>
       </form>
     </div>

@@ -1,21 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import client from "../data/client.json";
+import { Image } from "astro:assets";
+import climbingPhoto from "../assets/images/dismantle.jpg";
 ---
 
 <BaseLayout
   title="Contact"
   description="Get in touch with Adam at Weekend Tree Surgeon for tree surgery, hedge cutting and garden clearance in Nantwich and Crewe."
+  showNav={true}
 >
   <section id="cs-contact">
     <div class="cs-container">
-      <form id="cs-form" name="Contact Form" method="post" netlify>
+      <form id="cs-form" name="Contact Form" method="post" enctype="multipart/form-data" netlify data-contact-form>
         <input type="hidden" name="form-name" value="Contact Form" />
         <div class="cs-content">
           <span class="cs-topper">Contact</span>
           <h2 class="cs-title">Get in Touch</h2>
           <p class="cs-text">
-            Feel free to call, text or fill out the form below. I respond to all messages by the end of each day. Looking forward to hearing from you!
+            Tell me what needs doing and where you are. Add a photo if it helps, then Adam will reply personally.
           </p>
         </div>
         <label>
@@ -28,10 +31,11 @@ import client from "../data/client.json";
             placeholder="Name"
           />
         </label>
+        <fieldset class="contact-methods">
+          <legend>How can Adam contact you? <span>Provide at least one</span></legend>
         <label>
-          Email
+          Email <span class="optional">Optional</span>
           <input
-            required
             type="email"
             id="email"
             name="email"
@@ -39,42 +43,48 @@ import client from "../data/client.json";
           />
         </label>
         <label>
-          Phone
+          Phone <span class="optional">Optional</span>
           <input
-            required
             type="tel"
             id="phone"
             name="phone"
             placeholder="Phone"
           />
         </label>
+        </fieldset>
         <label>
-          How Did You Find Us
+          Postcode or area
           <input
             type="text"
-            id="find"
-            name="find-us"
-            placeholder="How did you find us?"
+            id="area"
+            name="area"
+            autocomplete="postal-code"
+            placeholder="For example, CW5 or Nantwich"
+            required
           />
         </label>
         <label class="cs-label-message">
-          Message
+          What needs doing?
           <textarea
             required
-            name="Message"
+            name="message"
             id="message"
-            placeholder="Write message..."></textarea>
+            placeholder="Tell Adam about the tree, hedge or garden work"></textarea>
         </label>
-        <button class="btn" type="submit">Submit Message</button>
+        <label class="cs-label-photos">
+          Photographs <span class="optional">Optional</span>
+          <input type="file" name="photos" accept="image/*" multiple />
+        </label>
+        <p class="form-error" data-contact-error hidden>Please provide a phone number or email address.</p>
+        <button class="btn" type="submit">Ask Adam for a quote</button>
       </form>
 
       <div class="cs-right-section">
         <div class="cs-bg-picture">
-          <!-- Replace with the real photo: <img src="/images/adam-climbing.jpg" alt="Adam mid-climb, working on a tree"> -->
-          <img src="assets/images/dismantle.jpg" alt="Adam mid-climb, working on a tree">
+          <Image src={climbingPhoto} alt="Adam working high in a tree during a careful dismantle" widths={[640, 1080]} sizes="(min-width: 1024px) 40vw, 100vw" format="avif" quality={78} loading="lazy" />
         </div>
         <span class="cs-header">Real work, done properly</span>
-        <a href="/#gallery" class="cs-link">See more finished jobs →</a>
+        <a href="/#recent-work" class="cs-link">See recent local work →</a>
       </div>
     </div>
   </section>
@@ -84,6 +94,34 @@ import client from "../data/client.json";
     <p>© 2026 Weekend Tree Surgeon</p>
   </footer>
 </BaseLayout>
+
+<script>
+  const setupContactForm = () => {
+    const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+    if (!form || form.dataset.ready === "true") return;
+    const email = form.querySelector<HTMLInputElement>("#email");
+    const phone = form.querySelector<HTMLInputElement>("#phone");
+    const error = form.querySelector<HTMLElement>("[data-contact-error]");
+    if (!email || !phone || !error) return;
+    const validateContact = () => {
+      const valid = Boolean(email.value.trim() || phone.value.trim());
+      phone.setCustomValidity(valid ? "" : "Please provide a phone number or email address.");
+      error.hidden = valid;
+      return valid;
+    };
+    email.addEventListener("input", validateContact);
+    phone.addEventListener("input", validateContact);
+    form.addEventListener("submit", (event) => {
+      if (!validateContact()) {
+        event.preventDefault();
+        phone.reportValidity();
+      }
+    });
+    form.dataset.ready = "true";
+  };
+  setupContactForm();
+  document.addEventListener("astro:page-load", setupContactForm);
+</script>
 
 <style lang="less">
 
@@ -151,6 +189,49 @@ import client from "../data/client.json";
 
       #cs-form {
         margin-bottom: (40/16rem);
+
+        .contact-methods {
+          display: grid;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          border: 0;
+        }
+
+        .contact-methods label {
+          width: 100%;
+          max-width: none;
+        }
+
+        .contact-methods legend {
+          margin-bottom: .75rem;
+          color: var(--forest);
+          font-weight: 700;
+        }
+
+        .contact-methods legend span,
+        .optional {
+          color: var(--charcoal-soft);
+          font-size: .78rem;
+          font-weight: 500;
+        }
+
+        .form-error {
+          width: 100%;
+          margin: -.75rem 0 1rem;
+          color: #8c352b;
+          font-size: .9rem;
+          font-weight: 600;
+        }
+
+        .cs-label-photos {
+          width: 100%;
+        }
+
+        input[type="file"] {
+          height: auto;
+          padding: .8rem;
+        }
 
         label {
           font-size: (16/16rem);
@@ -326,6 +407,11 @@ import client from "../data/client.json";
         justify-content: space-between;
         align-items: flex-start;
         flex-wrap: wrap;
+
+        .contact-methods {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          column-gap: 4%;
+        }
 
         label {
           width: 48%;

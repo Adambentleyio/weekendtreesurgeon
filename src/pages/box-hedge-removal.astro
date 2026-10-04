@@ -1,58 +1,60 @@
 ---
 import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BeforeAfterSlider from "../components/BeforeAfterSlider.astro";
 import Footer from "../components/Footer.astro";
 import ProjectGallery from "../components/ProjectGallery.astro";
 import client from "../data/client.json";
-import heroImage from "../assets/images/hedge-removal-wistaston/hedge-removal-before-2.jpg";
-import beforeImage from "../assets/images/hedge-removal-wistaston/hedge-removal-before-1.jpg";
-import afterImage from "../assets/images/hedge-removal-wistaston/hedge-removal-trunks-1.jpg";
-import beforeTwo from "../assets/images/hedge-removal-wistaston/hedge-removal-before-2.jpg";
-import duringOne from "../assets/images/hedge-removal-wistaston/hedge-removal-during-1.jpg";
-import duringTwo from "../assets/images/hedge-removal-wistaston/hedge-removal-during-2.jpg";
-import trunksTwo from "../assets/images/hedge-removal-wistaston/hedge-removal-trunks-2.jpg";
+import beforeImage from "../assets/images/box-hedge-blight-nantwich/IMG_9178.JPG";
+import removalOne from "../assets/images/box-hedge-blight-nantwich/IMG_9176.JPG";
+import removalTwo from "../assets/images/box-hedge-blight-nantwich/IMG_9177.JPG";
+import plantingImage from "../assets/images/box-hedge-blight-nantwich/IMG_9323.JPG";
+import afterImage from "../assets/images/box-hedge-blight-nantwich/IMG_9325.JPG";
 
 const project = {
-  label: "Current project",
-  title: "Opening up a garden by removing a mature boundary hedge",
-  problem: "A tall, dense conifer hedge occupied a substantial stretch of the garden boundary and limited the usable space around it.",
-  work: "The hedge was taken down in controlled sections, leaving the main stems accessible for the next stage of the removal.",
-  outcome: "The work has opened up the boundary and revealed the fence behind it. A final after photograph will be added when the job is complete.",
+  label: "Stapeley case study",
+  title: "Replacing a dead box hedge with young laurel",
+  problem: "Around eight box plants at the front of this Stapeley garden had died or become diseased. Box tree caterpillars were found among the affected plants, leaving an untidy gap between healthy sections of established laurel.",
+  work: "The box plants and their roots were removed during the first visit, and all waste was taken away. On a second visit, the soil was prepared with soil improver before seven young laurels were planted around 30 to 45cm apart to continue the existing hedge line.",
+  outcome: "The dead planting has been replaced with a healthy run of laurel that matches the established plants on either side and can fill out as it grows.",
   details: [
-    ["Location", "To be confirmed", "pin"],
-    ["Work carried out", "Hedge dismantled in sections", "shears"],
-    ["Project status", "Final after photo pending", "clock"],
-    ["Current result", "Boundary opened up", "leaf"],
+    ["Location", "Stapeley, Nantwich", "pin"],
+    ["Plants removed", "Approximately 8 box plants", "shears"],
+    ["Replacement", "7 young laurels", "leaf"],
+    ["Visits", "Removal and planting, April to June", "clock"],
   ],
 };
 
 const gallery = [
-  { src: beforeTwo, alt: "Tall conifer hedge running beside a garden shed before removal" },
-  { src: duringOne, alt: "Cut conifer branches gathered on the paved area during hedge removal" },
-  { src: duringTwo, alt: "Conifer sections stacked ready for clearing as the hedge is dismantled" },
-  { src: trunksTwo, alt: "Wide garden view showing the opened boundary and remaining conifer stems" },
+  { src: removalOne, alt: "Dead box plants and exposed roots being removed from the front garden" },
+  { src: removalTwo, alt: "Removed box shrubs gathered beside the remaining laurel hedge" },
+  { src: plantingImage, alt: "Newly planted young laurels being watered in the prepared soil" },
 ];
 ---
 
-<BaseLayout title="Hedge Removal in Nantwich and Cheshire" description="Hedge removal for homeowners in Nantwich, Crewe and nearby Cheshire villages. See genuine project photographs and ask Weekend Tree Surgeon for a quote." showNav={true} navCtaHref="/contact">
+<BaseLayout
+  title="Box Hedge Removal in Nantwich and Cheshire"
+  description="Box hedge removal in Nantwich and Cheshire. See how dead, diseased box with box tree caterpillars was removed and replaced with laurel in Stapeley."
+  canonical="https://www.weekendtreesurgeon.com/box-hedge-removal/"
+  showNav={true}
+  navCtaHref="/contact"
+>
   <article class="service-page">
     <section class="service-hero" aria-labelledby="service-title">
-      <Image class="service-hero__image" src={heroImage} alt="Tall conifer hedge along a residential garden boundary" widths={[768, 1280, 1920]} sizes="100vw" format="avif" quality={80} loading="eager" />
+      <Image class="service-hero__image" src={afterImage} alt="New young laurel plants filling a former box hedge gap in a Stapeley front garden" widths={[768, 1280, 1920]} sizes="100vw" format="avif" quality={80} loading="eager" />
       <div class="service-hero__shade" aria-hidden="true"></div>
       <div class="page-wrap service-hero__inner">
         <div class="service-hero__copy">
-          <p class="section-label">Local hedge removal</p>
-          <h1 id="service-title">Hedge removal in Nantwich and across Cheshire</h1>
-          <p class="service-hero__subtitle">Careful removal of unwanted hedges to reclaim space and open up your garden.</p>
+          <p class="section-label">Local hedge replacement</p>
+          <h1 id="service-title">Box hedge removal in Nantwich and across Cheshire</h1>
+          <p class="service-hero__subtitle">Careful removal of dead or diseased box, including the roots, with practical advice on replacement planting.</p>
           <ul class="service-hero__benefits">
-            <li>More usable garden space</li>
-            <li>Clearer access to boundaries</li>
-            <li>Work planned around nearby fences, sheds and planting</li>
+            <li>Dead box and roots removed</li>
+            <li>Soil prepared for new planting</li>
+            <li>All removed material taken away</li>
           </ul>
           <div class="service-hero__actions">
-            <a class="service-button service-button--primary" href="/contact">Get a hedge removal quote</a>
-            <a class="service-button service-button--secondary" href="#recent-project">See a removal in progress</a>
+            <a class="service-button service-button--primary" href="/contact">Get a box hedge removal quote</a>
+            <a class="service-button service-button--secondary" href="#recent-project">See the Stapeley project</a>
           </div>
         </div>
       </div>
@@ -65,7 +67,7 @@ const gallery = [
         <div class="project__narrative">
           <div><h3>The problem</h3><p>{project.problem}</p></div>
           <div><h3>What we did</h3><p>{project.work}</p></div>
-          <div><h3>The outcome so far</h3><p>{project.outcome}</p></div>
+          <div><h3>The outcome</h3><p>{project.outcome}</p></div>
         </div>
       </div>
       <aside class="project-details" aria-label="Project details">
@@ -74,22 +76,31 @@ const gallery = [
       </aside>
     </section>
 
-    <section class="comparison-section">
+    <section class="comparison-section" aria-labelledby="comparison-title">
       <div class="page-wrap">
         <div class="section-heading">
-          <p class="section-label">Before and current progress</p>
-          <h2>Drag to see the space opening up</h2>
-          <p>The current view shows the hedge reduced to its main stems. The finished after photograph will replace it when available.</p>
+          <p class="section-label">Before and after</p>
+          <h2 id="comparison-title">From failing box to a new laurel hedge</h2>
+          <p>The photographs were taken from different positions, so they are shown side by side rather than as a draggable comparison.</p>
         </div>
-        <BeforeAfterSlider before={beforeImage} after={afterImage} beforeAlt="Tall conifer hedge filling the garden boundary before removal" afterAlt="The same garden boundary with the conifer hedge reduced to its main stems" ariaLabel="Move the divider to compare the hedge before removal with the current progress view" />
+        <div class="photo-pair">
+          <figure>
+            <div class="photo-pair__image"><Image src={beforeImage} alt="Dead and discoloured box hedge before removal in Stapeley" widths={[480, 720, 960]} sizes="(min-width: 760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" /></div>
+            <figcaption><strong>Before</strong><span>Dead and diseased box interrupted the front hedge.</span></figcaption>
+          </figure>
+          <figure>
+            <div class="photo-pair__image photo-pair__image--after"><Image src={afterImage} alt="Seven young laurels planted between established laurel shrubs after box removal" widths={[480, 720, 960]} sizes="(min-width: 760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" /></div>
+            <figcaption><strong>After</strong><span>Seven young laurels continue the existing hedge line.</span></figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
     <section class="gallery-section page-wrap" aria-labelledby="gallery-title">
       <div class="section-heading">
         <p class="section-label">The work up close</p>
-        <h2 id="gallery-title">A careful, section-by-section removal</h2>
-        <p>Genuine photographs from the same hedge-removal project, from the standing hedge through to the current stage.</p>
+        <h2 id="gallery-title">Removal, preparation and replanting</h2>
+        <p>Genuine photographs from the same Stapeley project, completed over two visits between April and June.</p>
       </div>
       <ProjectGallery images={gallery} />
     </section>
@@ -97,12 +108,12 @@ const gallery = [
     <section class="quote-band" id="get-in-touch" aria-labelledby="quote-title">
       <div class="page-wrap quote-band__inner">
         <div>
-          <p class="section-label">Ready for a clearer garden?</p>
-          <h2 id="quote-title">Tell Adam about the hedge you want removed</h2>
+          <p class="section-label">Need to replace failing box?</p>
+          <h2 id="quote-title">Tell Adam what is happening with your hedge</h2>
           <p>Send a few details and photographs for a straightforward, no-obligation quote.</p>
         </div>
         <div class="quote-band__actions">
-          <a class="service-button service-button--light" href="/contact">Get a hedge removal quote</a>
+          <a class="service-button service-button--light" href="/contact">Get a box hedge removal quote</a>
           <a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
         </div>
       </div>
@@ -115,13 +126,13 @@ const gallery = [
   .service-page { background: var(--cream); }
   .service-hero { position: relative; display: grid; min-height: clamp(39rem, 78vh, 49rem); align-items: end; padding-block: 0; isolation: isolate; }
   .service-hero__image, .service-hero__shade { position: absolute; inset: 0; width: 100%; height: 100%; }
-  .service-hero__image { z-index: -2; object-fit: cover; object-position: 48% center; }
-  .service-hero__shade { z-index: -1; background: linear-gradient(90deg, rgba(10, 27, 19, .94) 0%, rgba(10, 27, 19, .76) 48%, rgba(10, 27, 19, .14) 80%); }
+  .service-hero__image { z-index: -2; object-fit: cover; object-position: 43% center; }
+  .service-hero__shade { z-index: -1; background: linear-gradient(90deg, rgba(10, 27, 19, .95) 0%, rgba(10, 27, 19, .78) 49%, rgba(10, 27, 19, .14) 82%); }
   .service-hero__inner { width: 100%; padding-block: clamp(4rem, 10vw, 7rem); }
-  .service-hero__copy { max-width: 46rem; color: var(--white); }
+  .service-hero__copy { max-width: 47rem; color: var(--white); }
   .service-hero .section-label { color: #c8dfc8; }
   .service-hero h1 { max-width: 14ch; color: var(--white); font-size: clamp(2.5rem, 6vw, 4.8rem); line-height: 1.02; }
-  .service-hero__subtitle { max-width: 39rem; margin-top: 1.25rem; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.5; }
+  .service-hero__subtitle { max-width: 40rem; margin-top: 1.25rem; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.5; }
   .service-hero__benefits { display: grid; gap: .6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
   .service-hero__benefits li { position: relative; padding-left: 1.65rem; }
   .service-hero__benefits li::before { content: ""; position: absolute; top: .55em; left: 0; width: .7rem; height: .4rem; border-bottom: 2px solid #c8dfc8; border-left: 2px solid #c8dfc8; transform: rotate(-45deg); }
@@ -147,12 +158,21 @@ const gallery = [
   .project-details__icon { position: relative; display: inline-block; width: 1rem; height: 1rem; border: 1.5px solid currentColor; border-radius: 50%; }
   .project-details__icon--clock::after { content: ""; position: absolute; top: .18rem; left: .45rem; width: .22rem; height: .35rem; border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; }
   .project-details__icon--leaf { border-radius: 100% 0 100% 0; transform: rotate(-15deg); }
-  .project-details__icon--shears::before, .project-details__icon--shears::after { content: ""; position: absolute; width: .6rem; height: 1px; top: .42rem; left: .18rem; background: currentColor; transform: rotate(42deg); }
+  .project-details__icon--shears::before, .project-details__icon--shears::after { content: ""; position: absolute; top: .42rem; left: .18rem; width: .6rem; height: 1px; background: currentColor; transform: rotate(42deg); }
   .project-details__icon--shears::after { transform: rotate(-42deg); }
   .comparison-section { padding-block: var(--section-space); background: var(--sage-lighter); }
-  .section-heading { max-width: 42rem; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+  .section-heading { max-width: 43rem; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
   .section-heading h2 { margin-bottom: .65rem; font-size: clamp(1.9rem, 4vw, 3rem); }
   .section-heading > p:last-child { color: var(--charcoal-soft); }
+  .photo-pair { display: grid; gap: 1rem; }
+  .photo-pair figure { margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--cream); }
+  .photo-pair__image { overflow: hidden; aspect-ratio: 4 / 3; background: var(--sage-light); }
+  .photo-pair__image :global(picture), .photo-pair__image :global(img) { width: 100%; height: 100%; }
+  .photo-pair__image :global(img) { object-fit: cover; object-position: 48% center; }
+  .photo-pair__image--after :global(img) { object-position: 43% center; }
+  .photo-pair figcaption { display: grid; gap: .2rem; padding: 1rem 1.15rem 1.2rem; }
+  .photo-pair figcaption strong { color: var(--forest); font-family: var(--font-heading); font-size: 1.1rem; }
+  .photo-pair figcaption span { color: var(--charcoal-soft); font-size: .94rem; }
   .gallery-section { padding-block: var(--section-space); }
   .quote-band { padding-block: clamp(3.5rem, 7vw, 5.5rem); background: var(--forest-deep); color: var(--white); }
   .quote-band__inner { display: grid; gap: 2rem; align-items: center; }
@@ -163,7 +183,8 @@ const gallery = [
   .service-button--light { background: var(--white); color: var(--forest-deep); }
   .service-button--light:hover { background: var(--sage-light); }
   .quote-band__phone { color: var(--white); font-weight: 700; text-underline-offset: .25rem; }
+  @media (min-width: 760px) { .photo-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (min-width: 800px) { .project { grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .75fr); align-items: start; } .quote-band__inner { grid-template-columns: minmax(0, 1fr) auto; } .quote-band__actions { align-items: flex-end; } }
-  @media (max-width: 620px) { .service-hero { min-height: 46rem; } .service-hero__image { object-position: 56% center; } .service-hero__shade { background: linear-gradient(0deg, rgba(10, 27, 19, .97) 0%, rgba(10, 27, 19, .82) 60%, rgba(10, 27, 19, .18) 100%); } .service-hero__inner { padding-block: 3.5rem; } .service-hero h1 { font-size: clamp(2.35rem, 11vw, 3.4rem); } .service-hero__actions { align-items: stretch; flex-direction: column; } .service-button { width: 100%; } }
+  @media (max-width: 620px) { .service-hero { min-height: 47rem; } .service-hero__image { object-position: 47% center; } .service-hero__shade { background: linear-gradient(0deg, rgba(10, 27, 19, .97) 0%, rgba(10, 27, 19, .84) 62%, rgba(10, 27, 19, .2) 100%); } .service-hero__inner { padding-block: 3.5rem; } .service-hero h1 { font-size: clamp(2.3rem, 10.5vw, 3.35rem); } .service-hero__actions { align-items: stretch; flex-direction: column; } .service-button { width: 100%; } }
   @media (prefers-reduced-motion: reduce) { .service-button { transition: none; } .service-button:hover { transform: none; } }
 </style>

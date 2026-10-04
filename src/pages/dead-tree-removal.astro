@@ -1,0 +1,174 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import client from "../data/client.json";
+import beforeImage from "../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-before.jpg";
+import duringImage from "../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-during.jpg";
+import afterImage from "../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-after.jpg";
+
+const project = {
+  label: "Leighton case study",
+  title: "Removing a dead eucalyptus from a garden in Crewe",
+  problem: "The customer had previously asked another firm to pollard this eucalyptus in the hope that it would produce healthy new growth. The tree failed to recover, leaving a dead crown beside a garden shed and established shrubs.",
+  work: "The remaining crown was dismantled in controlled sections to protect the shed, fencing and surrounding planting. The trunk was then felled and the stump ground out completely.",
+  outcome: "All timber, logs and other tree waste were removed during the same visit. The space was left clear and ready for fresh planting.",
+  details: [
+    ["Location", "Leighton, Crewe", "pin"],
+    ["Tree", "Dead eucalyptus", "leaf"],
+    ["Work carried out", "Dismantled, felled and stump ground", "saw"],
+    ["Time on site", "One visit", "clock"],
+  ],
+};
+
+const stages = [
+  { src: beforeImage, label: "Before", alt: "Dead pollarded eucalyptus standing beside a garden shed and shrubs in Leighton", copy: "The eucalyptus had failed to recover and the remaining crown was dead." },
+  { src: duringImage, label: "During", alt: "Dead eucalyptus reduced to its main trunk during a controlled dismantle", copy: "The crown was removed in sections around the shed and established planting." },
+  { src: afterImage, label: "After", alt: "Cleared garden after the dead eucalyptus and stump were completely removed", copy: "The stump was ground out and the area left ready for fresh planting." },
+];
+---
+
+<BaseLayout
+  title="Dead Tree Removal in Crewe and Cheshire"
+  description="Dead tree removal in Crewe and Cheshire. See a eucalyptus safely dismantled, felled and stump ground in a Leighton garden, with all waste removed."
+  canonical="https://www.weekendtreesurgeon.com/dead-tree-removal/"
+  showNav={true}
+  navCtaHref="/contact"
+>
+  <article class="service-page">
+    <section class="service-hero" aria-labelledby="service-title">
+      <Image class="service-hero__image" src={beforeImage} alt="Dead eucalyptus tree beside a shed in a Leighton garden before removal" widths={[768, 1280, 1920]} sizes="100vw" format="avif" quality={80} loading="eager" />
+      <div class="service-hero__shade" aria-hidden="true"></div>
+      <div class="page-wrap service-hero__inner">
+        <div class="service-hero__copy">
+          <p class="section-label">Local tree removal</p>
+          <h1 id="service-title">Dead tree removal in Crewe and across Cheshire</h1>
+          <p class="service-hero__subtitle">Careful dismantling and removal when a dead tree is too close to sheds, boundaries or valued planting to fell in one piece.</p>
+          <ul class="service-hero__benefits">
+            <li>Controlled, section-by-section dismantling</li>
+            <li>Complete stump grinding available</li>
+            <li>All timber and tree waste removed, where included in the quote</li>
+          </ul>
+          <div class="service-hero__actions">
+            <a class="service-button service-button--primary" href="/contact">Get a dead tree removal quote</a>
+            <a class="service-button service-button--secondary" href="#recent-project">See the Leighton project</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project page-wrap" id="recent-project" aria-labelledby="project-title">
+      <div class="project__story">
+        <p class="section-label">{project.label}</p>
+        <h2 id="project-title">{project.title}</h2>
+        <div class="project__narrative">
+          <div><h3>The problem</h3><p>{project.problem}</p></div>
+          <div><h3>What we did</h3><p>{project.work}</p></div>
+          <div><h3>The outcome</h3><p>{project.outcome}</p></div>
+        </div>
+      </div>
+      <aside class="project-details" aria-label="Project details">
+        <p class="project-details__heading">At a glance</p>
+        <dl>{project.details.map(([label, value, icon]) => <div><dt><span class={`project-details__icon project-details__icon--${icon}`} aria-hidden="true"></span>{label}</dt><dd>{value}</dd></div>)}</dl>
+      </aside>
+    </section>
+
+    <section class="stages-section" aria-labelledby="stages-title">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <p class="section-label">The job from start to finish</p>
+          <h2 id="stages-title">Dismantled, felled and cleared in one visit</h2>
+          <p>Genuine photographs from the same dead eucalyptus removal in Leighton, Crewe.</p>
+        </div>
+        <div class="stages">
+          {stages.map((stage) => (
+            <figure class="stage">
+              <div class="stage__image"><Image src={stage.src} alt={stage.alt} widths={[480, 720, 960]} sizes="(min-width: 900px) 33vw, (min-width: 620px) 50vw, 100vw" format="webp" quality={78} loading="lazy" /></div>
+              <figcaption><strong>{stage.label}</strong><span>{stage.copy}</span></figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-band" id="get-in-touch" aria-labelledby="quote-title">
+      <div class="page-wrap quote-band__inner">
+        <div>
+          <p class="section-label">Concerned about a dead tree?</p>
+          <h2 id="quote-title">Show Adam where the tree is and what is around it</h2>
+          <p>Send a few details and photographs for a straightforward, no-obligation quote.</p>
+        </div>
+        <div class="quote-band__actions">
+          <a class="service-button service-button--light" href="/contact">Get a dead tree removal quote</a>
+          <a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
+        </div>
+      </div>
+    </section>
+  </article>
+  <Footer />
+</BaseLayout>
+
+<style lang="less">
+  .service-page { background: var(--cream); }
+  .service-hero { position: relative; display: grid; min-height: clamp(41rem, 80vh, 50rem); align-items: end; padding-block: 0; isolation: isolate; }
+  .service-hero__image, .service-hero__shade { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .service-hero__image { z-index: -2; object-fit: cover; object-position: 50% center; }
+  .service-hero__shade { z-index: -1; background: linear-gradient(90deg, rgba(10, 27, 19, .95) 0%, rgba(10, 27, 19, .78) 48%, rgba(10, 27, 19, .12) 82%); }
+  .service-hero__inner { width: 100%; padding-block: clamp(4rem, 10vw, 7rem); }
+  .service-hero__copy { max-width: 48rem; color: var(--white); }
+  .service-hero .section-label { color: #c8dfc8; }
+  .service-hero h1 { max-width: 14ch; color: var(--white); font-size: clamp(2.5rem, 6vw, 4.8rem); line-height: 1.02; }
+  .service-hero__subtitle { max-width: 42rem; margin-top: 1.25rem; font-size: clamp(1.05rem, 2vw, 1.3rem); line-height: 1.5; }
+  .service-hero__benefits { display: grid; gap: .6rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .service-hero__benefits li { position: relative; padding-left: 1.65rem; }
+  .service-hero__benefits li::before { content: ""; position: absolute; top: .55em; left: 0; width: .7rem; height: .4rem; border-bottom: 2px solid #c8dfc8; border-left: 2px solid #c8dfc8; transform: rotate(-45deg); }
+  .service-hero__actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .service-button { display: inline-flex; min-height: 3.25rem; align-items: center; justify-content: center; padding: .75rem 1.35rem; border: 2px solid transparent; border-radius: .75rem; font-weight: 700; line-height: 1.2; text-align: center; text-decoration: none; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease; }
+  .service-button:hover { transform: translateY(-2px); }
+  .service-button--primary { background: var(--gold); color: var(--forest-deep); }
+  .service-button--primary:hover { background: #dda35b; }
+  .service-button--secondary { border-color: rgba(255, 255, 255, .75); color: var(--white); }
+  .service-button--secondary:hover { background: var(--white); color: var(--forest-deep); }
+  .project { display: grid; gap: clamp(2.5rem, 7vw, 6rem); padding-block: var(--section-space); }
+  .project__story { max-width: 44rem; }
+  .project__story h2 { max-width: 20ch; margin-bottom: 2rem; font-size: clamp(1.9rem, 4vw, 3rem); }
+  .project__narrative { display: grid; gap: 1.5rem; }
+  .project__narrative h3 { margin-bottom: .35rem; font-size: 1rem; }
+  .project__narrative p { max-width: 64ch; color: var(--charcoal-soft); }
+  .project-details { align-self: start; padding: clamp(1.5rem, 4vw, 2.25rem); border-radius: var(--radius); background: var(--forest); color: var(--white); }
+  .project-details__heading { margin-bottom: .75rem; font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; }
+  .project-details dl { margin: 0; }
+  .project-details dl > div { padding-block: 1rem; border-top: 1px solid rgba(255, 255, 255, .18); }
+  .project-details dt { display: flex; align-items: center; gap: .6rem; color: #d9e7da; font-size: .78rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+  .project-details dd { margin: .25rem 0 0 1.6rem; font-weight: 600; }
+  .project-details__icon { position: relative; display: inline-block; width: 1rem; height: 1rem; border: 1.5px solid currentColor; border-radius: 50%; }
+  .project-details__icon--clock::after { content: ""; position: absolute; top: .18rem; left: .45rem; width: .22rem; height: .35rem; border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; }
+  .project-details__icon--leaf { border-radius: 100% 0 100% 0; transform: rotate(-15deg); }
+  .project-details__icon--saw { border-radius: .1rem; transform: rotate(-35deg); }
+  .stages-section { padding-block: var(--section-space); background: var(--sage-lighter); }
+  .section-heading { max-width: 43rem; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+  .section-heading h2 { margin-bottom: .65rem; font-size: clamp(1.9rem, 4vw, 3rem); }
+  .section-heading > p:last-child { color: var(--charcoal-soft); }
+  .stages { display: grid; gap: 1rem; }
+  .stage { margin: 0; overflow: hidden; border-radius: var(--radius); background: var(--cream); }
+  .stage__image { overflow: hidden; aspect-ratio: 4 / 3; background: var(--sage-light); }
+  .stage__image :global(picture), .stage__image :global(img) { width: 100%; height: 100%; }
+  .stage__image :global(img) { object-fit: cover; }
+  .stage figcaption { display: grid; gap: .25rem; padding: 1rem 1.15rem 1.25rem; }
+  .stage figcaption strong { color: var(--forest); font-family: var(--font-heading); font-size: 1.1rem; }
+  .stage figcaption span { color: var(--charcoal-soft); font-size: .94rem; }
+  .quote-band { padding-block: clamp(3.5rem, 7vw, 5.5rem); background: var(--forest-deep); color: var(--white); }
+  .quote-band__inner { display: grid; gap: 2rem; align-items: center; }
+  .quote-band .section-label { color: #b9d3bd; }
+  .quote-band h2 { max-width: 19ch; margin-bottom: .75rem; color: var(--white); font-size: clamp(1.8rem, 4vw, 2.8rem); }
+  .quote-band p:last-child { max-width: 56ch; color: #dce7df; }
+  .quote-band__actions { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .service-button--light { background: var(--white); color: var(--forest-deep); }
+  .service-button--light:hover { background: var(--sage-light); }
+  .quote-band__phone { color: var(--white); font-weight: 700; text-underline-offset: .25rem; }
+  @media (min-width: 620px) { .stages { grid-template-columns: repeat(2, minmax(0, 1fr)); } .stage:last-child { grid-column: 1 / -1; } .stage:last-child .stage__image { aspect-ratio: 16 / 8; } }
+  @media (min-width: 900px) { .stages { grid-template-columns: repeat(3, minmax(0, 1fr)); } .stage:last-child { grid-column: auto; } .stage:last-child .stage__image { aspect-ratio: 4 / 3; } }
+  @media (min-width: 800px) { .project { grid-template-columns: minmax(0, 1.35fr) minmax(18rem, .75fr); align-items: start; } .quote-band__inner { grid-template-columns: minmax(0, 1fr) auto; } .quote-band__actions { align-items: flex-end; } }
+  @media (max-width: 620px) { .service-hero { min-height: 49rem; } .service-hero__image { object-position: 53% center; } .service-hero__shade { background: linear-gradient(0deg, rgba(10, 27, 19, .98) 0%, rgba(10, 27, 19, .84) 64%, rgba(10, 27, 19, .2) 100%); } .service-hero__inner { padding-block: 3.5rem; } .service-hero h1 { font-size: clamp(2.3rem, 10.5vw, 3.35rem); } .service-hero__actions { align-items: stretch; flex-direction: column; } .service-button { width: 100%; } }
+  @media (prefers-reduced-motion: reduce) { .service-button { transition: none; } .service-button:hover { transform: none; } }
+</style>
