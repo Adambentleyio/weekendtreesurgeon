@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/garden-clearance-rope-wistaston/garden-clearance-27.jpg";
+
+const service = {
+  title: "Garden Maintenance in Nantwich, Crewe and Cheshire",
+  description: "Garden maintenance for established gardens in Nantwich, Crewe and nearby Cheshire villages, including coordinated hedge and pruning work.",
+  eyebrow: "Bring the garden back into shape",
+  heading: "Garden maintenance in Nantwich and across Cheshire",
+  introduction: "Practical help for established gardens where several hedges, small trees or climbing plants need attention together.",
+  benefits: ["Several garden jobs considered in one visit", "Careful work around established planting", "A scope agreed around the priorities in your garden"],
+  overviewHeading: "When the whole garden needs attention",
+  overview: ["Some gardens do not need one isolated service. They need several areas brought back under control in a coordinated way.", "Adam can review the jobs with you, identify priorities and define what is included before providing a quote."],
+  suitableFor: ["Several hedges or small trees need attention", "Climbing plants have become difficult to manage", "An established garden needs a considered tidy-up", "You want to agree priorities within a larger list of jobs"],
+  serviceKey: "garden-maintenance",
+  relatedServices: [{ label: "Tree pruning", href: "/services/tree-pruning" }, { label: "Hedge cutting", href: "/services/hedge-cutting" }],
+  quoteLabel: "Get a garden maintenance quote",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="Established Wistaston garden after coordinated maintenance work" />

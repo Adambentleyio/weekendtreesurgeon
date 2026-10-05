@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/dismantle.jpg";
+
+const service = {
+  title: "Tree Pruning in Nantwich, Crewe and Cheshire",
+  description: "Tree pruning for garden trees in Nantwich, Crewe and nearby Cheshire villages. Discuss unwanted growth, clearance and appropriate pruning with Adam.",
+  eyebrow: "Careful garden tree work",
+  heading: "Tree pruning in Nantwich and across Cheshire",
+  introduction: "Selective pruning for garden trees that need unwanted growth removing, better clearance or a more suitable shape.",
+  benefits: ["The reason for pruning agreed before work starts", "Nearby buildings and planting considered", "The amount of work tailored to the individual tree"],
+  overviewHeading: "Pruning with a clear purpose",
+  overview: ["Tree pruning can address a particular branch, improve clearance or form part of managing a tree within its garden setting.", "The appropriate cuts depend on the tree and the result you need. Adam can assess the job and explain the proposed work before quoting."],
+  suitableFor: ["Specific branches are causing an obstruction", "Growth needs clearing from a nearby feature", "A small garden tree needs reshaping", "You are unsure whether pruning or reduction is more appropriate"],
+  serviceKey: "tree-pruning",
+  relatedServices: [{ label: "Crown reduction", href: "/services/crown-reduction" }, { label: "Pollarding", href: "/services/pollarding" }, { label: "Tree removal", href: "/services/tree-removal" }],
+  quoteLabel: "Get a tree pruning quote",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="Tree pruning work in progress in a garden" />

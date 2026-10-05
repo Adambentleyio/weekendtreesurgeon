@@ -1,0 +1,48 @@
+---
+import client from "../data/client.json";
+
+const siteUrl = `https://www.${client.domain}`;
+
+const address = {
+  "@type": "PostalAddress",
+  ...(client.showStreetAddress && client.address.lineTwo
+    ? { streetAddress: client.address.lineTwo }
+    : {}),
+  addressLocality: client.address.city,
+  addressRegion: client.address.state,
+  addressCountry: "GB",
+};
+
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": `${siteUrl}/#business`,
+  name: client.name,
+  description: client.description,
+  url: `${siteUrl}/`,
+  telephone: client.phoneForTel,
+  email: client.email,
+  address,
+  areaServed: client.serviceAreas.map((name) => ({
+    "@type": "Place",
+    name,
+  })),
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Tree and garden services",
+    itemListElement: client.services.map((name) => ({
+      "@type": "Offer",
+      itemOffered: {
+        "@type": "Service",
+        name,
+      },
+    })),
+  },
+  sameAs: [client.googleBusinessUrl],
+};
+
+// Escaping '<' keeps the JSON safe if client-managed text ever contains HTML.
+const structuredData = JSON.stringify(localBusiness).replace(/</g, "\\u003c");
+---
+
+<script type="application/ld+json" set:html={structuredData} />

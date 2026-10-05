@@ -3,6 +3,9 @@ dist/
 # generated types
 .astro/
 
+# temporary web research
+.firecrawl/
+
 # dependencies
 node_modules/
 

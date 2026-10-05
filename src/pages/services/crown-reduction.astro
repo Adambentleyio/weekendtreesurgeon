@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/climbing.jpg";
+
+const service = {
+  title: "Crown Reduction in Nantwich, Crewe and Cheshire",
+  description: "Crown reduction for suitable trees in Nantwich, Crewe and nearby Cheshire villages. Ask Adam to assess the tree and discuss the intended result.",
+  eyebrow: "Tree size management",
+  heading: "Crown reduction in Nantwich and across Cheshire",
+  introduction: "Selective pruning intended to reduce the overall height or spread of a suitable tree while retaining a balanced crown.",
+  benefits: ["The tree and its position considered before quoting", "A target size and shape discussed in plain language", "Work scoped around the needs of the individual tree"],
+  overviewHeading: "Reduce size while keeping a balanced form",
+  overview: ["A crown reduction shortens selected branches across the canopy rather than simply removing the top of a tree.", "Whether it is appropriate, and how much can reasonably be removed, depends on the species, condition and reason for the work. Adam can assess those factors before recommending a scope."],
+  suitableFor: ["The canopy has outgrown the space available", "Branches extend too far toward nearby features", "You want to discuss reducing height or spread", "A tree-specific assessment is needed before choosing the work"],
+  serviceKey: "crown-reduction",
+  relatedServices: [{ label: "Tree pruning", href: "/services/tree-pruning" }, { label: "Pollarding", href: "/services/pollarding" }, { label: "Tree removal", href: "/services/tree-removal" }],
+  quoteLabel: "Ask about crown reduction",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="Adam working from ropes in the crown of a garden tree" />

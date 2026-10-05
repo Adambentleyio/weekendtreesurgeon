@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-before.jpg";
+
+const service = {
+  title: "Tree Removal in Nantwich, Crewe and Cheshire",
+  description: "Tree removal for gardens in Nantwich, Crewe and nearby Cheshire villages, including careful dismantling where space is limited.",
+  eyebrow: "Careful tree removal",
+  heading: "Tree removal in Crewe, Nantwich and across Cheshire",
+  introduction: "A considered approach to removing trees that are dead, unsuitable for their position or cannot be retained safely.",
+  benefits: ["Work planned around the surrounding garden", "Sectional dismantling where space is restricted", "Stump removal discussed as part of the quote"],
+  overviewHeading: "Removal planned around your garden",
+  overview: ["Some trees can be felled in one piece, while trees close to sheds, fences or established planting may need to be dismantled in smaller sections.", "Adam will assess the tree and its surroundings before agreeing the scope. Any stump work and removal of material should be confirmed in the quote."],
+  suitableFor: ["A tree is dead or in serious decline", "The available space makes straightforward felling unsuitable", "A tree is causing a problem that pruning cannot resolve", "You also want to discuss stump removal"],
+  serviceKey: "tree-removal",
+  relatedServices: [{ label: "Tree pruning", href: "/services/tree-pruning" }, { label: "Crown reduction", href: "/services/crown-reduction" }, { label: "Pollarding", href: "/services/pollarding" }],
+  quoteLabel: "Get a tree removal quote",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="Dead eucalyptus standing beside a shed before careful removal" />

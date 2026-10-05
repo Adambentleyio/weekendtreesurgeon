@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/hedge-cutting-willaston/hedge-willaston-after-3.jpg";
+
+const service = {
+  title: "Hedge Cutting in Nantwich, Crewe and Cheshire",
+  description: "Local hedge cutting for homeowners in Nantwich, Crewe and nearby Cheshire villages. Trim, reshape or reduce an established garden hedge.",
+  eyebrow: "Local hedge care",
+  heading: "Hedge cutting in Nantwich and across Cheshire",
+  introduction: "Careful trimming, shaping and reduction for established garden hedges that need bringing back under control.",
+  benefits: ["A tidier, more balanced shape", "Improved light and usable garden space", "Green waste removed where included in the quote"],
+  overviewHeading: "Keep established hedges neat and manageable",
+  overview: ["Hedge cutting can range from a regular trim to reducing an overgrown boundary that has become too broad or tall.", "The right approach depends on the hedge, its condition and what you want to achieve. Adam can look at the job and discuss a practical scope before quoting."],
+  suitableFor: ["An established hedge has become uneven", "Growth is taking up too much garden space", "A boundary needs reshaping or reducing", "You want to arrange ongoing seasonal care"],
+  serviceKey: "hedge-cutting",
+  relatedServices: [{ label: "Hedge removal", href: "/services/hedge-removal" }, { label: "Garden maintenance", href: "/services/garden-maintenance" }],
+  quoteLabel: "Get a hedge cutting quote",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="A freshly cut established boundary hedge" />

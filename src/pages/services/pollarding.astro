@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/ffintree.jpg";
+
+const service = {
+  title: "Tree Pollarding in Nantwich, Crewe and Cheshire",
+  description: "Pollarding for suitable trees in Nantwich, Crewe and nearby Cheshire villages. Ask Adam to assess whether this management method fits your tree.",
+  eyebrow: "Ongoing tree management",
+  heading: "Tree pollarding in Nantwich and across Cheshire",
+  introduction: "A specialist form of repeated pruning for trees that are suitable for an established or planned pollarding cycle.",
+  benefits: ["Suitability considered before work is proposed", "The intended pollard points discussed clearly", "Future maintenance requirements explained as part of the scope"],
+  overviewHeading: "A specific technique, not a name for heavy pruning",
+  overview: ["Pollarding removes regrowth back to established points, or starts a planned cycle on a tree where that approach is appropriate.", "It is not suitable for every tree. The species, age, condition and previous management all matter, so Adam will need to assess the tree before recommending the work."],
+  suitableFor: ["A tree is already managed on a pollarding cycle", "Previous pollard points need assessing", "Long-term size management is the main objective", "You need advice on whether pollarding is appropriate"],
+  serviceKey: "pollarding",
+  relatedServices: [{ label: "Crown reduction", href: "/services/crown-reduction" }, { label: "Tree pruning", href: "/services/tree-pruning" }, { label: "Tree removal", href: "/services/tree-removal" }],
+  quoteLabel: "Ask about pollarding",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="Tree work being carried out in a garden" />

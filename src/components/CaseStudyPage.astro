@@ -1,0 +1,125 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BeforeAfterSlider from "./BeforeAfterSlider.astro";
+import Footer from "./Footer.astro";
+import ProjectGallery from "./ProjectGallery.astro";
+import client from "../data/client.json";
+
+interface Props { entry: CollectionEntry<"recentWork">; }
+const { entry } = Astro.props;
+const { title, description, serviceLabel, services, hero, project, media, gallery, quote } = entry.data;
+const primaryServiceHref = `/services/${services[0]}`;
+---
+
+<BaseLayout {title} {description} showNav={true} navCtaHref="/contact">
+  <article class="case-study">
+    <section class="case-hero" aria-labelledby="case-title">
+      <Image class="case-hero__image" src={hero.image} alt={hero.alt} widths={[768, 1280, 1920]} sizes="100vw" format="avif" quality={80} loading="eager" fetchpriority="high" style={`object-position:${hero.objectPosition ?? "center"}`} />
+      <div class="case-hero__shade" aria-hidden="true"></div>
+      <div class="page-wrap case-hero__inner">
+        <div class="case-hero__copy">
+          <p class="section-label">{hero.eyebrow}</p>
+          <h1 id="case-title">{hero.heading}</h1>
+          <p class="case-hero__intro">{hero.introduction}</p>
+          <ul class="case-hero__benefits">{hero.benefits.map((benefit) => <li>{benefit}</li>)}</ul>
+          <div class="case-hero__actions">
+            <a class="case-button case-button--primary" href="/contact">{quote.buttonLabel}</a>
+            <a class="case-button case-button--secondary" href={primaryServiceHref}>About {serviceLabel.toLowerCase()}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="project page-wrap" aria-labelledby="project-title">
+      <div class="project__story">
+        <p class="section-label">{project.label}</p>
+        <h2 id="project-title">{project.title}</h2>
+        <div class="project__narrative">
+          <div><h3>The problem</h3><p>{project.problem}</p></div>
+          <div><h3>What Adam did</h3><p>{project.work}</p></div>
+          <div><h3>{project.outcomeHeading}</h3><p>{project.outcome}</p></div>
+        </div>
+      </div>
+      <aside class="project-details" aria-label="Project details">
+        <p class="project-details__heading">At a glance</p>
+        <dl>{project.details.map((detail) => <div><dt><span class={`project-details__icon project-details__icon--${detail.icon}`} aria-hidden="true"></span>{detail.label}</dt><dd>{detail.value}</dd></div>)}</dl>
+      </aside>
+    </section>
+
+    <section class="media-section" aria-labelledby="media-title">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <p class="section-label">{media.label}</p>
+          <h2 id="media-title">{media.title}</h2>
+          <p>{media.description}</p>
+        </div>
+
+        {media.type === "slider" && (
+          <BeforeAfterSlider before={media.items[0].image} after={media.items[1].image} beforeAlt={media.items[0].alt} afterAlt={media.items[1].alt} ariaLabel={media.ariaLabel} />
+        )}
+
+        {media.type === "pair" && (
+          <div class="media-grid media-grid--pair">
+            {media.items.map((item) => (
+              <figure class="media-card">
+                <div class="media-card__image"><Image src={item.image} alt={item.alt} widths={[480, 720, 960]} sizes="(min-width:760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" /></div>
+                <figcaption><strong>{item.label}</strong>{item.copy && <span>{item.copy}</span>}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+
+        {media.type === "stages" && (
+          <div class="media-grid media-grid--stages">
+            {media.items.map((item) => (
+              <figure class="media-card">
+                <div class="media-card__image"><Image src={item.image} alt={item.alt} widths={[480, 720, 960]} sizes="(min-width:900px) 33vw, (min-width:620px) 50vw, 100vw" format="webp" quality={78} loading="lazy" /></div>
+                <figcaption><strong>{item.label}</strong>{item.copy && <span>{item.copy}</span>}</figcaption>
+              </figure>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    {gallery && (
+      <section class="gallery-section page-wrap" aria-labelledby="gallery-title">
+        <div class="section-heading">
+          <p class="section-label">{gallery.label}</p>
+          <h2 id="gallery-title">{gallery.title}</h2>
+          <p>{gallery.description}</p>
+        </div>
+        <ProjectGallery images={gallery.images.map((image) => ({ src: image.image, alt: image.alt }))} />
+      </section>
+    )}
+
+    <section class="quote-band" aria-labelledby="quote-title">
+      <div class="page-wrap quote-band__inner">
+        <div>
+          <p class="section-label">{quote.label}</p>
+          <h2 id="quote-title">{quote.title}</h2>
+          <p>{quote.description}</p>
+        </div>
+        <div class="quote-band__actions">
+          <a class="case-button case-button--light" href="/contact">{quote.buttonLabel}</a>
+          <a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
+        </div>
+      </div>
+    </section>
+  </article>
+  <Footer />
+</BaseLayout>
+
+<style lang="less">
+  .case-study{background:var(--cream)}
+  .case-hero{position:relative;display:grid;min-height:clamp(39rem,78vh,49rem);align-items:end;padding-block:0;isolation:isolate}.case-hero__image,.case-hero__shade{position:absolute;inset:0;width:100%;height:100%}.case-hero__image{z-index:-2;object-fit:cover}.case-hero__shade{z-index:-1;background:linear-gradient(90deg,rgba(10,27,19,.95),rgba(10,27,19,.77) 48%,rgba(10,27,19,.14) 82%)}.case-hero__inner{width:100%;padding-block:clamp(4rem,10vw,7rem)}.case-hero__copy{max-width:48rem;color:var(--white)}.case-hero .section-label{color:#c8dfc8}.case-hero h1{max-width:15ch;color:var(--white);font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.02}.case-hero__intro{max-width:42rem;margin-top:1.25rem;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.5}.case-hero__benefits{display:grid;gap:.6rem;margin:1.5rem 0 0;padding:0;list-style:none}.case-hero__benefits li{position:relative;padding-left:1.65rem}.case-hero__benefits li::before{content:"";position:absolute;top:.55em;left:0;width:.7rem;height:.4rem;border-bottom:2px solid #c8dfc8;border-left:2px solid #c8dfc8;transform:rotate(-45deg)}
+  .case-hero__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}.case-button{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;padding:.75rem 1.35rem;border:2px solid transparent;border-radius:.75rem;font-weight:700;line-height:1.2;text-align:center;text-decoration:none;transition:background-color 180ms ease,color 180ms ease,border-color 180ms ease,transform 180ms ease}.case-button:hover{transform:translateY(-2px)}.case-button--primary{background:var(--gold);color:var(--forest-deep)}.case-button--primary:hover{background:#dda35b}.case-button--secondary{border-color:rgba(255,255,255,.75);color:var(--white)}.case-button--secondary:hover{background:var(--white);color:var(--forest-deep)}
+  .project{display:grid;gap:clamp(2.5rem,7vw,6rem);padding-block:var(--section-space)}.project__story{max-width:44rem}.project__story h2{max-width:20ch;margin-bottom:2rem;font-size:clamp(1.9rem,4vw,3rem)}.project__narrative{display:grid;gap:1.5rem}.project__narrative h3{margin-bottom:.35rem;font-size:1rem}.project__narrative p{max-width:64ch;color:var(--charcoal-soft)}.project-details{align-self:start;padding:clamp(1.5rem,4vw,2.25rem);border-radius:var(--radius);background:var(--forest);color:var(--white)}.project-details__heading{margin-bottom:.75rem;font-family:var(--font-heading);font-size:1.35rem;font-weight:700}.project-details dl{margin:0}.project-details dl>div{padding-block:1rem;border-top:1px solid rgba(255,255,255,.18)}.project-details dt{display:flex;align-items:center;gap:.6rem;color:#d9e7da;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.project-details dd{margin:.25rem 0 0 1.6rem;font-weight:600}.project-details__icon{position:relative;display:inline-block;width:1rem;height:1rem;border:1.5px solid currentColor;border-radius:50%}.project-details__icon--clock::after,.project-details__icon--calendar::after{content:"";position:absolute;top:.18rem;left:.45rem;width:.22rem;height:.35rem;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor}.project-details__icon--calendar{border-radius:.15rem}.project-details__icon--leaf{border-radius:100% 0 100% 0;transform:rotate(-15deg)}.project-details__icon--shears::before,.project-details__icon--shears::after,.project-details__icon--saw::after{content:"";position:absolute;top:.42rem;left:.18rem;width:.6rem;height:1px;background:currentColor;transform:rotate(42deg)}.project-details__icon--shears::after{transform:rotate(-42deg)}
+  .media-section{padding-block:var(--section-space);background:var(--sage-lighter)}.section-heading{max-width:43rem;margin-bottom:clamp(1.75rem,4vw,2.75rem)}.section-heading h2{margin-bottom:.65rem;font-size:clamp(1.9rem,4vw,3rem)}.section-heading>p:last-child{color:var(--charcoal-soft)}.media-grid{display:grid;gap:1rem}.media-card{overflow:hidden;margin:0;border-radius:var(--radius);background:var(--cream)}.media-card__image{overflow:hidden;aspect-ratio:4/3;background:var(--sage-light)}.media-card__image :global(picture),.media-card__image :global(img){width:100%;height:100%}.media-card__image :global(img){object-fit:cover}.media-card figcaption{display:grid;gap:.35rem;padding:1.15rem}.media-card figcaption strong{color:var(--forest);font-family:var(--font-heading);font-size:1.1rem}.media-card figcaption span{color:var(--charcoal-soft)}.gallery-section{padding-block:var(--section-space)}
+  .quote-band{padding-block:clamp(3.5rem,7vw,5.5rem);background:var(--forest-deep);color:var(--white)}.quote-band__inner{display:grid;gap:2rem;align-items:center}.quote-band .section-label{color:#b9d3bd}.quote-band h2{max-width:19ch;margin-bottom:.75rem;color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem)}.quote-band p:last-child{max-width:56ch;color:#dce7df}.quote-band__actions{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}.case-button--light{background:var(--white);color:var(--forest-deep)}.case-button--light:hover{background:var(--sage-light)}.quote-band__phone{color:var(--white);font-weight:700;text-underline-offset:.25rem}
+  @media(min-width:760px){.project{grid-template-columns:minmax(0,1.35fr) minmax(18rem,.75fr);align-items:start}.media-grid--pair{grid-template-columns:repeat(2,minmax(0,1fr))}.media-grid--stages{grid-template-columns:repeat(3,minmax(0,1fr))}.quote-band__inner{grid-template-columns:minmax(0,1fr) auto}.quote-band__actions{align-items:flex-end}}
+  @media(max-width:620px){.case-hero{min-height:46rem}.case-hero__shade{background:linear-gradient(0deg,rgba(10,27,19,.98),rgba(10,27,19,.84) 64%,rgba(10,27,19,.2))}.case-hero__inner{padding-block:3.5rem}.case-hero h1{font-size:clamp(2.3rem,10.5vw,3.35rem)}.case-hero__actions{align-items:stretch;flex-direction:column}.case-button{width:100%}}
+  @media(prefers-reduced-motion:reduce){.case-button{transition:none}.case-button:hover{transform:none}}
+</style>

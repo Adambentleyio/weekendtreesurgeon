@@ -1,0 +1,20 @@
+---
+import ServiceLanding from "../../components/ServiceLanding.astro";
+import heroImage from "../../assets/images/hedge-removal-wistaston/hedge-removal-before-1.jpg";
+
+const service = {
+  title: "Hedge Removal in Nantwich, Crewe and Cheshire",
+  description: "Hedge removal for homeowners in Nantwich, Crewe and nearby Cheshire villages. Remove unwanted or failed hedges and reclaim garden space.",
+  eyebrow: "Clear unwanted hedges",
+  heading: "Hedge removal in Nantwich and across Cheshire",
+  introduction: "Remove an unwanted, failed or badly positioned hedge and make the space easier to use or replant.",
+  benefits: ["A clear plan for stems and roots", "Care taken around boundaries and nearby planting", "Waste removal confirmed as part of the quote"],
+  overviewHeading: "Make room for the garden you want next",
+  overview: ["Removing a hedge can open up a boundary, recover planting space or make way for a more suitable replacement.", "The work required depends on the hedge species, access and whether the roots or stumps also need removing. Those details can be agreed after Adam has seen the job."],
+  suitableFor: ["A hedge is dead, diseased or beyond recovery", "The hedge occupies space you want to reclaim", "You are preparing a boundary for replacement planting", "Remaining stems or roots also need attention"],
+  serviceKey: "hedge-removal",
+  relatedServices: [{ label: "Hedge cutting", href: "/services/hedge-cutting" }, { label: "Garden maintenance", href: "/services/garden-maintenance" }],
+  quoteLabel: "Get a hedge removal quote",
+};
+---
+<ServiceLanding {...service} heroImage={heroImage} heroAlt="Established garden hedge before removal work" />

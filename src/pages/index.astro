@@ -1,19 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image, Picture } from "astro:assets";
+import { getCollection } from "astro:content";
 import founderPhoto from "../assets/images/founder-headshot.webp";
 import adamProfile from "../assets/images/adam-profile.jpg";
 import climbingPhoto from "../assets/images/dismantle.jpg";
-import leightonAfter from "../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-after.jpg";
-import willastonAfter from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-1.jpg";
-import stapeleyAfter from "../assets/images/box-hedge-blight-nantwich/IMG_9325.JPG";
 import client from "../data/client.json";
 
-const recentProjects = [
-  { title: "Dead eucalyptus removed", service: "Tree removal", location: "Leighton, Crewe", outcome: "The dead tree and stump were removed, leaving a safer, more open garden.", href: "/dead-tree-removal", linkLabel: "See the Leighton tree removal", image: leightonAfter, alt: "Leighton garden after a dead eucalyptus tree and its stump were removed" },
-  { title: "Overgrown hedge cut back", service: "Hedge cutting", location: "Willaston", outcome: "A neater boundary, more light and a hedge brought back under control.", href: "/hedge-cutting", linkLabel: "See the Willaston hedge cutting", image: willastonAfter, alt: "Tall boundary hedge in Willaston after being cut back and shaped" },
-  { title: "Diseased box hedge replaced", service: "Box hedge removal", location: "Stapeley", outcome: "The failed box was removed and the border replanted for a fresh start.", href: "/box-hedge-removal", linkLabel: "See the Stapeley hedge replacement", image: stapeleyAfter, alt: "Stapeley border replanted after a diseased box hedge was removed" },
-];
+const recentProjects = (await getCollection("recentWork"))
+  .filter(({ data }) => data.featuredOrder)
+  .sort((a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999))
+  .slice(0, 3);
 ---
 
 <BaseLayout
@@ -76,16 +73,16 @@ const recentProjects = [
       <span class="section-label">Recent work around Cheshire</span>
       <h2 id="recent-work-title">See the problem, the work and how the garden was left.</h2>
       <div class="recent-work__grid">
-        {recentProjects.map((project, index) => (
+        {recentProjects.map(({ id, data: project }, index) => (
           <article class:list={["project-card", { "project-card--featured": index === 0 }]}>
-            <a class="project-card__image" href={project.href} aria-label={project.linkLabel}>
-              <Image src={project.image} alt={project.alt} widths={[480, 768, 1120]} sizes={index === 0 ? "(min-width: 768px) 55vw, 100vw" : "(min-width: 768px) 35vw, 100vw"} format="avif" quality={78} loading="lazy" />
+            <a class="project-card__image" href={`/recent-work/${id}`} aria-label={`Read ${project.card.title}`}>
+              <Image src={project.card.image} alt={project.card.alt} widths={[480, 768, 1120]} sizes={index === 0 ? "(min-width: 768px) 55vw, 100vw" : "(min-width: 768px) 35vw, 100vw"} format="avif" quality={78} loading="lazy" />
             </a>
             <div class="project-card__body">
-              <p class="project-card__meta">{project.service} <span aria-hidden="true">·</span> {project.location}</p>
-              <h3>{project.title}</h3>
-              <p>{project.outcome}</p>
-              <a class="project-card__link" href={project.href}>{project.linkLabel} <span aria-hidden="true">→</span></a>
+              <p class="project-card__meta">{project.serviceLabel} <span aria-hidden="true">·</span> {project.location}</p>
+              <h3>{project.card.title}</h3>
+              <p>{project.card.summary}</p>
+              <a class="project-card__link" href={`/recent-work/${id}`}>Read the project <span aria-hidden="true">→</span></a>
             </div>
           </article>
         ))}
@@ -104,10 +101,13 @@ const recentProjects = [
       <h2>Tree work without the usual hassle.</h2>
 
       <nav class="service-list" aria-label="Tree and garden services">
-        <a href="/hedge-cutting"><span>Hedge cutting</span><small>Trim, shape or reduce overgrown hedges</small><b aria-hidden="true">→</b></a>
-        <a href="/dead-tree-removal"><span>Tree removal</span><small>Careful dismantling and stump removal</small><b aria-hidden="true">→</b></a>
-        <a href="/hedge-removal"><span>Hedge removal</span><small>Remove unwanted hedges and reclaim space</small><b aria-hidden="true">→</b></a>
-        <a href="/garden-maintenance"><span>Garden maintenance</span><small>Tidy established gardens back into shape</small><b aria-hidden="true">→</b></a>
+        <a href="/services/hedge-cutting"><span>Hedge cutting</span><small>Trim, shape or reduce overgrown hedges</small><b aria-hidden="true">→</b></a>
+        <a href="/services/tree-removal"><span>Tree removal</span><small>Careful removal where a tree cannot be retained</small><b aria-hidden="true">→</b></a>
+        <a href="/services/hedge-removal"><span>Hedge removal</span><small>Remove unwanted hedges and reclaim space</small><b aria-hidden="true">→</b></a>
+        <a href="/services/garden-maintenance"><span>Garden maintenance</span><small>Tidy established gardens back into shape</small><b aria-hidden="true">→</b></a>
+        <a href="/services/crown-reduction"><span>Crown reduction</span><small>Reduce the height or spread of a suitable tree</small><b aria-hidden="true">→</b></a>
+        <a href="/services/pollarding"><span>Pollarding</span><small>Manage suitable trees on a planned pruning cycle</small><b aria-hidden="true">→</b></a>
+        <a href="/services/tree-pruning"><span>Tree pruning</span><small>Selective pruning for clearance, shape and unwanted growth</small><b aria-hidden="true">→</b></a>
       </nav>
     </div>
   </section>

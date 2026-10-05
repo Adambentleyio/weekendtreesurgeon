@@ -1,0 +1,149 @@
+---
+import { Image, type ImageMetadata } from "astro:assets";
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "./Footer.astro";
+import client from "../data/client.json";
+
+interface RelatedService {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  eyebrow: string;
+  heading: string;
+  introduction: string;
+  heroImage: ImageMetadata;
+  heroAlt: string;
+  benefits: string[];
+  overviewHeading: string;
+  overview: string[];
+  suitableFor: string[];
+  serviceKey: string;
+  relatedServices?: RelatedService[];
+  quoteLabel: string;
+}
+
+const {
+  title,
+  description,
+  eyebrow,
+  heading,
+  introduction,
+  heroImage,
+  heroAlt,
+  benefits,
+  overviewHeading,
+  overview,
+  suitableFor,
+  serviceKey,
+  relatedServices = [],
+  quoteLabel,
+} = Astro.props;
+
+const projects = (await getCollection("recentWork", ({ data }) => data.services.includes(serviceKey)))
+  .sort((a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999));
+---
+
+<BaseLayout {title} {description} showNav={true} navCtaHref="/contact">
+  <article class="service-landing">
+    <section class="service-landing__hero" aria-labelledby="service-title">
+      <Image class="service-landing__hero-image" src={heroImage} alt={heroAlt} widths={[640, 960, 1440, 1920]} sizes="100vw" format="avif" quality={80} loading="eager" fetchpriority="high" />
+      <div class="service-landing__shade" aria-hidden="true"></div>
+      <div class="page-wrap service-landing__hero-inner">
+        <div class="service-landing__hero-copy">
+          <p class="section-label">{eyebrow}</p>
+          <h1 id="service-title">{heading}</h1>
+          <p class="service-landing__intro">{introduction}</p>
+          <ul class="service-landing__benefits">
+            {benefits.map((benefit) => <li>{benefit}</li>)}
+          </ul>
+          <div class="service-landing__actions">
+            <a class="service-button service-button--primary" href="/contact">{quoteLabel}</a>
+            {projects.length > 0 && <a class="service-button service-button--secondary" href="#recent-work">See related work</a>}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-overview page-wrap" aria-labelledby="overview-title">
+      <div class="service-overview__copy">
+        <p class="section-label">Straightforward local help</p>
+        <h2 id="overview-title">{overviewHeading}</h2>
+        {overview.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+      <aside class="service-overview__list" aria-labelledby="suitable-title">
+        <h2 id="suitable-title">This may be suitable when</h2>
+        <ul>{suitableFor.map((item) => <li>{item}</li>)}</ul>
+      </aside>
+    </section>
+
+    {projects.length > 0 && (
+      <section class="related-work" id="recent-work" aria-labelledby="related-work-title">
+        <div class="page-wrap">
+          <p class="section-label">Genuine recent work</p>
+          <h2 id="related-work-title">See how similar garden work was handled</h2>
+          <div class="related-work__grid">
+            {projects.map(({ id, data: project }) => (
+              <article class="work-card">
+                <a class="work-card__image" href={`/recent-work/${id}`} aria-label={`Read ${project.card.title}`}>
+                  <Image src={project.card.image} alt={project.card.alt} widths={[480, 720, 960]} sizes="(min-width: 760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" />
+                </a>
+                <div class="work-card__body">
+                  <p class="work-card__meta">{project.serviceLabel} <span aria-hidden="true">·</span> {project.location}</p>
+                  <h3>{project.card.title}</h3>
+                  <p>{project.card.summary}</p>
+                  <a class="work-card__link" href={`/recent-work/${id}`}>Read the project <span aria-hidden="true">→</span></a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    {relatedServices.length > 0 && (
+      <nav class="related-services page-wrap" aria-labelledby="related-services-title">
+        <p class="section-label">Other ways Adam can help</p>
+        <h2 id="related-services-title">Related services</h2>
+        <div class="related-services__links">
+          {relatedServices.map((service) => <a href={service.href}>{service.label}<span aria-hidden="true">→</span></a>)}
+        </div>
+      </nav>
+    )}
+
+    <section class="quote-band" aria-labelledby="quote-title">
+      <div class="page-wrap quote-band__inner">
+        <div>
+          <p class="section-label">Tell Adam about the job</p>
+          <h2 id="quote-title">Not sure exactly what your tree or garden needs?</h2>
+          <p>Send a few details and photographs. Adam can discuss the work with you before providing a quote.</p>
+        </div>
+        <div class="quote-band__actions">
+          <a class="service-button service-button--light" href="/contact">{quoteLabel}</a>
+          <a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
+        </div>
+      </div>
+    </section>
+  </article>
+  <Footer />
+</BaseLayout>
+
+<style lang="less">
+  .service-landing{background:var(--cream)}
+  .service-landing__hero{position:relative;display:grid;min-height:clamp(39rem,78vh,49rem);align-items:end;padding-block:0;isolation:isolate}
+  .service-landing__hero-image,.service-landing__shade{position:absolute;inset:0;width:100%;height:100%}.service-landing__hero-image{z-index:-2;object-fit:cover}.service-landing__shade{z-index:-1;background:linear-gradient(90deg,rgba(10,27,19,.95),rgba(10,27,19,.78) 48%,rgba(10,27,19,.15) 82%)}
+  .service-landing__hero-inner{width:100%;padding-block:clamp(4rem,10vw,7rem)}.service-landing__hero-copy{max-width:48rem;color:var(--white)}.service-landing__hero .section-label{color:#c8dfc8}.service-landing__hero h1{max-width:14ch;color:var(--white);font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.02}.service-landing__intro{max-width:42rem;margin-top:1.25rem;font-size:clamp(1.05rem,2vw,1.3rem);line-height:1.5}
+  .service-landing__benefits{display:grid;gap:.6rem;margin:1.5rem 0 0;padding:0;list-style:none}.service-landing__benefits li{position:relative;padding-left:1.65rem}.service-landing__benefits li::before{content:"";position:absolute;top:.55em;left:0;width:.7rem;height:.4rem;border-bottom:2px solid #c8dfc8;border-left:2px solid #c8dfc8;transform:rotate(-45deg)}
+  .service-landing__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}.service-button{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;padding:.75rem 1.35rem;border:2px solid transparent;border-radius:.75rem;font-weight:700;line-height:1.2;text-align:center;text-decoration:none;transition:background-color 180ms ease,color 180ms ease,border-color 180ms ease,transform 180ms ease}.service-button:hover{transform:translateY(-2px)}.service-button--primary{background:var(--gold);color:var(--forest-deep)}.service-button--primary:hover{background:#dda35b}.service-button--secondary{border-color:rgba(255,255,255,.75);color:var(--white)}.service-button--secondary:hover{background:var(--white);color:var(--forest-deep)}
+  .service-overview{display:grid;gap:2rem;padding-block:var(--section-space)}.service-overview__copy{max-width:44rem}.service-overview__copy h2{max-width:20ch;font-size:clamp(1.9rem,4vw,3rem)}.service-overview__copy p+ p{margin-top:1rem}.service-overview__copy p{color:var(--charcoal-soft)}.service-overview__list{align-self:start;padding:clamp(1.5rem,4vw,2.25rem);border-radius:var(--radius);background:var(--forest);color:var(--white)}.service-overview__list h2{margin-bottom:1rem;color:var(--white);font-size:1.35rem}.service-overview__list ul{display:grid;gap:.85rem;margin:0;padding-left:1.25rem}.service-overview__list li::marker{color:#b9d3bd}
+  .related-work{padding-block:var(--section-space);background:var(--sage-lighter)}.related-work h2{max-width:22ch;font-size:clamp(1.9rem,4vw,3rem)}.related-work__grid{display:grid;gap:1.25rem}.work-card{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--cream)}.work-card__image{display:block;overflow:hidden;aspect-ratio:16/10;background:var(--sage-light)}.work-card__image :global(picture),.work-card__image :global(img){width:100%;height:100%}.work-card__image :global(img){object-fit:cover;transition:transform 350ms cubic-bezier(.22,1,.36,1)}.work-card__image:hover :global(img){transform:scale(1.025)}.work-card__body{padding:1.4rem}.work-card__meta{margin-bottom:.5rem;color:var(--sage);font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.work-card h3{margin-bottom:.5rem;font-size:1.35rem}.work-card__body>p:not(.work-card__meta){color:var(--charcoal-soft)}.work-card__link{display:inline-block;margin-top:1rem;color:var(--forest);font-weight:700;text-underline-offset:.25rem}
+  .related-services{padding-block:var(--section-space)}.related-services h2{font-size:clamp(1.9rem,4vw,3rem)}.related-services__links{display:grid;border-top:1px solid var(--line)}.related-services__links a{display:flex;min-height:4rem;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);color:var(--forest);font-weight:700;text-decoration:none}.related-services__links a:hover{color:var(--gold)}
+  .quote-band{padding-block:clamp(3.5rem,7vw,5.5rem);background:var(--forest-deep);color:var(--white)}.quote-band__inner{display:grid;gap:2rem;align-items:center}.quote-band .section-label{color:#b9d3bd}.quote-band h2{max-width:19ch;margin-bottom:.75rem;color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem)}.quote-band p:last-child{max-width:56ch;color:#dce7df}.quote-band__actions{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}.service-button--light{background:var(--white);color:var(--forest-deep)}.service-button--light:hover{background:var(--sage-light)}.quote-band__phone{color:var(--white);font-weight:700;text-underline-offset:.25rem}
+  @media(min-width:760px){.service-overview{grid-template-columns:minmax(0,1.35fr) minmax(18rem,.75fr);gap:clamp(2.5rem,7vw,6rem)}.related-work__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quote-band__inner{grid-template-columns:minmax(0,1fr) auto}.quote-band__actions{align-items:flex-end}}
+  @media(max-width:620px){.service-landing__hero{min-height:46rem}.service-landing__shade{background:linear-gradient(0deg,rgba(10,27,19,.98),rgba(10,27,19,.84) 64%,rgba(10,27,19,.2))}.service-landing__hero-inner{padding-block:3.5rem}.service-landing__hero h1{font-size:clamp(2.3rem,10.5vw,3.35rem)}.service-landing__actions{align-items:stretch;flex-direction:column}.service-button{width:100%}}
+  @media(prefers-reduced-motion:reduce){.service-button,.work-card__image :global(img){transition:none}.service-button:hover,.work-card__image:hover :global(img){transform:none}}
+</style>
