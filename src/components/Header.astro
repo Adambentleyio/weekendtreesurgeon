@@ -59,8 +59,11 @@ const links = [
           {serviceLinks.map(({ label, href }) => <a href={href}>{label}</a>)}
         </div>
       </details>
+    </div>
+
+    <div class="site-nav__quick-links" aria-label="Quick links">
       {links.map(({ label, href }) => <a href={href}>{label}</a>)}
-      <a class="site-nav__phone" href={`tel:${client.phoneForTel}`}>Prefer to talk? Call {client.phoneFormatted}</a>
+      <a href={`tel:${client.phoneForTel}`} aria-label={`Prefer to call? Call ${client.phoneFormatted}`}>Prefer to call?</a>
     </div>
   </nav>
 </header>
@@ -106,7 +109,7 @@ const links = [
 
 <style lang="less">
   .site-header { position: relative; z-index: 20; border-bottom: 1px solid var(--line); background: var(--cream); }
-  .site-nav { position: relative; display: flex; min-height: 4.5rem; align-items: center; gap: .75rem; }
+  .site-nav { position: relative; display: flex; min-height: 4.5rem; flex-wrap: wrap; align-items: center; gap: 0 .75rem; padding-top: .35rem; }
   .site-nav__logo { display: inline-flex; min-height: 2.75rem; align-items: center; gap: .55rem; margin-right: auto; color: var(--forest); font-family: "Press Start 2P", monospace; font-size: 1rem; font-weight: 700; letter-spacing: -.05em; line-height: 1; text-decoration: none; }
   .site-nav__logo span, .site-nav__logo small { display: block; }
   .site-nav__logo small { color: var(--sage); font-family: var(--font-body); font-size: .68rem; font-weight: 700; letter-spacing: .04em; line-height: 1; text-transform: lowercase; }
@@ -117,10 +120,7 @@ const links = [
   .site-nav__toggle { display: grid; width: 2.75rem; height: 2.75rem; place-content: center; gap: .27rem; padding: 0; border: 1px solid var(--line); border-radius: .7rem; background: transparent; color: var(--forest); }
   .site-nav__toggle span { width: 1.15rem; height: 2px; border-radius: 2px; background: currentColor; }
   .site-nav__mobile-menu { position: absolute; top: calc(100% + 1px); right: var(--page-padding); left: var(--page-padding); display: grid; grid-template-rows: 0fr; overflow: hidden; border-radius: 0 0 .9rem .9rem; background: var(--cream); transition: grid-template-rows 200ms cubic-bezier(.22, 1, .36, 1), padding 200ms cubic-bezier(.22, 1, .36, 1); }
-  .site-nav__mobile-menu > a { min-height: 0; overflow: hidden; color: var(--forest); font-weight: 600; text-decoration: none; }
-  .site-nav__toggle[aria-expanded="true"] + .site-nav__mobile-menu { grid-template-rows: repeat(4, auto); padding-block: .5rem; border: 1px solid var(--line); border-top: 0; }
-  .site-nav__toggle[aria-expanded="true"] + .site-nav__mobile-menu > a { display: flex; min-height: 3rem; align-items: center; padding-inline: 1rem; }
-  .site-nav__mobile-menu > a:hover { background: var(--sage-light); }
+  .site-nav__toggle[aria-expanded="true"] + .site-nav__mobile-menu { grid-template-rows: auto; padding-block: .5rem; border: 1px solid var(--line); border-top: 0; }
   .site-nav__mobile-services { min-height: 0; overflow: hidden; color: var(--forest); }
   .site-nav__mobile-services summary { display: flex; min-height: 3rem; align-items: center; justify-content: space-between; padding-inline: 1rem; font-weight: 700; cursor: pointer; list-style: none; }
   .site-nav__mobile-services summary::-webkit-details-marker { display: none; }
@@ -128,10 +128,14 @@ const links = [
   .site-nav__mobile-services[open] summary::after { content: "−"; }
   .site-nav__mobile-services div { display: grid; padding: .15rem .75rem .65rem; }
   .site-nav__mobile-services a { padding: .65rem .75rem; border-radius: .5rem; color: var(--forest); font-size: .92rem; font-weight: 600; text-decoration: none; }
-  .site-nav__phone { margin: .35rem .75rem 0; border-top: 1px solid var(--line); color: var(--forest-deep) !important; font-size: .88rem; }
+  .site-nav__quick-links { display: grid; width: 100%; grid-template-columns: 1.2fr .75fr 1.15fr; border-top: 1px solid var(--line); }
+  .site-nav__quick-links a { display: inline-flex; min-height: 2.75rem; align-items: center; justify-content: center; color: var(--forest); font-size: clamp(.72rem, 3.2vw, .84rem); font-weight: 600; line-height: 1.1; text-align: center; text-decoration: none; }
+  .site-nav__quick-links a + a { border-left: 1px solid var(--line); }
+  .site-nav__quick-links a:last-child { color: var(--forest-deep); }
+  .site-nav__quick-links a:hover { background: var(--sage-light); }
 
   @media (min-width: 768px) {
-    .site-nav { min-height: 4.75rem; gap: clamp(1.5rem, 3vw, 2.5rem); }
+    .site-nav { min-height: 4.75rem; flex-wrap: nowrap; gap: clamp(1.5rem, 3vw, 2.5rem); padding-top: 0; }
     .site-nav__desktop-links { display: flex; align-items: center; gap: clamp(1.25rem, 2.5vw, 2.25rem); }
     .site-nav__desktop-links > a { position: relative; display: inline-flex; min-height: 2.9rem; align-items: center; color: var(--forest); font-size: .94rem; font-weight: 600; line-height: 1; text-decoration: none; }
     .site-nav__desktop-links > a::after { content: ""; position: absolute; right: 0; bottom: .2rem; left: 0; height: 2px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 180ms cubic-bezier(.22, 1, .36, 1); }
@@ -148,7 +152,7 @@ const links = [
     .site-nav__services:not([open]) .site-nav__dropdown { display: none; }
     .site-nav__cta { min-height: 2.9rem; padding-inline: 1.15rem; font-size: .9rem; }
     .site-nav__cta-long { display: inline; }
-    .site-nav__cta-short, .site-nav__toggle, .site-nav__mobile-menu { display: none; }
+    .site-nav__cta-short, .site-nav__toggle, .site-nav__mobile-menu, .site-nav__quick-links { display: none; }
   }
 
   @media (prefers-reduced-motion: reduce) {

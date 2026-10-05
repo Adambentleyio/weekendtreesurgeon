@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import founderPhoto from "../assets/images/founder-headshot.webp";
 import adamProfile from "../assets/images/adam-profile.jpg";
+import climbingPhoto from "../assets/images/dismantle.jpg";
 import leightonAfter from "../assets/images/dead-tree-removal-leighton-crewe/eucalyptus-removal-leighton-after.jpg";
 import willastonAfter from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-1.jpg";
 import stapeleyAfter from "../assets/images/box-hedge-blight-nantwich/IMG_9325.JPG";
@@ -38,15 +39,9 @@ const recentProjects = [
           <span class="hero-reviews__stars" aria-label="5 out of 5 stars">★★★★★</span>
           <a href={client.googleBusinessUrl}>Real words from customers on Google <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="hero-reviews__quotes">
-          <blockquote class="hero-reviews__lead">
-            <p>“Thanks Adam. 5 stars is not enough, you deserve a gold star.”</p>
-          </blockquote>
-          <div class="hero-reviews__more">
-            <blockquote><p>“Absolutely fantastic service from start to finish.”</p></blockquote>
-            <blockquote><p>“Adam certainly made short work of an overgrown Leylandii in my front garden.”</p></blockquote>
-          </div>
-        </div>
+        <blockquote class="hero-reviews__lead">
+          <p>“Thanks Adam. 5 stars is not enough, you deserve a gold star.”</p>
+        </blockquote>
       </div>
 
       <form name="hero-quote" method="POST" data-netlify="true" class="quote-card hero__quote">
@@ -62,37 +57,19 @@ const recentProjects = [
         </p>
       </form>
     </div>
+    <div class="hero__media">
+      <Picture
+        src={climbingPhoto}
+        formats={["avif", "webp"]}
+        widths={[480, 720, 960]}
+        sizes="(min-width: 1200px) 34vw, (min-width: 768px) 38vw, 100vw"
+        alt="Adam working from ropes while reducing a tree in a Cheshire garden"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
   </div>
 </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <div class="page-wrap">
-      <span class="section-label">What some lovely people have to say about WTS</span>
-
-      <div class="testimonial-grid">
-        <article class="testimonial-card">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>
-            “Adam is one of the good ones. He was friendly, helpful and very
-            professional. I would recommend him to anyone looking for a tree
-            surgeon.”
-          </p>
-          <span>Rebecca T.</span>
-        </article>
-
-        <article class="testimonial-card">
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <p>
-            “Adam was great. He came out on a Saturday morning and was very
-            friendly and helpful. We'd recommend him to anyone looking for a
-            tree surgeon.”
-          </p>
-          <span>Alwena B.</span>
-        </article>
-      </div>
-    </div>
-  </section>
 
   <section class="recent-work" id="recent-work" aria-labelledby="recent-work-title">
     <div class="page-wrap">
