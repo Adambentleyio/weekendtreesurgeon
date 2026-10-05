@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import client from "../data/client.json";
 import { Image } from "astro:assets";
 import climbingPhoto from "../assets/images/dismantle.jpg";
 ---
@@ -15,45 +14,53 @@ import climbingPhoto from "../assets/images/dismantle.jpg";
       <form id="cs-form" name="Contact Form" method="post" enctype="multipart/form-data" netlify data-contact-form>
         <input type="hidden" name="form-name" value="Contact Form" />
         <div class="cs-content">
-          <span class="cs-topper">Contact</span>
-          <h2 class="cs-title">Get in Touch</h2>
+          <span class="cs-topper">Request a quote</span>
+          <h1 class="cs-title">Tell Adam about the job</h1>
           <p class="cs-text">
-            Tell me what needs doing and where you are. Add a photo if it helps, then Adam will reply personally.
+            Share a few details below. Adam will read your message and reply personally.
           </p>
+          <p class="cs-required"><span aria-hidden="true">*</span> Required fields</p>
         </div>
-        <label>
-          Name
+        <label class="field field--name">
+          <span>Name <span class="required-mark" aria-hidden="true">*</span></span>
           <input
             required
             type="text"
             id="name"
             name="name"
-            placeholder="Name"
+            autocomplete="name"
           />
         </label>
         <fieldset class="contact-methods">
-          <legend>How can Adam contact you? <span>Provide at least one</span></legend>
-        <label>
-          Email <span class="optional">Optional</span>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-          />
-        </label>
-        <label>
-          Phone <span class="optional">Optional</span>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            placeholder="Phone"
-          />
-        </label>
+          <legend>How should Adam contact you?</legend>
+          <p class="field-hint" id="contact-method-hint">Add a phone number, an email address, or both.</p>
+          <label class="field">
+            <span>Email</span>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              inputmode="email"
+              aria-describedby="contact-method-hint contact-error"
+              aria-errormessage="contact-error"
+            />
+          </label>
+          <label class="field">
+            <span>Phone</span>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="tel"
+              inputmode="tel"
+              aria-describedby="contact-method-hint contact-error"
+              aria-errormessage="contact-error"
+            />
+          </label>
         </fieldset>
-        <label>
-          Postcode or area
+        <label class="field field--area">
+          <span>Postcode or area <span class="required-mark" aria-hidden="true">*</span></span>
           <input
             type="text"
             id="area"
@@ -63,20 +70,23 @@ import climbingPhoto from "../assets/images/dismantle.jpg";
             required
           />
         </label>
-        <label class="cs-label-message">
-          What needs doing?
+        <label class="field cs-label-message">
+          <span>What needs doing? <span class="required-mark" aria-hidden="true">*</span></span>
           <textarea
             required
             name="message"
             id="message"
             placeholder="Tell Adam about the tree, hedge or garden work"></textarea>
         </label>
-        <label class="cs-label-photos">
-          Photographs <span class="optional">Optional</span>
-          <input type="file" name="photos" accept="image/*" multiple />
+        <label class="field cs-label-photos">
+          <span>Photographs <span class="optional">Optional</span></span>
+          <span class="field-hint" id="photo-hint">A few clear photos can help Adam understand the work.</span>
+          <input type="file" name="photos" accept="image/*" multiple aria-describedby="photo-hint photo-status" data-photo-input />
+          <span class="photo-status" id="photo-status" data-photo-status>No photos selected</span>
         </label>
-        <p class="form-error" data-contact-error hidden>Please provide a phone number or email address.</p>
-        <button class="btn" type="submit">Ask Adam for a quote</button>
+        <p class="form-error" id="contact-error" data-contact-error role="alert" aria-live="polite" hidden>Please add a phone number or email address so Adam can reply.</p>
+        <button class="btn" type="submit">Ask Adam for a quote <span aria-hidden="true">→</span></button>
+        <p class="form-note">Your details are only used to reply to this enquiry.</p>
       </form>
 
       <div class="cs-right-section">
@@ -102,15 +112,24 @@ import climbingPhoto from "../assets/images/dismantle.jpg";
     const email = form.querySelector<HTMLInputElement>("#email");
     const phone = form.querySelector<HTMLInputElement>("#phone");
     const error = form.querySelector<HTMLElement>("[data-contact-error]");
+    const photoInput = form.querySelector<HTMLInputElement>("[data-photo-input]");
+    const photoStatus = form.querySelector<HTMLElement>("[data-photo-status]");
     if (!email || !phone || !error) return;
     const validateContact = () => {
       const valid = Boolean(email.value.trim() || phone.value.trim());
-      phone.setCustomValidity(valid ? "" : "Please provide a phone number or email address.");
+      phone.setCustomValidity(valid ? "" : "Please add a phone number or email address so Adam can reply.");
+      email.setAttribute("aria-invalid", String(!valid));
+      phone.setAttribute("aria-invalid", String(!valid));
       error.hidden = valid;
       return valid;
     };
     email.addEventListener("input", validateContact);
     phone.addEventListener("input", validateContact);
+    photoInput?.addEventListener("change", () => {
+      if (!photoStatus) return;
+      const count = photoInput.files?.length ?? 0;
+      photoStatus.textContent = count === 0 ? "No photos selected" : `${count} photo${count === 1 ? "" : "s"} selected`;
+    });
     form.addEventListener("submit", (event) => {
       if (!validateContact()) {
         event.preventDefault();
@@ -475,6 +494,298 @@ import climbingPhoto from "../assets/images/dismantle.jpg";
 
       .cs-right-section {
         height: (578/16rem);
+      }
+    }
+  }
+</style>
+
+<style lang="less">
+  /* Current redesign layer: the legacy contact page remains isolated from shared page styles. */
+  #cs-contact {
+    margin: 0;
+    padding: clamp(3rem, 8vw, 6.5rem) var(--page-padding);
+    background:
+      radial-gradient(circle at 100% 0%, rgba(122, 156, 130, 0.16), transparent 32rem),
+      var(--cream);
+
+    .cs-container {
+      display: grid;
+      width: 100%;
+      max-width: var(--page-width);
+      margin-inline: auto;
+      gap: clamp(2rem, 6vw, 5rem);
+    }
+
+    #cs-form {
+      display: grid;
+      width: 100%;
+      max-width: 42rem;
+      margin: 0;
+      gap: 1.25rem;
+    }
+
+    .cs-content {
+      position: relative;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cs-topper {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      color: var(--sage);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .cs-title {
+      max-width: 12ch;
+      color: var(--forest);
+      font-family: var(--font-heading);
+      font-size: clamp(2.25rem, 7vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.03;
+      text-wrap: balance;
+    }
+
+    .cs-text {
+      max-width: 35rem;
+      margin: 1rem 0 0;
+      color: var(--charcoal-soft);
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.6;
+    }
+
+    .cs-required {
+      margin-top: 1rem;
+      color: var(--charcoal-soft);
+      font-size: 0.8rem;
+    }
+
+    .required-mark {
+      color: var(--gold);
+    }
+
+    .field,
+    .contact-methods {
+      min-width: 0;
+    }
+
+    #cs-form .field {
+      display: flex;
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.45rem;
+      color: var(--forest);
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .optional,
+    .field-hint,
+    .photo-status {
+      color: var(--charcoal-soft);
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    .optional {
+      margin-left: 0.35rem;
+    }
+
+    .contact-methods {
+      display: grid;
+      width: 100%;
+      margin: 0;
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) - 6px);
+      background: rgba(255, 255, 255, 0.48);
+      gap: 1rem;
+    }
+
+    .contact-methods legend {
+      padding-inline: 0.35rem;
+      color: var(--forest);
+      font-weight: 700;
+    }
+
+    .contact-methods > .field-hint {
+      margin: -0.35rem 0 0;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin: 0;
+      padding: 0.9rem 1rem;
+      border: 1.5px solid rgba(32, 61, 46, 0.2);
+      border-radius: 12px;
+      outline: none;
+      background: var(--white);
+      color: var(--charcoal);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.4;
+      transition: border-color 180ms cubic-bezier(.22, 1, .36, 1), background-color 180ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    input {
+      min-height: 3.5rem;
+    }
+
+    textarea {
+      min-height: 10rem;
+      resize: vertical;
+    }
+
+    input:hover,
+    textarea:hover {
+      border-color: var(--sage);
+    }
+
+    input:focus-visible,
+    textarea:focus-visible {
+      border-color: var(--forest);
+      outline: 3px solid rgba(198, 138, 62, 0.32);
+      outline-offset: 2px;
+    }
+
+    input:user-invalid,
+    textarea:user-invalid {
+      border-color: #8c352b;
+    }
+
+    input[type="file"] {
+      min-height: 3.75rem;
+      padding: 0.45rem;
+      color: var(--charcoal-soft);
+      cursor: pointer;
+    }
+
+    input[type="file"]::file-selector-button {
+      min-height: 2.75rem;
+      margin-right: 0.75rem;
+      padding: 0.65rem 0.9rem;
+      border: 0;
+      border-radius: 9px;
+      background: var(--sage-light);
+      color: var(--forest-deep);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 180ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    input[type="file"]:hover::file-selector-button {
+      background: #d8e6d6;
+    }
+
+    .form-error {
+      margin: -0.5rem 0 0;
+      padding: 0.8rem 1rem;
+      border: 1px solid rgba(140, 53, 43, 0.22);
+      border-radius: 10px;
+      background: #f8eae6;
+      color: #762b24;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      min-height: 3.5rem;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
+      padding: 0.85rem 1.25rem;
+      border-radius: 12px;
+      background: var(--gold);
+      color: var(--white);
+      font-weight: 700;
+      transition: background-color 180ms cubic-bezier(.22, 1, .36, 1), transform 180ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .btn:hover {
+      background: #ad7129;
+      transform: translateY(-2px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .form-note {
+      margin: -0.65rem 0 0;
+      color: var(--charcoal-soft);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    .cs-right-section {
+      display: none;
+      min-height: 35rem;
+      border-radius: var(--radius);
+    }
+
+    @media (min-width: 43.75em) {
+      .contact-methods {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 1rem;
+      }
+
+      .contact-methods legend,
+      .contact-methods > .field-hint {
+        grid-column: 1 / -1;
+      }
+
+      .btn {
+        width: fit-content;
+        min-width: 15rem;
+      }
+
+      .form-note {
+        text-align: left;
+      }
+    }
+
+    @media (min-width: 64em) {
+      .cs-container {
+        grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
+        align-items: start;
+      }
+
+      .cs-right-section {
+        display: flex;
+        position: sticky;
+        top: 6rem;
+        width: 100%;
+        height: min(43rem, calc(100vh - 8rem));
+        max-width: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      input,
+      textarea,
+      .btn,
+      input[type="file"]::file-selector-button {
+        transition: none;
+      }
+
+      .btn:hover {
+        transform: none;
       }
     }
   }
