@@ -1,7 +1,6 @@
 ---
 import "../styles/root.less";
 import Header from "../components/Header.astro";
-import { ClientRouter } from "astro:transitions";
 
 const {
   title,
@@ -31,7 +30,6 @@ const pageTitle = title ? `${title} | ${siteName}` : siteName;
     {ogImage && <meta property="og:image" content={ogImage} />}
 
     <title>{pageTitle}</title>
-    <ClientRouter />
   </head>
 
   <body>
@@ -39,23 +37,8 @@ const pageTitle = title ? `${title} | ${siteName}` : siteName;
 
     {showNav && <Header ctaHref={navCtaHref} />}
 
-    <main id="main" transition:name="page-content" transition:animate="fade">
+    <main id="main">
       <slot />
     </main>
   </body>
 </html>
-
-<style is:global>
-  ::view-transition-old(page-content),
-  ::view-transition-new(page-content) {
-    animation-duration: 200ms;
-    animation-timing-function: cubic-bezier(.22, 1, .36, 1);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    ::view-transition-old(page-content),
-    ::view-transition-new(page-content) {
-      animation-duration: 1ms;
-    }
-  }
-</style>
