@@ -1,0 +1,197 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import ProjectGallery from "../components/ProjectGallery.astro";
+import client from "../data/client.json";
+import failedHedge from "../assets/images/box-hedge-blight-nantwich/IMG_9178.JPG";
+import removalWork from "../assets/images/box-hedge-blight-nantwich/IMG_9176.JPG";
+import plantingWork from "../assets/images/box-hedge-blight-nantwich/IMG_9323.JPG";
+import replantedHedge from "../assets/images/box-hedge-blight-nantwich/IMG_9325.JPG";
+import founderPhoto from "../assets/images/founder-headshot.webp";
+
+const page = {
+  title: "Box Hedge Blight Removal and Replanting in Nantwich",
+  description: "Careful removal and replacement of failed or caterpillar-damaged box hedges in Nantwich, Stapeley and nearby Cheshire villages. Send Adam a photo to discuss the next step.",
+  hero: {
+    eyebrow: "Box hedge removal and replanting",
+    heading: "Has your box hedge turned brown or bare?",
+    introduction: "Adam carefully removes failed box, clears the roots and prepares the border for suitable replacement planting across Nantwich, Stapeley and nearby Cheshire villages.",
+    benefits: ["A straightforward assessment of the damage", "Removal planned around nearby paths and planting", "Replacement options agreed for your garden"],
+  },
+  signs: [
+    { number: "01", title: "Bare or papery leaves", copy: "Leaves may look skeletonised, dry or disappear from sections of the hedge." },
+    { number: "02", title: "Webbing or caterpillars", copy: "Fine webbing, green caterpillars or leaf debris can point to box tree caterpillar activity." },
+    { number: "03", title: "Brown, dying patches", copy: "Rapid browning and dieback can have several causes. A clear photo helps Adam understand what is happening." },
+  ],
+  process: [
+    { number: "1", title: "Look at the hedge", copy: "Send a few clear photos, including the whole hedge and close-ups of the damage. Adam can then discuss whether removal is the sensible next step." },
+    { number: "2", title: "Remove failed plants", copy: "If removal is agreed, the failed box and roots are carefully taken out with attention to nearby paths, borders and established planting." },
+    { number: "3", title: "Prepare and replant", copy: "The border is prepared and a suitable replacement is planted where replanting is included in the quote. The species is agreed for the particular garden." },
+  ],
+};
+
+const whatsappNumber = client.phoneForTel.replace(/\D/g, "");
+const whatsappMessage = encodeURIComponent("Hi Adam, I would like some advice about a damaged box hedge. I have photos to send.");
+const whatsappHref = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+---
+
+<BaseLayout title={page.title} description={page.description} showNav={true} navCtaHref={whatsappHref} ogImage={replantedHedge.src}>
+  <article class="blight-page">
+    <section class="blight-hero" aria-labelledby="page-title">
+      <div class="page-wrap blight-hero__inner">
+        <div class="blight-hero__copy">
+          <p class="section-label">{page.hero.eyebrow}</p>
+          <h1 id="page-title">{page.hero.heading}</h1>
+          <p class="blight-hero__intro">{page.hero.introduction}</p>
+          <ul class="blight-hero__benefits">
+            {page.hero.benefits.map((benefit) => <li>{benefit}</li>)}
+          </ul>
+          <div class="blight-actions">
+            <a class="blight-button blight-button--primary" href={whatsappHref}>Send Adam a hedge photo</a>
+            <a class="blight-button blight-button--quiet" href="#stapeley-project">See the Stapeley project</a>
+          </div>
+          <p class="blight-hero__note">Adam replies personally. No diagnosis is made from a photograph alone.</p>
+        </div>
+        <div class="blight-hero__evidence" aria-label="Stapeley box hedge before removal and after replacement">
+          <figure>
+            <Image src={failedHedge} alt="Brown and bare box hedge interrupting a planted front border in Stapeley" widths={[480, 720, 960]} sizes="(min-width: 820px) 29vw, 50vw" format="avif" quality={78} loading="eager" fetchpriority="high" />
+            <figcaption>Before</figcaption>
+          </figure>
+          <figure>
+            <Image src={replantedHedge} alt="Young laurels planted in the cleared gap between established shrubs" widths={[480, 720, 960]} sizes="(min-width: 820px) 29vw, 50vw" format="avif" quality={78} loading="eager" />
+            <figcaption>After</figcaption>
+          </figure>
+          <p>Recent Removal in Stapeley, Natwich</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="symptoms page-wrap" aria-labelledby="symptoms-title">
+      <div class="section-heading">
+        <p class="section-label">What to look for</p>
+        <h2 id="symptoms-title">Is your box hedge struggling?</h2>
+        <p>Box tree caterpillars and disease can both leave box hedges thin, brown or bare. Similar symptoms can also have other causes, so start by looking closely rather than assuming the whole hedge must go.</p>
+      </div>
+      <ol class="symptom-list">
+        {page.signs.map((sign) => (
+          <li><span>{sign.number}</span><div><h3>{sign.title}</h3><p>{sign.copy}</p></div></li>
+        ))}
+      </ol>
+      <aside class="symptoms__advice">
+        <strong>Not sure what you are seeing?</strong>
+        <p>Photograph the full hedge, a damaged section and the leaves close up. Those three views provide a useful starting point.</p>
+      </aside>
+    </section>
+
+    <section class="process" aria-labelledby="process-title">
+      <div class="page-wrap process__inner">
+        <div class="process__heading">
+          <p class="section-label">A careful route forward</p>
+          <h2 id="process-title">From failed hedge to a border ready to grow again</h2>
+          <p>The right plan depends on the condition of the hedge, access and what you want to plant next. Each stage is agreed before work starts.</p>
+        </div>
+        <ol class="process__steps">
+          {page.process.map((step) => (
+            <li><span>{step.number}</span><div><h3>{step.title}</h3><p>{step.copy}</p></div></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="case-study page-wrap" id="stapeley-project" aria-labelledby="case-title">
+      <div class="case-study__story">
+        <p class="section-label">Recent work in Stapeley</p>
+        <h2 id="case-title">A failed box hedge replaced with young laurel</h2>
+        <div class="case-study__narrative">
+          <div><h3>The problem</h3><p>Around eight box plants had died or become diseased. Box tree caterpillars were found among the affected plants, leaving an untidy gap between healthy sections of established laurel.</p></div>
+          <div><h3>What Adam did</h3><p>The box plants and their roots were removed and the waste from this job was taken away. On a second visit, the soil was prepared with soil improver before seven young laurels were planted around 30 to 45cm apart.</p></div>
+          <div><h3>The result</h3><p>The failed planting was replaced with a healthy run of laurel that continues the established hedge line and has room to fill out as it grows.</p></div>
+        </div>
+        <a class="case-study__link" href="/recent-work/box-hedge-removal-stapeley">Read the complete project <span aria-hidden="true">→</span></a>
+      </div>
+      <aside class="case-facts" aria-label="Stapeley project details">
+        <p class="case-facts__title">Project details</p>
+        <dl>
+          <div><dt>Location</dt><dd>Stapeley, Nantwich</dd></div>
+          <div><dt>Removed</dt><dd>Approximately 8 box plants</dd></div>
+          <div><dt>Replacement</dt><dd>7 young laurels</dd></div>
+          <div><dt>Visits</dt><dd>Removal and planting</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="project-photos" aria-labelledby="photos-title">
+      <div class="page-wrap">
+        <div class="section-heading">
+          <p class="section-label">Real work, clearly shown</p>
+          <h2 id="photos-title">Removal, preparation and replanting</h2>
+          <p>Every photograph below comes from the same Stapeley project.</p>
+        </div>
+        <ProjectGallery images={[
+          { src: removalWork, alt: "Removed box shrubs and exposed roots beside the cleared front border" },
+          { src: plantingWork, alt: "Newly planted young laurels being watered into prepared soil" },
+          { src: replantedHedge, alt: "Replanted laurel hedge continuing the established front garden border" },
+        ]} />
+      </div>
+    </section>
+
+    <section class="about-adam" aria-labelledby="about-adam-title">
+      <div class="page-wrap about-adam__inner">
+        <figure class="about-adam__portrait">
+          <Image
+            src={founderPhoto}
+            alt="Adam Bentley with his wife"
+            widths={[320, 480, 640]}
+            sizes="(min-width: 820px) 23rem, calc(100vw - 2rem)"
+            format="webp"
+            quality={82}
+            loading="lazy"
+          />
+        </figure>
+        <div class="about-adam__copy">
+          <p class="section-label">A different sort of tradesperson</p>
+          <h2 id="about-adam-title">Thoughtful work, from someone accountable</h2>
+          <p>I’m Adam, a Master of Science graduate who left white-collar work to build a more practical, useful business. I bring the same habits to your garden: understand the problem, think through the details and do what I said I would do.</p>
+          <p>Weekend Tree Surgeon is deliberately personal. You deal with me, and I take responsibility for treating your home, your time and your trust with care.</p>
+          <a href="/#about">A little more about me <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="photo-cta" aria-labelledby="cta-title">
+      <div class="page-wrap photo-cta__inner">
+        <div>
+          <p class="section-label">Start with a photograph</p>
+          <h2 id="cta-title">Show Adam what is happening to your hedge</h2>
+          <p>Send a few photos on WhatsApp. Adam will look at the damage, ask any useful follow-up questions and explain the practical next step.</p>
+          <p class="photo-cta__areas">Covering Nantwich, Stapeley, Crewe, Wistaston, Shavington and surrounding Cheshire villages.</p>
+        </div>
+        <div class="photo-cta__actions">
+          <a class="blight-button blight-button--light" href={whatsappHref}>WhatsApp a hedge photo</a>
+          <a href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
+          <a href="/contact">Use the quote enquiry form</a>
+        </div>
+      </div>
+    </section>
+  </article>
+  <Footer />
+</BaseLayout>
+
+<style lang="less">
+  .blight-page{background:var(--cream)}
+  .blight-hero{padding-block:clamp(2.5rem,6vw,5rem);overflow:hidden;background:var(--forest-deep)}
+  .blight-hero__inner{display:grid;gap:2.25rem;align-items:center}.blight-hero__copy{max-width:43rem;color:#e8efe9}.blight-hero .section-label,.process .section-label,.photo-cta .section-label{color:#bfd2c2}.blight-hero h1{max-width:12ch;color:var(--white);font-size:clamp(2.65rem,8vw,5.4rem);line-height:.96;letter-spacing:-.045em}.blight-hero__intro{max-width:40rem;margin-top:1.25rem;font-size:clamp(1.05rem,2vw,1.25rem);line-height:1.55}.blight-hero__benefits{display:grid;gap:.6rem;margin:1.5rem 0 0;padding:0;list-style:none}.blight-hero__benefits li{position:relative;padding-left:1.6rem}.blight-hero__benefits li::before{content:"";position:absolute;top:.62em;left:0;width:.55rem;height:.55rem;border-radius:50%;background:var(--gold)}
+  .blight-actions{display:flex;flex-direction:column;gap:.75rem;margin-top:2rem}.blight-button{display:inline-flex;min-height:3.3rem;align-items:center;justify-content:center;padding:.8rem 1.25rem;border:2px solid transparent;border-radius:.75rem;font-weight:700;line-height:1.2;text-align:center;text-decoration:none;transition:background-color 180ms ease,color 180ms ease,transform 180ms ease}.blight-button:hover{transform:translateY(-2px)}.blight-button--primary{background:var(--gold);color:var(--forest-deep)}.blight-button--primary:hover{background:#dda35b}.blight-button--quiet{border-color:rgba(255,255,255,.65);color:var(--white)}.blight-button--quiet:hover{background:var(--white);color:var(--forest-deep)}.blight-hero__note{margin-top:.85rem;color:#bfd2c2;font-size:.82rem}
+  .blight-hero__evidence{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:.55rem;min-height:25rem}.blight-hero__evidence figure{position:relative;overflow:hidden;margin:0;border-radius:var(--radius);background:var(--sage)}.blight-hero__evidence picture,.blight-hero__evidence img{width:100%;height:100%}.blight-hero__evidence img{object-fit:cover}.blight-hero__evidence figure:first-child img{object-position:62% center}.blight-hero__evidence figure:last-of-type img{object-position:48% center}.blight-hero__evidence figcaption{position:absolute;right:.6rem;bottom:.6rem;padding:.35rem .65rem;border-radius:10rem;background:var(--cream);color:var(--forest-deep);font-size:.74rem;font-weight:700}.blight-hero__evidence>p{position:absolute;top:-1rem;left:50%;z-index:2;width:max-content;max-width:90%;padding:.55rem .9rem;border-radius:10rem;background:var(--sage-light);color:var(--forest-deep);font-size:.75rem;font-weight:700;transform:translateX(-50%)}
+  .symptoms{display:grid;gap:2rem;padding-block:var(--section-space)}.section-heading{max-width:45rem}.section-heading h2{max-width:20ch;font-size:clamp(2rem,4.5vw,3.25rem)}.section-heading>p:last-child{color:var(--charcoal-soft)}.symptom-list{display:grid;margin:0;padding:0;border-top:1px solid var(--line);list-style:none}.symptom-list li{display:grid;grid-template-columns:2.6rem 1fr;gap:.75rem;padding-block:1.3rem;border-bottom:1px solid var(--line)}.symptom-list>li>span{color:var(--gold);font-weight:700}.symptom-list h3{margin-bottom:.25rem;font-size:1.2rem}.symptom-list p{color:var(--charcoal-soft)}.symptoms__advice{padding:1.4rem;border-radius:var(--radius);background:var(--sage-light)}.symptoms__advice strong{display:block;margin-bottom:.3rem;color:var(--forest);font-family:var(--font-heading);font-size:1.1rem}.symptoms__advice p{color:var(--charcoal-soft)}
+  .process{padding-block:var(--section-space);background:var(--forest);color:#e1ebe4}.process__inner{display:grid;gap:2.5rem}.process__heading{max-width:40rem}.process h2{max-width:18ch;color:var(--white);font-size:clamp(2rem,4.5vw,3.3rem)}.process__heading>p:last-child{max-width:38rem}.process__steps{display:grid;margin:0;padding:0;list-style:none}.process__steps li{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding-block:1.4rem;border-top:1px solid rgba(255,255,255,.18)}.process__steps>li>span{display:grid;width:2.25rem;height:2.25rem;place-items:center;border-radius:50%;background:var(--gold);color:var(--forest-deep);font-weight:800}.process__steps h3{margin-bottom:.35rem;color:var(--white);font-size:1.25rem}.process__steps p{color:#d8e4dc}
+  .case-study{display:grid;gap:2rem;padding-block:var(--section-space);scroll-margin-top:2rem}.case-study__story h2{max-width:20ch;font-size:clamp(2rem,4.5vw,3.25rem)}.case-study__narrative{display:grid;gap:1.4rem;max-width:44rem}.case-study__narrative h3{margin-bottom:.35rem}.case-study__narrative p{color:var(--charcoal-soft)}.case-study__link{display:inline-block;margin-top:1.5rem;color:var(--forest);font-weight:700;text-underline-offset:.3rem}.case-facts{align-self:start;padding:1.5rem;border-radius:var(--radius);background:var(--sage-light)}.case-facts__title{margin-bottom:.75rem;color:var(--forest);font-family:var(--font-heading);font-size:1.2rem;font-weight:700}.case-facts dl{margin:0}.case-facts dl div{padding-block:.8rem;border-top:1px solid rgba(32,61,46,.14)}.case-facts dt{color:var(--charcoal-soft);font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase}.case-facts dd{margin:.15rem 0 0;color:var(--forest);font-weight:700}
+  .project-photos{padding-block:var(--section-space);background:var(--sage-lighter)}.project-photos .section-heading{margin-bottom:2rem}
+  .about-adam{padding-block:var(--section-space);background:var(--cream)}.about-adam__inner{display:grid;gap:clamp(2rem,6vw,5rem);align-items:center}.about-adam__portrait{overflow:hidden;margin:0;border-radius:var(--radius);background:var(--sage-light);aspect-ratio:1}.about-adam__portrait :global(picture),.about-adam__portrait :global(img){width:100%;height:100%}.about-adam__portrait :global(img){object-fit:cover}.about-adam__copy{max-width:42rem}.about-adam h2{max-width:16ch;margin-bottom:1.25rem;font-size:clamp(2rem,4.5vw,3.25rem)}.about-adam__copy>p:not(.section-label){max-width:62ch;color:var(--charcoal-soft)}.about-adam__copy>p+p{margin-top:1rem}.about-adam__copy>a{display:inline-block;margin-top:1.35rem;color:var(--forest);font-weight:700;text-underline-offset:.3rem}
+  .photo-cta{padding-block:clamp(3.5rem,7vw,5.5rem);background:var(--forest-deep);color:#dce7df}.photo-cta__inner{display:grid;gap:2rem;align-items:center}.photo-cta h2{max-width:18ch;color:var(--white);font-size:clamp(2rem,4.5vw,3.1rem)}.photo-cta__inner>div>p:not(.section-label){max-width:58ch}.photo-cta__areas{margin-top:.85rem;color:#afc5b4;font-size:.9rem}.photo-cta__actions{display:flex;flex-direction:column;align-items:flex-start;gap:.85rem}.blight-button--light{background:var(--white);color:var(--forest-deep)}.blight-button--light:hover{background:var(--sage-light)}.photo-cta__actions>a:not(.blight-button){color:var(--white);font-weight:700;text-underline-offset:.25rem}
+  @media(min-width:680px){.blight-actions{flex-direction:row}.blight-button{width:auto}.symptom-list{grid-template-columns:repeat(3,minmax(0,1fr))}.symptom-list li{display:block;padding:1.5rem;border-bottom:1px solid var(--line)}.symptom-list li+li{padding-left:1.5rem;border-left:1px solid var(--line)}.symptom-list>li>span{display:block;margin-bottom:1rem}}
+  @media(min-width:820px){.blight-hero__inner{grid-template-columns:minmax(0,1fr) minmax(28rem,.9fr);gap:clamp(2.5rem,5vw,5rem)}.blight-hero__evidence{min-height:38rem}.process__inner{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(3rem,8vw,7rem)}.case-study{grid-template-columns:minmax(0,1.35fr) minmax(18rem,.65fr);gap:clamp(3rem,8vw,6rem)}.about-adam__inner{grid-template-columns:minmax(18rem,23rem) minmax(0,1fr)}.photo-cta__inner{grid-template-columns:minmax(0,1fr) auto}.photo-cta__actions{align-items:flex-end}}
+  @media(max-width:480px){.blight-hero__inner{padding-inline:1rem}.blight-hero h1{font-size:clamp(2.55rem,13vw,3.5rem)}.blight-hero__evidence{min-height:21rem}.blight-hero__evidence figure{border-radius:1rem}}
+  @media(prefers-reduced-motion:reduce){.blight-button{transition:none}.blight-button:hover{transform:none}}
+</style>
