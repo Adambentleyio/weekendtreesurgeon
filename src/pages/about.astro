@@ -1,331 +1,185 @@
 ---
-import BaseLayout from "..//layouts/BaseLayout.astro";
-import CTA from "../components/CTA.astro";
-import Landing from "../components/Landing.astro";
-import stump from "../assets/images/stump.jpg";
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import client from "../data/client.json";
+import adamPortrait from "../assets/images/adam-profile.jpg";
+import adamClimbing from "../assets/images/climbing.jpg";
 
-
-// Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Landing (for rendering)
-import {getOptimizedImage} from "../js/utils"
-import landingImage from "../assets/images/hedges.jpg" // <-- THE PATH TO THE ASSET YOU WANT TO PRELOAD - The asset must live in src
-const optimizedImage = await getOptimizedImage(landingImage)
+const page = {
+  title: "About Adam Bentley",
+  description:
+    "Meet Adam Bentley, the person behind Weekend Tree Surgeon, providing practical tree, hedge and garden work around Nantwich, Crewe and nearby Cheshire villages.",
+  hero: {
+    eyebrow: "The person behind the work",
+    heading: "Good work starts with trust.",
+    introduction:
+      "I’m Adam Bentley. I started Weekend Tree Surgeon to give local homeowners a straightforward, personal way to get smaller tree, hedge and garden jobs done well.",
+  },
+  principles: [
+    {
+      number: "01",
+      title: "You deal with me",
+      copy: "From the first conversation to the work itself, you know who is responsible for your garden and your home.",
+    },
+    {
+      number: "02",
+      title: "Small jobs matter",
+      copy: "Weekend Tree Surgeon is built around the small to medium-sized jobs that still need proper care, equipment and attention.",
+    },
+    {
+      number: "03",
+      title: "Clear, considered work",
+      copy: "I take time to understand what you need, agree the scope and approach the job with care rather than rushing to a conclusion.",
+    },
+  ],
+};
 ---
 
-<BaseLayout
-  title="About"
-  description="Meta description for the page"
-  preloadedImage = {optimizedImage}
->
-  <!-- ============================================ -->
-  <!--                    LANDING                   -->
-  <!-- ============================================ -->
+<BaseLayout title={page.title} description={page.description} showNav={true} navCtaHref="/contact" ogImage={adamPortrait.src}>
+  <article class="about-page">
+    <section class="about-hero" aria-labelledby="about-title">
+      <div class="page-wrap about-hero__inner">
+        <div class="about-hero__copy">
+          <p class="section-label">{page.hero.eyebrow}</p>
+          <h1 id="about-title">{page.hero.heading}</h1>
+          <p class="about-hero__intro">{page.hero.introduction}</p>
+          <div class="about-hero__actions">
+            <a class="about-button about-button--primary" href="/contact">Tell me about your job</a>
+            <a class="about-button about-button--quiet" href="/recent-work">See recent work</a>
+          </div>
+        </div>
 
-  <!-- <Landing 
-    title="About Us"
-    image={optimizedImage}
-  /> -->
-
-  <!-- ============================================ -->
-  <!--                 Side By Side                 -->
-  <!-- ============================================ -->
-
-  <section id="sbs">
-    <div class="cs-container">
-      <!-- Left Image Section -->
-      <div class="cs-left">
-        <picture class="cs-picture cs-picture1">
-          <source
-            media="(max-width: 600px)"
-            srcset="/assets/images/dismantle.jpg"
-          />
-          <source
-            media="(min-width: 601px)"
-            srcset="/assets/images/dismantle.jpg"
-          />
-          <img
-            aria-hidden="true"
-            decoding="async"
-            src="/assets/images/dismantle.jpg"
-            alt="cabinets"
-            loading="lazy"
-            width="400"
-            height="563"
-          />
-        </picture>
-        <picture class="cs-picture cs-picture2 position-right-center">
-          <source
-            media="(max-width: 600px)"
-            srcset="/assets/images/adam-gym.png"
-          />
-          <source
-            media="(min-width: 601px)"
-            srcset="/assets/images/adam-gym.png"
-          />
-          <img
-            aria-hidden="true"
-            decoding="async"
-            src="/assets/images/"
-            alt="house"
-            loading="lazy"
-            width="400"
-            height="563"
-          />
-        </picture>
+        <figure class="about-hero__portrait">
+          <Image src={adamPortrait} alt="Portrait of Adam Bentley, founder of Weekend Tree Surgeon" widths={[480, 720, 960]} sizes="(min-width: 820px) 38vw, calc(100vw - 2rem)" format="avif" quality={82} loading="eager" fetchpriority="high" />
+          <figcaption><strong>Adam Bentley</strong><span>Weekend Tree Surgeon</span></figcaption>
+        </figure>
       </div>
-      <!-- Right Content Section-->
-      <div class="cs-right">
-        <span class="cs-topper">About</span>
-        <h2 class="cs-title">Weekend Tree Surgeon</h2>
-        <p class="cs-text">
-          Hi, I'm Adam. I started Weekend Tree Surgeon to help friends and family create inspiring outdoor spaces... at the weekend. 
-        </p>
-        <p class="cs-text">
-          I work as a Tree Surgeon with <a href="clement-tree.co.uk">Clement Tree Company</a> where we take on multi-day projects and tackle more complex jobs. 
-        </p>
-        <p class="cs-text">But if you have small to medium sized trees, hedge cutting, or garden clearance at the weekend <b>then I'm the tree surgeon for you</b>. I have all the right equipment to do your job safely and efficiently.</p>
-          <p class="cs-text">
-            Because I work alone on weekends, I offer favourable prices for my services. I can do this because I don't have the fixed costs or overheads of a large company. 
-          </p>
-          <p class="cs-text">
-            Thanks to the generosity of friends and family, the business continues to grow through word of mouth. </p>
-        <p class="cs-text">
-          I hope to keep it that way.
-        </p> 
-          <!-- <img
-            class="cs-quote-icon"
-            loading="lazy"
-            decoding="async"
-            src="https://csimg.nyc3.digitaloceanspaces.com/SideBySide/quote-white.svg"
-            alt="gavel"
-            width="136"
-            height="77"
-          /> -->
-        <!-- <a href="/projects" class="cs-button-solid">Our Projects</a> -->
+    </section>
+
+    <section class="about-story page-wrap" aria-labelledby="story-title">
+      <div class="about-story__heading">
+        <p class="section-label">Why Weekend Tree Surgeon exists</p>
+        <h2 id="story-title">A practical business, built around local people</h2>
       </div>
-    </div>
-  </section>
-  <CTA />
+      <div class="about-story__copy">
+        <p>I started by helping friends and family create outdoor spaces they could enjoy. That work grew through word of mouth, but the idea behind it has stayed simple: do useful work for good people and take pride in doing it properly.</p>
+        <p>Weekend Tree Surgeon is deliberately personal. I work seven days a week, and when you get in touch, it’s me you speak to and me who carries out the work. That means clear communication, consistent care and one person accountable from start to finish.</p>
+        <p>I’m also a Master of Science graduate. The work may be practical, but the same habits still matter: understand the problem, think through the details and do what I said I would do.</p>
+      </div>
+    </section>
+
+    <section class="about-principles" aria-labelledby="principles-title">
+      <div class="page-wrap about-principles__inner">
+        <div class="about-principles__intro">
+          <p class="section-label">What you can expect</p>
+          <h2 id="principles-title">Personal responsibility, from first message to finished job</h2>
+        </div>
+        <ol class="about-principles__list">
+          {page.principles.map((principle) => (
+            <li><span>{principle.number}</span><div><h3>{principle.title}</h3><p>{principle.copy}</p></div></li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="about-work page-wrap" aria-labelledby="work-title">
+      <figure class="about-work__image">
+        <Image src={adamClimbing} alt="Adam working at height in climbing equipment during tree work" widths={[480, 720, 960, 1280]} sizes="(min-width: 820px) 43vw, calc(100vw - 2rem)" format="avif" quality={80} loading="lazy" />
+      </figure>
+      <div class="about-work__copy">
+        <p class="section-label">Care in practice</p>
+        <h2 id="work-title">The right approach for the job in front of me</h2>
+        <p>Every garden has different access, planting and priorities. I use the equipment and working method suited to the job, then keep you informed about what is involved.</p>
+        <p>If a detail such as green-waste removal is part of the work, it will be discussed and included in the quote. You should know what has been agreed before the job starts.</p>
+        <a href="/recent-work">Look through genuine recent work <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <section class="about-cta" aria-labelledby="about-cta-title">
+      <div class="page-wrap about-cta__inner">
+        <div>
+          <p class="section-label">Your garden, your next step</p>
+          <h2 id="about-cta-title">Have a job you would like to discuss?</h2>
+          <p>Tell me what needs doing and share a few photographs if you can. I’ll get back to you personally to talk through the work.</p>
+          <p class="about-cta__areas">Serving Nantwich, Crewe, Wistaston, Shavington, Audlem and nearby Cheshire villages.</p>
+        </div>
+        <div class="about-cta__actions">
+          <a class="about-button about-button--light" href="/contact">Request a quote</a>
+          <a href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
+        </div>
+      </div>
+    </section>
+  </article>
+  <Footer />
 </BaseLayout>
 
 <style lang="less">
-  /* PAGE-SPECIFIC STYLES FOR THE ABOUT PAGE */
-
-  /*-- -------------------------- -->
-<---       Side By Side         -->
-<--- -------------------------- -*/
-
-  /* Mobile - 360px */
-  @media only screen and (min-width: 0em) {
-    #sbs {
-      padding: var(--sectionPadding);
-      margin-top: (40/16rem);
-
-      .cs-container {
-        width: 100%;
-        max-width: (1280/16rem);
-        margin: auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        row-gap: (40/16rem);
-      }
-
-      .cs-text a {
-        color: var(--primary);
-        font-size: var(--bodyFontSize);
-        text-decoration: underline;
-      }
-
-      .cs-left {
-        /* scaling the font size with the view width */
-        font-size: ~"min(2.31vw, .7em)";
-        /* using ems so we can use font size to scale the whole section */
-        width: (631/16em);
-        height: (636/16em);
-        position: relative;
-      }
-
-      .cs-picture {
-        border-radius: (24/16em);
-        display: block;
-        position: absolute;
-        /* clips img tag corners */
-        overflow: hidden;
-        img {
-          width: 100%;
-          height: 100%;
-          /* makes image act like a background image */
-          object-fit: cover;
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-      }
-
-      .cs-picture1 {
-        width: (522/16em);
-        height: (581/16em);
-        top: 0;
-        left: 0;
-        img {
-          object-position: left top;
-        }
-      }
-
-      .cs-picture2 {
-        width: (414/16em);
-        height: (400/16em);
-        background-color: #fff;
-        box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 40px;
-        /* 6px - 12px */
-        border: clamp(0.375em, 1.5vw, 0.75em) solid #fff;
-        filter: grayscale(1);
-        right: 0;
-        bottom: 0;
-
-        img {
-          object-position: right top;
-        }
-      }
-
-      .cs-right {
-        max-width: (542/16rem);
-        margin: auto;
-      }
-
-      .cs-topper {
-        text-align: left;
-        margin-bottom: (4/16rem);
-      }
-
-      .cs-title {
-        text-align: left;
-        max-width: (800/16rem);
-      }
-
-      .cs-text {
-        text-align: left;
-        max-width: (750/16rem);
-        margin-bottom: (16/16rem);
-        color: var(--bodyTextColor);
-
-        &:last-of-type {
-          margin-bottom: (32/16rem);
-        }
-      }
-
-      .cs-flex-group {
-        /* 16px - 32px */
-        padding: clamp(1rem, 3vw, 2rem);
-        background-color: #f7f7f7;
-        border-radius: (16/16rem);
-        position: relative;
-      }
-
-      .cs-flex-p {
-        /* 14px - 16px */
-        font-size: 1.25rem;
-        line-height: 1.5em;
-        margin: 0 0 (16/16rem);
-        color: #353535;
-      }
-
-      .cs-name {
-        font-size: (16/16rem);
-        font-weight: bold;
-        line-height: 1.2em;
-        text-transform: uppercase;
-        margin: 0 0 (4/16rem);
-        color: var(--headerColor);
-        display: block;
-      }
-
-      .cs-job {
-        font-size: (14/16rem);
-        line-height: 1.5em;
-        color: #353535;
-        display: block;
-      }
-
-      .cs-quote-icon {
-        /* 60px - 136px */
-        width: clamp(3.75rem, 10vw, 8.5rem);
-        height: auto;
-        position: absolute;
-        /* 16px - 32px */
-        right: clamp(1rem, 4vw, 2rem);
-        bottom: (0/16rem);
-      }
-
-      .cs-button-solid {
-        margin-top: (32/16rem);
-      }
-    }
+  .about-page { background: var(--cream); }
+  .about-hero { padding-block: clamp(2.5rem, 7vw, 5.5rem); overflow: hidden; background: var(--forest-deep); }
+  .about-hero__inner { display: grid; gap: 2.5rem; align-items: center; }
+  .about-hero__copy { max-width: 43rem; color: #dce7df; }
+  .about-hero .section-label, .about-principles .section-label, .about-cta .section-label { color: #bfd2c2; }
+  .about-hero h1 { max-width: 11ch; color: var(--white); font-size: clamp(2.8rem, 10vw, 5.8rem); line-height: .94; letter-spacing: -.05em; }
+  .about-hero__intro { max-width: 39rem; margin-top: 1.35rem; font-size: clamp(1.08rem, 2vw, 1.3rem); line-height: 1.55; }
+  .about-hero__actions { display: flex; flex-direction: column; gap: .75rem; margin-top: 2rem; }
+  .about-button { display: inline-flex; min-height: 3.3rem; align-items: center; justify-content: center; padding: .8rem 1.25rem; border: 2px solid transparent; border-radius: .75rem; font-weight: 700; line-height: 1.2; text-align: center; text-decoration: none; transition: background-color 180ms ease, color 180ms ease, transform 180ms ease; }
+  .about-button:hover { transform: translateY(-2px); }
+  .about-button--primary { background: var(--gold); color: var(--forest-deep); }
+  .about-button--primary:hover { background: #dda35b; }
+  .about-button--quiet { border-color: rgba(255,255,255,.65); color: var(--white); }
+  .about-button--quiet:hover { background: var(--white); color: var(--forest-deep); }
+  .about-hero__portrait { position: relative; overflow: hidden; margin: 0; border-radius: var(--radius); background: var(--sage); aspect-ratio: 1; }
+  .about-hero__portrait :global(picture), .about-hero__portrait :global(img) { width: 100%; height: 100%; }
+  .about-hero__portrait :global(img) { object-fit: cover; }
+  .about-hero__portrait figcaption { position: absolute; right: .75rem; bottom: .75rem; left: .75rem; display: flex; align-items: baseline; justify-content: space-between; gap: .75rem; padding: .8rem 1rem; border-radius: .85rem; background: var(--cream); color: var(--forest-deep); }
+  .about-hero__portrait figcaption strong { font-family: var(--font-heading); }
+  .about-hero__portrait figcaption span { color: var(--charcoal-soft); font-size: .78rem; font-weight: 600; text-align: right; }
+  .about-story { display: grid; gap: 2rem; padding-block: var(--section-space); }
+  .about-story__heading h2 { max-width: 18ch; font-size: clamp(2rem, 4.5vw, 3.35rem); }
+  .about-story__copy { max-width: 43rem; color: var(--charcoal-soft); }
+  .about-story__copy p + p { margin-top: 1.15rem; }
+  .about-principles { padding-block: var(--section-space); background: var(--forest); color: #dce7df; }
+  .about-principles__inner { display: grid; gap: 2.5rem; }
+  .about-principles__intro { max-width: 38rem; }
+  .about-principles h2 { max-width: 18ch; color: var(--white); font-size: clamp(2rem, 4.5vw, 3.35rem); }
+  .about-principles__list { display: grid; margin: 0; padding: 0; list-style: none; }
+  .about-principles__list li { display: grid; grid-template-columns: 2.75rem 1fr; gap: 1rem; padding-block: 1.45rem; border-top: 1px solid rgba(255,255,255,.18); }
+  .about-principles__list > li > span { color: #d9a45d; font-weight: 800; }
+  .about-principles__list h3 { margin-bottom: .35rem; color: var(--white); font-size: 1.25rem; }
+  .about-principles__list p { max-width: 39rem; color: #d4e0d8; }
+  .about-work { display: grid; gap: 2.5rem; align-items: center; padding-block: var(--section-space); }
+  .about-work__image { overflow: hidden; margin: 0; border-radius: var(--radius); background: var(--sage-light); aspect-ratio: 4 / 5; }
+  .about-work__image :global(picture), .about-work__image :global(img) { width: 100%; height: 100%; }
+  .about-work__image :global(img) { object-fit: cover; object-position: center 32%; }
+  .about-work__copy { max-width: 42rem; }
+  .about-work h2 { max-width: 17ch; font-size: clamp(2rem, 4.5vw, 3.35rem); }
+  .about-work__copy > p:not(.section-label) { color: var(--charcoal-soft); }
+  .about-work__copy > p + p { margin-top: 1rem; }
+  .about-work__copy > a { display: inline-block; margin-top: 1.4rem; color: var(--forest); font-weight: 700; text-underline-offset: .3rem; }
+  .about-cta { padding-block: clamp(3.75rem, 8vw, 6rem); background: var(--forest-deep); color: #dce7df; }
+  .about-cta__inner { display: grid; gap: 2rem; align-items: center; }
+  .about-cta h2 { max-width: 18ch; color: var(--white); font-size: clamp(2rem, 4.5vw, 3.2rem); }
+  .about-cta__inner > div > p:not(.section-label) { max-width: 58ch; }
+  .about-cta__areas { margin-top: .85rem; color: #afc5b4; font-size: .9rem; }
+  .about-cta__actions { display: flex; flex-direction: column; align-items: flex-start; gap: .9rem; }
+  .about-button--light { background: var(--white); color: var(--forest-deep); }
+  .about-button--light:hover { background: var(--sage-light); }
+  .about-cta__actions > a:not(.about-button) { color: var(--white); font-weight: 700; text-underline-offset: .25rem; }
+  @media (min-width: 540px) { .about-hero__actions { flex-direction: row; } .about-button { width: auto; } }
+  @media (min-width: 820px) {
+    .about-hero__inner { grid-template-columns: minmax(0, 1.08fr) minmax(23rem, .72fr); gap: clamp(3rem, 7vw, 6.5rem); }
+    .about-story { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(3rem, 8vw, 7rem); }
+    .about-principles__inner { grid-template-columns: minmax(0, .8fr) minmax(0, 1fr); gap: clamp(3rem, 8vw, 7rem); }
+    .about-work { grid-template-columns: minmax(21rem, .82fr) minmax(0, 1fr); gap: clamp(3rem, 8vw, 7rem); }
+    .about-cta__inner { grid-template-columns: minmax(0, 1fr) auto; }
+    .about-cta__actions { align-items: flex-end; }
   }
-
-  /* Desktop - 1024px */
-  @media only screen and (min-width: 64em) {
-    #sbs {
-      .cs-container {
-        flex-flow: row;
-        justify-content: space-between;
-        gap: (52/16rem);
-      }
-
-      .cs-left {
-        font-size: ~"min(1.2vw, 1em)";
-        flex: none;
-      }
-
-      .cs-right {
-        margin: 0;
-      }
-    }
+  @media (max-width: 480px) {
+    .about-hero__inner { padding-inline: 1rem; }
+    .about-hero h1 { font-size: clamp(2.7rem, 14vw, 3.65rem); }
+    .about-hero__portrait figcaption { align-items: flex-start; flex-direction: column; gap: .1rem; }
+    .about-hero__portrait figcaption span { text-align: left; }
   }
-
-  /* Dark Mode */
-  @media only screen and (min-width: 0em) {
-    body.dark-mode {
-      #sbs {
-        .cs-left {
-          &:before,
-          &:after {
-            background: var(--accent);
-          }
-        }
-
-        .cs-picture2 {
-          background-color: var(--dark);
-          /* 6px - 12px */
-          border: clamp(0.375em, 1.5vw, 0.75em) solid var(--dark);
-        }
-
-        .cs-topper {
-          color: var(--primaryLight);
-        }
-
-        .cs-title,
-        .cs-text,
-        .cs-h3,
-        .cs-flex-p,
-        .cs-name {
-          color: var(--bodyTextColorWhite);
-        }
-
-        .cs-flex-group {
-          background-color: var(--bodyTextColor);
-        }
-
-        .cs-job {
-          color: var(--bodyTextColorWhite);
-          opacity: 0.8;
-        }
-
-        .cs-quote-icon {
-          opacity: 0.2;
-        }
-      }
-    }
-  }
+  @media (prefers-reduced-motion: reduce) { .about-button { transition: none; } .about-button:hover { transform: none; } }
 </style>
