@@ -3,7 +3,6 @@ import { Image, type ImageMetadata } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Footer from "./Footer.astro";
-import client from "../data/client.json";
 
 interface RelatedService {
   label: string;
@@ -115,19 +114,6 @@ const projects = (await getCollection("recentWork", ({ data }) => data.services.
       </nav>
     )}
 
-    <section class="quote-band" aria-labelledby="quote-title">
-      <div class="page-wrap quote-band__inner">
-        <div>
-          <p class="section-label">Tell Adam about the job</p>
-          <h2 id="quote-title">Not sure exactly what your tree or garden needs?</h2>
-          <p>Send a few details and photographs. Adam can discuss the work with you before providing a quote.</p>
-        </div>
-        <div class="quote-band__actions">
-          <a class="service-button service-button--light" href="/contact">{quoteLabel}</a>
-          <a class="quote-band__phone" href={`tel:${client.phoneForTel}`}>Or call {client.phoneFormatted}</a>
-        </div>
-      </div>
-    </section>
   </article>
   <Footer />
 </BaseLayout>
@@ -142,8 +128,7 @@ const projects = (await getCollection("recentWork", ({ data }) => data.services.
   .service-overview{display:grid;gap:2rem;padding-block:var(--section-space)}.service-overview__copy{max-width:44rem}.service-overview__copy h2{max-width:20ch;font-size:clamp(1.9rem,4vw,3rem)}.service-overview__copy p+ p{margin-top:1rem}.service-overview__copy p{color:var(--charcoal-soft)}.service-overview__list{align-self:start;padding:clamp(1.5rem,4vw,2.25rem);border-radius:var(--radius);background:var(--forest);color:var(--white)}.service-overview__list h2{margin-bottom:1rem;color:var(--white);font-size:1.35rem}.service-overview__list ul{display:grid;gap:.85rem;margin:0;padding-left:1.25rem}.service-overview__list li::marker{color:#b9d3bd}
   .related-work{padding-block:var(--section-space);background:var(--sage-lighter)}.related-work h2{max-width:22ch;font-size:clamp(1.9rem,4vw,3rem)}.related-work__grid{display:grid;gap:1.25rem}.work-card{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--cream)}.work-card__image{display:block;overflow:hidden;aspect-ratio:16/10;background:var(--sage-light)}.work-card__image :global(picture),.work-card__image :global(img){width:100%;height:100%}.work-card__image :global(img){object-fit:cover;transition:transform 350ms cubic-bezier(.22,1,.36,1)}.work-card__image:hover :global(img){transform:scale(1.025)}.work-card__body{padding:1.4rem}.work-card__meta{margin-bottom:.5rem;color:var(--sage);font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.work-card h3{margin-bottom:.5rem;font-size:1.35rem}.work-card__body>p:not(.work-card__meta){color:var(--charcoal-soft)}.work-card__link{display:inline-block;margin-top:1rem;color:var(--forest);font-weight:700;text-underline-offset:.25rem}
   .related-services{padding-block:var(--section-space)}.related-services h2{font-size:clamp(1.9rem,4vw,3rem)}.related-services__links{display:grid;border-top:1px solid var(--line)}.related-services__links a{display:flex;min-height:4rem;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);color:var(--forest);font-weight:700;text-decoration:none}.related-services__links a:hover{color:var(--gold)}
-  .quote-band{padding-block:clamp(3.5rem,7vw,5.5rem);background:var(--forest-deep);color:var(--white)}.quote-band__inner{display:grid;gap:2rem;align-items:center}.quote-band .section-label{color:#b9d3bd}.quote-band h2{max-width:19ch;margin-bottom:.75rem;color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem)}.quote-band p:last-child{max-width:56ch;color:#dce7df}.quote-band__actions{display:flex;flex-direction:column;align-items:flex-start;gap:1rem}.service-button--light{background:var(--white);color:var(--forest-deep)}.service-button--light:hover{background:var(--sage-light)}.quote-band__phone{color:var(--white);font-weight:700;text-underline-offset:.25rem}
-  @media(min-width:760px){.service-overview{grid-template-columns:minmax(0,1.35fr) minmax(18rem,.75fr);gap:clamp(2.5rem,7vw,6rem)}.related-work__grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quote-band__inner{grid-template-columns:minmax(0,1fr) auto}.quote-band__actions{align-items:flex-end}}
+  @media(min-width:760px){.service-overview{grid-template-columns:minmax(0,1.35fr) minmax(18rem,.75fr);gap:clamp(2.5rem,7vw,6rem)}.related-work__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
   @media(max-width:620px){.service-landing__hero{min-height:46rem}.service-landing__shade{background:linear-gradient(0deg,rgba(10,27,19,.98),rgba(10,27,19,.84) 64%,rgba(10,27,19,.2))}.service-landing__hero-inner{padding-block:3.5rem}.service-landing__hero h1{font-size:clamp(2.3rem,10.5vw,3.35rem)}.service-landing__actions{align-items:stretch;flex-direction:column}.service-button{width:100%}}
   @media(prefers-reduced-motion:reduce){.service-button,.work-card__image :global(img){transition:none}.service-button:hover,.work-card__image:hover :global(img){transform:none}}
 </style>

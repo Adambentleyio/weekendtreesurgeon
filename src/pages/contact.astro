@@ -11,7 +11,7 @@ import climbingPhoto from "../assets/images/dismantle.jpg";
 >
   <section id="cs-contact">
     <div class="cs-container">
-      <form id="cs-form" name="Contact Form" method="post" enctype="multipart/form-data" netlify data-contact-form>
+      <form id="cs-form" name="Contact Form" method="POST" enctype="multipart/form-data" data-netlify="true" data-contact-form>
         <input type="hidden" name="form-name" value="Contact Form" />
         <div class="cs-content">
           <span class="cs-topper">Request a quote</span>
@@ -76,12 +76,13 @@ import climbingPhoto from "../assets/images/dismantle.jpg";
             required
             name="message"
             id="message"
+            autocomplete="off"
             placeholder="Tell Adam about the tree, hedge or garden work"></textarea>
         </label>
         <label class="field cs-label-photos">
           <span>Photographs <span class="optional">Optional</span></span>
           <span class="field-hint" id="photo-hint">A few clear photos can help Adam understand the work.</span>
-          <input type="file" name="photos" accept="image/*" multiple aria-describedby="photo-hint photo-status" data-photo-input />
+          <input type="file" name="photos" accept="image/*" autocomplete="off" multiple aria-describedby="photo-hint photo-status" data-photo-input />
           <span class="photo-status" id="photo-status" data-photo-status>No photos selected</span>
         </label>
         <p class="form-error" id="contact-error" data-contact-error role="alert" aria-live="polite" hidden>Please add a phone number or email address so Adam can reply.</p>
