@@ -1,0 +1,175 @@
+---
+import { Image, Picture } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import client from "../data/client.json";
+import heroImage from "../assets/images/dismantle.jpg";
+import stapeleyBefore from "../assets/images/box-hedge-blight-nantwich/IMG_9178.JPG";
+import stapeleyAfter from "../assets/images/box-hedge-blight-nantwich/IMG_9325.JPG";
+import willastonAfter from "../assets/images/hedge-cutting-willaston/hedge-willaston-after-1.jpg";
+import shavingtonAfter from "../assets/images/garden-maintenance-shavington/garden-maintenance-shavington-after.jpg";
+import adamPhoto from "../assets/images/adam-profile.jpg";
+import founderPhoto from "../assets/images/founder-headshot.webp";
+
+const page = {
+  title: "Tree Surgeon Nantwich | Tree Removal & Pruning",
+  description: "Looking for a tree surgeon in Nantwich? Weekend Tree Surgeon provides tree removal, pruning, crown reductions and hedge cutting. Get a free quote.",
+  canonical: `https://www.${client.domain}/tree-surgeon-nantwich/`,
+  services: [
+    { title: "Tree removal", href: "/services/tree-removal", copy: "When a tree cannot be retained, Adam can assess the space and plan an appropriate removal. Trees near sheds, fences or established planting may need to be dismantled in smaller sections. Stump work and removal of timber are discussed clearly as part of the quote." },
+    { title: "Tree pruning", href: "/services/tree-pruning", copy: "Selective pruning can remove unwanted growth, improve clearance and help bring a garden tree back into a more suitable shape. Adam will look at the tree, its condition and what you want to achieve before recommending the scope of work." },
+    { title: "Crown reduction", href: "/services/crown-reduction", copy: "A crown reduction can reduce the height or spread of a suitable tree while retaining its basic form. The right approach depends on the species, condition and surroundings, so the intended result is agreed after the tree has been assessed." },
+    { title: "Pollarding", href: "/services/pollarding", copy: "Pollarding is a planned pruning method for suitable trees, often repeated on an established cycle. It is not appropriate for every species or situation. Adam can assess the tree and explain whether pollarding fits its history and the result you need." },
+    { title: "Hedge cutting and maintenance", href: "/services/hedge-cutting", copy: "Overgrown hedges can take light and usable space from a garden. Hedge cutting can include trimming, reshaping or reducing an established hedge to create a tidier, more balanced boundary. Green-waste removal is confirmed when the work is quoted." },
+    { title: "Hedge removal", href: "/services/hedge-removal", copy: "Failed, unwanted or badly placed hedges can be removed to reclaim space or prepare a border for something new. Adam will discuss the stems, roots, nearby boundaries and planting, then make clear what removal and waste handling are included." },
+  ],
+  reviews: [
+    { quote: "Adam took down two large conifers and reduced my leylandii hedge by three feet. Excellent work: skilful, tidy and pleasant to have around.", name: "Mrs B", service: "Conifer removal and hedge reduction" },
+    { quote: "He turned up on time, worked incredibly hard and left me with a garden I can manage. Trustworthy, lovely to deal with and everything was cleaned up afterwards.", name: "Mrs C", service: "Overgrown garden work" },
+    { quote: "A huge mass of roses was brought back under control, the garage roof was cleared and an overgrown conifer was trimmed. Polite, hardworking and thoroughly tidy.", name: "Clare", service: "Pruning and conifer trimming" },
+    { quote: "The overgrown leylandii and stump were removed efficiently and conscientiously, leaving a much-improved area ready for replanting, plus logs for winter.", name: "Google customer", service: "Leylandii and stump removal" },
+    { quote: "Professional, reliable and easy to deal with from start to finish. The tree and stump were removed, everything was left clean and tidy, and we would happily use Adam again.", name: "Mark", service: "Tree and stump removal" },
+  ],
+  faqs: [
+    { question: "How much does a tree surgeon cost in Nantwich?", answer: "The cost depends on the tree's size and condition, access to the garden, nearby buildings or boundaries, the complexity of the work and whether waste removal is included. Send Adam a few details and photographs for a tailored, no-obligation quotation." },
+    { question: "Do I need permission to cut down a tree in Nantwich?", answer: "Possibly. A Tree Preservation Order or conservation area rules may restrict work to a tree. Cheshire East Council is the local planning authority for Nantwich, so check the tree's status with the council before work begins. Adam can discuss this with you, but the required permission must be in place." },
+    { question: "Can you remove a tree close to my house or fence?", answer: "That depends on the tree's condition, access and the surrounding structures. Where there is not enough space to fell a tree in one piece, sectional dismantling may be appropriate. Adam will inspect the site before agreeing the method and scope." },
+    { question: "Do you remove branches and waste afterwards?", answer: "Waste arrangements are agreed in the quote. Where removal is included, the specified branches, timber or green waste will be taken away. The No-Mess Guarantee also means that if you are not satisfied with the agreed tidy-up, Adam will return and sort it." },
+    { question: "Do you cover Stapeley, Willaston and surrounding villages?", answer: "Yes. Weekend Tree Surgeon works in Nantwich, Stapeley, Crewe, Wistaston, Shavington, Hough, Hankelow, Audlem and nearby Cheshire villages. If you are unsure whether your address is covered, send Adam your postcode with a short description of the job." },
+  ],
+};
+---
+
+<BaseLayout title={page.title} description={page.description} canonical={page.canonical} ogImage={heroImage.src} showNav={true} navCtaHref="/contact">
+  <article class="nantwich-page">
+    <nav class="breadcrumb page-wrap" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>Tree surgeon Nantwich</span></nav>
+
+    <section class="local-hero" aria-labelledby="page-title">
+      <div class="page-wrap local-hero__inner">
+        <div class="local-hero__copy">
+          <p class="section-label">Local tree and hedge work</p>
+          <h1 id="page-title">Tree Surgeon in <span>Nantwich</span></h1>
+          <p class="local-hero__intro">If you reached this page, the chances are you're looking for a reliable tree surgeon in Nantwich? <i>Hello there.</i></p>
+          <p class="local-hero__intro">Whether you need an overgrown tree reducing or pruning, a damaged or misplaced, misshapen or mistaken tree removed or dismantled, or you want garden tidied up, I'm one of the firnedliest tree guys around.</p>
+          <ul class="local-hero__trust" aria-label="What to expect">
+            <li>You deal directly with Adam</li><li>Clear, agreed quotations</li><li>Genuine local project evidence</li>
+          </ul>
+          <div class="actions"><a class="button button--primary" href="/contact">Get a free quote</a><a class="button button--secondary" href={`tel:${client.phoneForTel}`}>Call {client.phoneFormatted}</a></div>
+        </div>
+        <figure class="local-hero__media">
+          <Picture src={heroImage} formats={["avif", "webp"]} widths={[480, 720, 960, 1200]} sizes="(min-width: 860px) 42vw, 100vw" alt="Adam dismantling a garden tree in sections while working from ropes" loading="eager" fetchpriority="high" />
+          <figcaption><Image src={adamPhoto} alt="Adam Bentley" width={56} height={56} format="webp" /><span><strong>Adam Bentley</strong>Local tree surgeon serving Nantwich</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="review-strip" aria-labelledby="review-strip-title">
+      <div class="page-wrap">
+        <div class="review-strip__heading">
+          <div><a class="section-label review-strip__google-link" href={client.googleBusinessUrl}>Genuine Google reviews <span aria-hidden="true">↗</span></a><h2 id="review-strip-title">Homeowners on working with Adam</h2></div>
+        </div>
+      </div>
+      <div class="review-marquee">
+        <div class="review-marquee__track">
+          <div class="review-marquee__group">
+            {page.reviews.map((review) => (
+              <blockquote class="review-card">
+                <p>{review.quote}</p>
+                <footer><strong>{review.name}</strong><span>{review.service}</span></footer>
+              </blockquote>
+            ))}
+          </div>
+          <div class="review-marquee__group" aria-hidden="true">
+            {page.reviews.map((review) => (
+              <blockquote class="review-card">
+                <p>{review.quote}</p>
+                <footer><strong>{review.name}</strong><span>{review.service}</span></footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section page-wrap" aria-labelledby="services-title">
+      <div class="section-heading"><p class="section-label">Practical help for your garden</p><h2 id="services-title">Tree Surgery Services in Nantwich</h2><p>From a single branch to an overgrown boundary, the work starts with understanding the tree, the garden and the result you need.</p></div>
+      <div class="service-list">{page.services.map((service, index) => <article><span>{String(index + 1).padStart(2, "0")}</span><div><h3>{service.title}</h3><p>{service.copy}</p><a href={service.href}>Explore {service.title.toLowerCase()} <span aria-hidden="true">→</span></a></div></article>)}</div>
+    </section>
+
+    <section class="work-section" id="recent-work" aria-labelledby="work-title">
+      <div class="page-wrap">
+        <div class="section-heading"><p class="section-label">Real jobs, close to home</p><h2 id="work-title">Recent Tree and Hedge Work Around Nantwich</h2><p>These are genuine projects completed in and around Nantwich, using photographs from the work shown.</p></div>
+        <article class="featured-project">
+          <div class="project-pair" aria-label="Stapeley box hedge before removal and after replanting">
+            <figure><Image src={stapeleyBefore} alt="Dead and discoloured box hedge before removal in Stapeley" widths={[400, 640, 800]} sizes="(min-width: 820px) 25vw, 50vw" format="avif" quality={78} loading="lazy" /><figcaption>Before</figcaption></figure>
+            <figure><Image src={stapeleyAfter} alt="Seven young laurels planted after the failed box hedge was removed" widths={[400, 640, 800]} sizes="(min-width: 820px) 25vw, 50vw" format="avif" quality={78} loading="lazy" /><figcaption>After</figcaption></figure>
+          </div>
+          <div class="featured-project__copy"><p class="project-meta">Stapeley, Nantwich · Box hedge removal</p><h3>Failed box replaced with young laurel</h3><p>Around eight dead or diseased box plants were leaving a gap between established laurel. The failed plants and roots were removed, the soil was prepared and seven young laurels were planted to continue the hedge line.</p><a href="/recent-work/box-hedge-removal-stapeley">Read the Stapeley project <span aria-hidden="true">→</span></a></div>
+        </article>
+        <div class="nearby-projects">
+          <article><Image src={willastonAfter} alt="Tall Willaston boundary hedge after it was cut back and shaped" widths={[480, 720]} sizes="(min-width: 760px) 32vw, 100vw" format="webp" quality={78} loading="lazy" /><div><p class="project-meta">Willaston · Hedge cutting</p><h3>Overgrown boundary reshaped</h3><p>A broad, uneven hedge was cut back to restore a cleaner outline and reclaim garden space.</p><a href="/recent-work/hedge-cutting-willaston">See the Willaston work <span aria-hidden="true">→</span></a></div></article>
+          <article><Image src={shavingtonAfter} alt="Shavington garden after hedge, holly and fruit tree maintenance" widths={[480, 720]} sizes="(min-width: 760px) 32vw, 100vw" format="webp" quality={78} loading="lazy" /><div><p class="project-meta">Shavington · Garden maintenance</p><h3>Several garden jobs coordinated</h3><p>Hedge cutting, holly shaping, fruit tree pollarding and stump grinding prepared the garden for new planting.</p><a href="/recent-work/garden-maintenance-shavington">See the Shavington work <span aria-hidden="true">→</span></a></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-section page-wrap" aria-labelledby="why-title">
+      <div><p class="section-label">A straightforward local service</p><h2 id="why-title">Why Choose Weekend Tree Surgeon in Nantwich?</h2></div>
+      <div class="why-section__copy"><p>Weekend Tree Surgeon is deliberately personal. You speak directly with Adam, the person who will look at the job, explain the practical options and take responsibility for the work. That makes it easier to ask questions and understand what has actually been included in your quotation.</p><p>Every garden is different. Access, boundaries, nearby planting and the condition of a tree can all change the right approach. Adam takes those details into account, with careful work in residential gardens and clear expectations before the job starts. If green-waste removal or stump work is required, it is discussed as part of the scope rather than assumed.</p><p>The No-Mess Guarantee backs up the tidy-up: if you are not satisfied with how the agreed work area has been left, Adam will return and sort it. Combined with genuine project photography and direct communication, it is a simple promise of accountability from a local tradesperson.</p></div>
+      <aside class="promise"><span>“</span><p>If I ever leave a mess behind, I’ll come back and sort it.</p><small>The No-Mess Guarantee</small></aside>
+    </section>
+
+    <section class="founder about" aria-labelledby="areas-title">
+      <svg class="about__canopy" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="150" cy="120" r="130" fill="#2E5240" opacity="0.55"/><circle cx="210" cy="80" r="80" fill="#3C6B4F" opacity="0.45"/><circle cx="90" cy="60" r="70" fill="var(--sage)" opacity="0.25"/></svg>
+      <svg class="about__canopy-secondary" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="100" cy="100" r="95" fill="var(--gold)" opacity="0.12"/></svg>
+      <div class="page-wrap about__inner">
+        <span class="section-label">Based close by</span>
+        <h2 id="areas-title">Tree Surgery in Nantwich and Surrounding Areas</h2>
+        <Image src={founderPhoto} class="founder-photo" alt="Adam, founder of Weekend Tree Surgeon, with his wife" width={260} height={260} format="webp" quality={82} loading="lazy" />
+        <h3>Adam</h3>
+        <p class="founder-role">Your local Weekend Tree Surgeon</p>
+        <p>I started Weekend Tree Surgeon in 2025 while living in Stapeley, helping the odd friend and family with any tree, hedge and garden jobs that needed doing properly.</p>
+        <p>WTS takes on up to 3 jobs per week as the orofessional passion project outside of the more technically demanding work I do as a 2-man crew for another firm.</p>
+        <p>I absolutely love working directly with people across Nantwich and the surrounding Cheshire villages. You speak to me about the job and I take responsibility for the work.</p>
+        <div class="trait-list" aria-label="Areas served around Nantwich"><span>Nantwich</span><span>Stapeley</span><span>Wistaston</span><span>Shavington</span><span>Crewe</span><span>Nearby villages</span></div>
+      </div>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faq-title"><div class="page-wrap faq-section__inner"><div class="faq-section__heading"><p class="section-label">Useful answers before you enquire</p><h2 id="faq-title">Frequently Asked Questions About Tree Surgery in Nantwich</h2></div><div class="faq-list">{page.faqs.map((faq) => <details><summary>{faq.question}<span aria-hidden="true">+</span></summary><p>{faq.answer}</p></details>)}</div></div></section>
+
+    <section class="final-cta" aria-labelledby="cta-title">
+      <div class="page-wrap final-cta__inner">
+        <div class="final-cta__content">
+          <p class="section-label">Tell Adam what needs doing</p>
+          <h2 id="cta-title">Need a Tree Surgeon in Nantwich?</h2>
+          <p>Whether you need a tree removing, branches pruning or an overgrown hedge brought back under control, share a few details and photographs for a free, no-obligation quote.</p>
+        </div>
+        <form name="nantwich-cta-contact" method="POST" data-netlify="true" class="quote-card final-cta__form">
+          <input type="hidden" name="form-name" value="nantwich-cta-contact" />
+          <div class="quote-card__row">
+            <input id="nantwich-cta-phone" type="tel" name="phone" inputmode="tel" placeholder="Your mobile number" autocomplete="tel" aria-label="Your mobile number" required />
+            <button type="submit" class="quote-card__btn">Contact</button>
+          </div>
+          <p class="final-cta__contact-options">
+            Rather talk? <a href={`tel:${client.phoneForTel}`}>Call {client.phoneFormatted}</a>
+            <span aria-hidden="true">·</span>
+            <a href="/contact">Tell me about the job</a>
+          </p>
+        </form>
+      </div>
+    </section>
+  </article>
+  <Footer compact={true} />
+</BaseLayout>
+
+<style lang="less">
+  .nantwich-page{background:var(--cream)}.breadcrumb{display:flex;gap:.55rem;align-items:center;padding-block:1rem;color:var(--charcoal-soft);font-size:.82rem}.breadcrumb a{text-underline-offset:.2rem}.local-hero{padding-block:clamp(2.5rem,6vw,5rem);background:var(--forest-deep);color:#dce7df}.local-hero__inner{display:grid;gap:2.25rem;align-items:center}.local-hero__copy{max-width:45rem}.local-hero .section-label,.final-cta .section-label{color:#bfd2c2}.local-hero h1{max-width:13ch;color:var(--white);font-size:clamp(2.65rem,8.4vw,5.25rem);line-height:.98;letter-spacing:-.04em}.local-hero h1 span{color:#d6a35d}.local-hero__intro{max-width:43rem;margin-top:1.35rem;font-size:clamp(1.05rem,2vw,1.22rem);line-height:1.6}.local-hero__trust{display:flex;flex-wrap:wrap;gap:.55rem 1.25rem;margin:1.5rem 0 0;padding:0;list-style:none}.local-hero__trust li{position:relative;padding-left:1.25rem;font-size:.9rem;font-weight:600}.local-hero__trust li::before{content:"";position:absolute;top:.52em;left:0;width:.55rem;height:.35rem;border-bottom:2px solid #d6a35d;border-left:2px solid #d6a35d;transform:rotate(-45deg)}.actions{display:flex;flex-direction:column;gap:.75rem;margin-top:2rem}.button{display:inline-flex;min-height:3.25rem;align-items:center;justify-content:center;padding:.8rem 1.3rem;border:2px solid transparent;border-radius:.75rem;font-weight:700;line-height:1.2;text-align:center;text-decoration:none;transition:background-color 180ms ease,color 180ms ease,transform 180ms ease}.button:hover{transform:translateY(-2px)}.button--primary{background:var(--gold);color:var(--forest-deep)}.button--primary:hover{background:#dda35b}.button--secondary{border-color:rgba(255,255,255,.7);color:var(--white)}.button--secondary:hover{background:var(--white);color:var(--forest-deep)}.local-hero__media{position:relative;overflow:hidden;margin:0;border-radius:var(--radius);aspect-ratio:4/5;background:var(--forest)}.local-hero__media :global(picture),.local-hero__media> :global(picture) img{width:100%;height:100%}.local-hero__media :global(img){width:100%;height:100%;object-fit:cover}.local-hero__media figcaption{position:absolute;right:.8rem;bottom:.8rem;left:.8rem;display:flex;align-items:center;gap:.75rem;padding:.7rem;border-radius:1rem;background:var(--cream);color:var(--forest-deep)}.local-hero__media figcaption :global(img){width:3.5rem;height:3.5rem;flex:none;border-radius:50%;object-fit:cover}.local-hero__media figcaption span{display:grid;font-size:.78rem;line-height:1.4}.local-hero__media figcaption strong{font-size:.94rem}
+  .section-heading{max-width:47rem}.section-heading h2,.why-section h2,.faq-section h2{font-size:clamp(2rem,5vw,3.35rem);line-height:1.05;letter-spacing:-.025em}.section-heading>p:last-child{max-width:42rem;color:var(--charcoal-soft)}.service-section{padding-block:var(--section-space)}.service-list{margin-top:2.25rem;border-top:1px solid var(--line)}.service-list article{display:grid;grid-template-columns:2.5rem 1fr;gap:.75rem;padding-block:1.5rem;border-bottom:1px solid var(--line)}.service-list>article>span{color:var(--gold);font-weight:700}.service-list h3{font-size:clamp(1.3rem,3vw,1.7rem)}.service-list p{max-width:47rem;margin-top:.5rem;color:var(--charcoal-soft)}.service-list a,.featured-project__copy>a,.nearby-projects a{display:inline-block;margin-top:.8rem;color:var(--forest);font-weight:700;text-underline-offset:.24rem}
+  .review-strip{overflow:hidden;padding-block:clamp(2.75rem,6vw,4.75rem);background:var(--sage-light)}.review-strip__heading{margin-bottom:1.5rem}.review-strip__heading h2{max-width:18ch;font-size:clamp(1.8rem,4vw,2.65rem);line-height:1.08}.review-strip__google-link{width:fit-content;text-underline-offset:.25rem;transition:color 180ms ease}.review-strip__google-link:hover{color:var(--forest)}.review-marquee{width:100%;overflow:hidden}.review-marquee__track{display:grid;grid-auto-flow:column;grid-auto-columns:max-content;gap:.8rem;width:max-content;padding-inline:.8rem;animation:review-scroll 52s linear infinite}.review-marquee:hover .review-marquee__track{animation-play-state:paused}.review-marquee__group{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(17.5rem,27vw,23rem);gap:.8rem;width:max-content}.review-card{display:flex;width:auto;min-width:0;min-height:15.5rem;flex-direction:column;gap:1rem;margin:0;padding:1.3rem;border:1px solid rgba(32,61,46,.12);border-radius:var(--radius);background:var(--cream)}.review-card>p{color:var(--forest);font-family:var(--font-heading);font-size:1.05rem;font-weight:700;line-height:1.45}.review-card footer{display:grid;gap:.08rem;margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);font-size:.78rem}.review-card footer strong{color:var(--forest)}.review-card footer span{color:var(--charcoal-soft)}@keyframes review-scroll{to{transform:translateX(calc(-50% - .4rem))}}
+  .work-section{padding-block:var(--section-space);background:var(--sage-lighter)}.featured-project{display:grid;overflow:hidden;margin-top:2.25rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--cream)}.project-pair{display:grid;grid-template-columns:1fr 1fr;gap:.3rem;min-height:24rem}.project-pair figure{position:relative;overflow:hidden;margin:0}.project-pair :global(picture),.project-pair :global(img){width:100%;height:100%}.project-pair :global(img){object-fit:cover}.project-pair figcaption{position:absolute;bottom:.65rem;left:.65rem;padding:.3rem .65rem;border-radius:10rem;background:var(--cream);color:var(--forest);font-size:.72rem;font-weight:700}.featured-project__copy{padding:clamp(1.5rem,4vw,2.5rem)}.project-meta{margin-bottom:.55rem;color:var(--sage);font-size:.75rem;font-weight:700;letter-spacing:.055em;text-transform:uppercase}.featured-project h3,.nearby-projects h3{font-size:clamp(1.35rem,3vw,1.8rem)}.featured-project__copy>p:not(.project-meta),.nearby-projects article div>p:not(.project-meta){margin-top:.65rem;color:var(--charcoal-soft)}.nearby-projects{display:grid;gap:1rem;margin-top:1rem}.nearby-projects article{display:grid;overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--cream)}.nearby-projects article> :global(picture),.nearby-projects article> :global(img){width:100%;height:15rem}.nearby-projects article> :global(picture) img,.nearby-projects article> :global(img){object-fit:cover}.nearby-projects article>div{padding:1.35rem}
+  .why-section{display:grid;gap:2rem;padding-block:var(--section-space)}.why-section__copy{display:grid;gap:1rem;max-width:47rem;color:var(--charcoal-soft)}.promise{position:relative;margin:0;padding:1.6rem;border-radius:var(--radius);background:var(--forest);color:var(--white)}.promise>span{color:var(--gold);font-family:Georgia,serif;font-size:4rem;line-height:.6}.promise p{margin-top:.6rem;color:var(--white);font-family:var(--font-heading);font-size:1.35rem;font-weight:700;line-height:1.3}.promise small{display:block;margin-top:1rem;color:#bfd2c2;font-weight:700}.founder .about__inner{position:relative;z-index:1}.founder h2{max-width:22ch;font-size:clamp(2rem,5vw,3.35rem);line-height:1.05;letter-spacing:-.025em}.founder-photo :global(img){width:100%;height:100%;border-radius:50%;object-fit:cover}
+  .faq-section{padding-block:var(--section-space);background:var(--forest-deep)}.faq-section__inner{display:grid;gap:2rem}.faq-section .section-label{color:#bfd2c2}.faq-section h2{color:var(--white)}.faq-list{border-top:1px solid rgba(255,255,255,.2)}.faq-list details{border-bottom:1px solid rgba(255,255,255,.2);color:#dce7df}.faq-list summary{display:grid;grid-template-columns:1fr 2rem;gap:1rem;align-items:center;padding-block:1.25rem;color:var(--white);font-family:var(--font-heading);font-size:1.08rem;font-weight:700;cursor:pointer;list-style:none}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary span{color:var(--gold);font-family:var(--font-body);font-size:1.5rem;font-weight:400;text-align:center}.faq-list details[open] summary span{transform:rotate(45deg)}.faq-list details p{max-width:44rem;padding:0 2.75rem 1.4rem 0;color:#bfd2c2}.final-cta{padding-block:clamp(4rem,9vw,7.5rem);background:var(--forest);color:#dce7df}.final-cta__inner{display:grid;gap:clamp(2.75rem,7vw,5.5rem)}.final-cta__content{max-width:46rem}.final-cta h2{max-width:15ch;color:var(--white);font-size:clamp(2.4rem,6vw,4.4rem);line-height:.98;letter-spacing:-.035em}.final-cta__content>p:last-child{max-width:42rem;margin-top:1.35rem;color:#c6d7ca;font-size:clamp(1rem,2vw,1.15rem);line-height:1.65}.final-cta__form.quote-card{align-self:center;width:100%;margin:0;padding:1.25rem;border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);background:var(--cream);box-shadow:none}.final-cta__form .quote-card__row{flex-direction:column}.final-cta__form .quote-card__row input{min-height:3.25rem;background:var(--white)}.final-cta__form .quote-card__btn{min-height:3.25rem;color:var(--forest-deep)}.final-cta__contact-options{display:flex;flex-wrap:wrap;justify-content:center;gap:.1rem .45rem;margin:.85rem 0 0;color:var(--charcoal-soft);font-size:.8rem;line-height:1.5;text-align:center}.final-cta__contact-options a{color:var(--forest);font-weight:700;text-underline-offset:.2rem}
+  @media(min-width:620px){.actions{flex-direction:row}.button{width:auto}.nearby-projects{grid-template-columns:repeat(2,minmax(0,1fr))}.final-cta__form .quote-card__row{flex-direction:row}}
+  @media(min-width:820px){.local-hero__inner{grid-template-columns:minmax(0,1.08fr) minmax(20rem,.72fr);gap:clamp(3rem,7vw,6rem)}.local-hero__media{aspect-ratio:4/5}.service-list article{grid-template-columns:3.5rem minmax(0,1fr);padding-block:1.8rem}.featured-project{grid-template-columns:minmax(0,1.15fr) minmax(20rem,.85fr);align-items:stretch}.nearby-projects article{grid-template-columns:12rem 1fr}.nearby-projects article> :global(picture),.nearby-projects article> :global(img){height:100%;min-height:14rem}.why-section{grid-template-columns:minmax(0,.8fr) minmax(0,1.1fr);column-gap:clamp(3rem,7vw,6rem)}.promise{grid-column:2}.faq-section__inner{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(3rem,7vw,7rem)}.final-cta__inner{grid-template-columns:minmax(0,1.25fr) minmax(23rem,.75fr);align-items:center;gap:clamp(3.5rem,7vw,6.5rem)}}
+  @media(prefers-reduced-motion:reduce){.button,.review-strip__google-link{transition:none}.button:hover{transform:none}.review-marquee{overflow-x:auto;padding-bottom:.6rem}.review-marquee__track{animation:none}.review-marquee__group[aria-hidden="true"]{display:none}.faq-list details[open] summary span{transform:none}}
+</style>
