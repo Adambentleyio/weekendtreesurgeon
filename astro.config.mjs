@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: "https://www.weekendtreesurgeon.com",
+  site: "https://weekendtreesurgeon.com",
   integrations: [
     sitemap()
   ]
