@@ -4,7 +4,7 @@ description: "See how dead and diseased box containing box tree caterpillars was
 services: ["hedge-removal"]
 serviceLabel: "Box hedge removal"
 location: "Stapeley"
-featuredOrder: 3
+featuredOrder: 5
 card:
   title: "Diseased box hedge replaced"
   summary: "The failed box was removed and the border replanted for a fresh start."

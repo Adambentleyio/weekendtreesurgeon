@@ -4,7 +4,7 @@ description: "See a dead eucalyptus safely dismantled, felled and stump ground i
 services: ["tree-removal"]
 serviceLabel: "Tree removal"
 location: "Leighton, Crewe"
-featuredOrder: 1
+featuredOrder: 3
 card:
   title: "Dead eucalyptus removed"
   summary: "The dead tree and stump were removed, leaving a safer, more open garden."

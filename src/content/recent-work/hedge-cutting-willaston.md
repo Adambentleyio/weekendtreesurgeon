@@ -4,7 +4,7 @@ description: "See how an overgrown boundary hedge in Willaston was carefully cut
 services: ["hedge-cutting"]
 serviceLabel: "Hedge cutting"
 location: "Willaston"
-featuredOrder: 2
+featuredOrder: 4
 card:
   title: "Overgrown hedge cut back"
   summary: "A neater boundary, more light and a hedge brought back under control."
