@@ -31,7 +31,6 @@ project:
     - { label: "Location", value: "Audlem, Cheshire", icon: "pin" }
     - { label: "Work carried out", value: "Mixed boundary hedge reduction and trimming", icon: "shears" }
     - { label: "Plants managed", value: "Holly, hawthorn, buddleia and hops", icon: "leaf" }
-    - { label: "Time on site", value: "To be confirmed", icon: "clock" }
 media:
   type: "stages"
   label: "From overgrown to orderly"

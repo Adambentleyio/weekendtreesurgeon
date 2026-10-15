@@ -1,0 +1,28 @@
+---
+import { Image, type ImageMetadata } from "astro:assets";
+
+type Loading = "eager" | "lazy";
+type FetchPriority = "high" | "low" | "auto";
+
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  widths: number[];
+  sizes: string;
+  format?: "avif" | "webp";
+  quality?: number;
+  loading?: Loading;
+  fetchpriority?: FetchPriority;
+  class?: string;
+  style?: string;
+}
+
+const { src, alt, widths, sizes, format = "webp", quality, loading = "lazy", fetchpriority, class: className, style } = Astro.props;
+const isRemote = typeof src === "string";
+---
+
+{isRemote ? (
+  <img src={src} {alt} {sizes} {loading} fetchpriority={fetchpriority} class={className} {style} decoding="async" />
+) : (
+  <Image src={src} {alt} {widths} {sizes} {format} {quality} {loading} fetchpriority={fetchpriority} class={className} {style} />
+)}

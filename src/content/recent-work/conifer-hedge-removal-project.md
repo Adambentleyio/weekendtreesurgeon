@@ -3,7 +3,6 @@ title: "Conifer Hedge Removal Project"
 description: "See a tall conifer boundary hedge dismantled in controlled sections to open up the garden and reveal the fence behind it."
 services: ["hedge-removal"]
 serviceLabel: "Hedge removal"
-location: "Location to be confirmed"
 card:
   title: "Mature boundary hedge opened up"
   summary: "The hedge was dismantled in sections, opening the boundary while the final stage remains pending."
@@ -28,7 +27,6 @@ project:
   outcome: "The work has opened up the boundary and revealed the fence behind it. A final after photograph will be added when the job is complete."
   outcomeHeading: "The outcome so far"
   details:
-    - { label: "Location", value: "To be confirmed", icon: "pin" }
     - { label: "Work carried out", value: "Hedge dismantled in sections", icon: "shears" }
     - { label: "Project status", value: "Final after photo pending", icon: "clock" }
     - { label: "Current result", value: "Boundary opened up", icon: "leaf" }

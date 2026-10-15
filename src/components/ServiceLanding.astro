@@ -3,6 +3,7 @@ import { Image, type ImageMetadata } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Footer from "./Footer.astro";
+import ContentImage from "./ContentImage.astro";
 
 interface RelatedService {
   label: string;
@@ -89,10 +90,10 @@ const projects = (await getCollection("recentWork", ({ data }) => data.services.
             {projects.map(({ id, data: project }) => (
               <article class="work-card">
                 <a class="work-card__image" href={`/recent-work/${id}`} aria-label={`Read ${project.card.title}`}>
-                  <Image src={project.card.image} alt={project.card.alt} widths={[480, 720, 960]} sizes="(min-width: 760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" />
+                  <ContentImage src={project.card.image} alt={project.card.alt} widths={[480, 720, 960]} sizes="(min-width: 760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" />
                 </a>
                 <div class="work-card__body">
-                  <p class="work-card__meta">{project.serviceLabel} <span aria-hidden="true">·</span> {project.location}</p>
+                  <p class="work-card__meta">{project.serviceLabel}{project.location && <><span aria-hidden="true"> · </span>{project.location}</>}</p>
                   <h3>{project.card.title}</h3>
                   <p>{project.card.summary}</p>
                   <a class="work-card__link" href={`/recent-work/${id}`}>Read the project <span aria-hidden="true">→</span></a>

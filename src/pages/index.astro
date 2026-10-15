@@ -6,6 +6,7 @@ import founderPhoto from "../assets/images/founder-headshot.webp";
 import adamProfile from "../assets/images/adam-profile.jpg";
 import climbingPhoto from "../assets/images/dismantle.jpg";
 import client from "../data/client.json";
+import ContentImage from "../components/ContentImage.astro";
 
 const recentProjects = (await getCollection("recentWork"))
   .filter(({ data }) => data.featuredOrder)
@@ -76,10 +77,10 @@ const recentProjects = (await getCollection("recentWork"))
         {recentProjects.map(({ id, data: project }, index) => (
           <article class:list={["project-card", { "project-card--featured": index === 0 }]}>
             <a class="project-card__image" href={`/recent-work/${id}`} aria-label={`Read ${project.card.title}`}>
-              <Image src={project.card.image} alt={project.card.alt} widths={[480, 768, 1120]} sizes={index === 0 ? "(min-width: 768px) 55vw, 100vw" : "(min-width: 768px) 35vw, 100vw"} format="avif" quality={78} loading="lazy" />
+              <ContentImage src={project.card.image} alt={project.card.alt} widths={[480, 768, 1120]} sizes={index === 0 ? "(min-width: 768px) 55vw, 100vw" : "(min-width: 768px) 35vw, 100vw"} format="avif" quality={78} loading="lazy" />
             </a>
             <div class="project-card__body">
-              <p class="project-card__meta">{project.serviceLabel} <span aria-hidden="true">·</span> {project.location}</p>
+              <p class="project-card__meta">{project.serviceLabel}{project.location && <><span aria-hidden="true"> · </span>{project.location}</>}</p>
               <h3>{project.card.title}</h3>
               <p>{project.card.summary}</p>
               <a class="project-card__link" href={`/recent-work/${id}`}>Read the project <span aria-hidden="true">→</span></a>

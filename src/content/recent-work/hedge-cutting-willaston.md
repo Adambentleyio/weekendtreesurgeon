@@ -30,7 +30,6 @@ project:
   details:
     - { label: "Location", value: "Willaston, Cheshire", icon: "pin" }
     - { label: "Work carried out", value: "Hedge cut back and reshaped", icon: "shears" }
-    - { label: "Time on site", value: "To be confirmed", icon: "clock" }
     - { label: "Outcome", value: "A tidier, more even boundary", icon: "leaf" }
 media:
   type: "slider"

@@ -1,8 +1,8 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Footer from "../../components/Footer.astro";
+import ContentImage from "../../components/ContentImage.astro";
 
 const projects = (await getCollection("recentWork"))
   .sort((a, b) => (a.data.featuredOrder ?? 999) - (b.data.featuredOrder ?? 999));
@@ -18,10 +18,10 @@ const projects = (await getCollection("recentWork"))
         {projects.map(({ id, data }) => (
           <article class="work-card">
             <a class="work-card__image" href={`/recent-work/${id}`} aria-label={`Read ${data.card.title}`}>
-              <Image src={data.card.image} alt={data.card.alt} widths={[480, 720, 960]} sizes="(min-width:760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" />
+              <ContentImage src={data.card.image} alt={data.card.alt} widths={[480, 720, 960]} sizes="(min-width:760px) 50vw, 100vw" format="webp" quality={78} loading="lazy" />
             </a>
             <div class="work-card__body">
-              <p class="work-card__meta">{data.serviceLabel} <span aria-hidden="true">·</span> {data.location}</p>
+              <p class="work-card__meta">{data.serviceLabel}{data.location && <><span aria-hidden="true"> · </span>{data.location}</>}</p>
               <h2>{data.card.title}</h2>
               <p>{data.card.summary}</p>
               <a class="work-card__link" href={`/recent-work/${id}`}>Read the project <span aria-hidden="true">→</span></a>
